@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+body {
+    background-color: #101010 !important;
+}
+
+.section {
+    h1,p{
+        text-align: start;
+    }
+
+    font-family: "Gowun Batang", serif;
+
+    .text-light {
+        color: rgb(189, 189, 189) !important;
+    }
+
+    .check-icon {
+        color: orange;
+        font-size: 20px;
+    }
+
+    .container-1 {
+        margin-top: 165px;
+
+        h6 {
+            color: orange !important;
+            text-align: start;
+        }
+    }
+
+    .container-2 {
+        margin-top: 130px;
+    }
+}
+
+@media (min-width:300px) {
+    .container-2 {
+        margin-top: 20px !important;
+    }
+}
+
+@media (min-width:768px) {
+    .container-2 {
+        margin-top: 130px !important;
+    }
+}

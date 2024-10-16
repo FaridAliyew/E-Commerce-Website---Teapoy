@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+.moving-list-container {
+    background-color: rgb(255, 132, 0);
+    overflow: hidden;
+    /* Sonsuz animasiya zamanı daşma olmasın deyə */
+    white-space: nowrap;
+    /* Mətni bir sətirdə saxlayır */
+    padding: 20px;
+    /* Biraz boşluq əlavə edir */
+    margin-top: 170px;
+}
+
+.moving-list {
+    display: inline-block;
+    /* Li elementlərini bir sətirə qoyur */
+    animation: moveLeft 45s linear infinite;
+    /* Animasiya daha yavaş edir */
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+.moving-list li {
+    display: inline-block;
+    margin-right: 50px;
+    list-style: none;
+    font-size: 27px;
+    color: white;
+    margin: 0 300px 0 150px;
+}
+
+/* Sağdan sola hərəkət etmək üçün animasiya */
+@keyframes moveLeft {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.multicolumn-list {
+    font-family: "Gowun Batang", serif;
+
+    h6 {
+        color: orange;
+        text-align: start;
+    }
+
+    h1{
+        text-align: start;
+    }
+
+    p {
+        color: rgb(189, 189, 189);
+        text-align: start;
+    }
+    img{
+        width: 100px;
+        display: block;
+        margin: 0 auto;
+    }
+    .image-col{
+        .img-container{
+            padding: 10px;
+            img{
+                background-color: rgb(100, 42, 1);
+                border-radius: 50%;
+                padding: 10px;
+            }
+        }
+    }
+}
+

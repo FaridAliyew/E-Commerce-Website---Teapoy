@@ -1,0 +1,43 @@
+.wishlist{
+    .remove-button{
+        font-size: 19px !important;
+        background-color: rgb(255, 115, 0);
+        border: none;
+        border-radius: 20px;
+        padding: 5px 9px;
+    }
+}
+
+.image-wrapper {
+    position: relative;
+}
+
+.img-icons {
+    position: absolute;
+    top: 10px; /* Yuxarıdan məsafəni tənzimləyin */
+    right: 10px; /* Sağdan məsafəni tənzimləyin */
+    display: flex;
+    flex-direction: column;
+    opacity: 0; /* İkonlar başlanğıcda görünməyəcək */
+    transition: opacity 0.3s ease; /* İkonların çıxışı daha hamar olsun */
+}
+
+.image-wrapper:hover .img-icons {
+    opacity: 1; /* Şəkilin üzərinə gəldikdə ikonlar görünəcək */
+}
+
+.img-icons .icon {
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px; /* İkonların ətrafında daha çox yer */
+    margin-bottom: 5px;
+    border-radius: 50%;
+    font-size: 35px; /* Font ölçüsünü böyütdük */
+    cursor: pointer;
+    transition: background-color 400ms ease;
+}
+
+.img-icons .icon:hover {
+    background-color: orange; /* Hover effekti */
+}
+

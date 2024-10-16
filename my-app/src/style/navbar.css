@@ -1,0 +1,117 @@
+/* Navbar normal vəziyyətdə */
+.navbar {
+  transition: background-color 0.3s ease;
+  /* background-color: rgba(198, 198, 198, 0.127); */
+}
+
+/* Scroll zamanı fon rəngi dəyişir */
+.navbar-scrolled {
+  background-color: rgba(0, 0, 0, 0.9); /* İstənilən rəngə dəyişə bilərsən */
+}
+
+.navbar-brand {
+  margin-right: 0;
+  /* Şəkil üçün sağdan margin yoxdur */
+}
+
+/* Sağdakı ikonları bitişik edir */
+.navbar-collapse .d-flex {
+  margin-left: auto;
+  /* height: 150px; */
+  /* Sağdan boşluq */
+}
+
+/* Dropdown üçün ikonları yığışdırır */
+.navbar-nav .dropdown-menu .dropdown-item {
+  display: flex;
+  align-items: center;
+}
+
+/* Iconların borderini çıxarır */
+.navbar-nav .nav-link,
+.btn-outline-light {
+  border: none;
+}
+
+form .icons {
+  border: none !important;
+}
+
+.dropdown-item{
+  color: black !important;
+  transition: color 0.3s ease;
+  transition: background-color 0.4s ease;
+}
+.dropdown-item:hover{
+  color: rgb(255, 119, 0) !important;
+  background-color: #111111;
+}
+.dropdown-menu{
+  background-color: black;
+  min-width: 10px;
+}
+.sticky-top{
+  z-index: 100;
+}
+
+
+/* Mobil görünüş üçün stil */
+@media (max-width: 991px) { /* Mobil cihazlar üçün */
+  .navbar-collapse {
+    position: absolute;  /* Navbar açılan zaman yer dəyişməsin */
+    top: 100%;  /* Navbarın aşağısında açılsın */
+    left: 0;
+    width: 100%;  /* Tam genişlikdə açılmasını təmin et */
+    background-color: rgba(0, 0, 0, 0.9); /* Arxa fonu qaranlıq (boz rəngdən qurtarmaq üçün) */
+    z-index: 1000;  /* Slider üzərində görünməsi üçün */
+  }
+
+  .navbar-collapse.collapsing {
+    display: block;  /* Açılarkən stabil qalmasını təmin edir */
+  }
+
+  .navbar-collapse.show {
+    display: block;  /* Açıldıqda stabil qalması üçün */
+  }
+}
+
+
+.position-relative {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: -12px !important; /* İkonun yuxarısında göstərmək üçün */
+  right: 5px; /* İkonun sağında yeri tənzimləmək üçün */
+  font-size: 0.7rem; /* Balaca forma üçün font ölçüsü */
+  padding: 0.2em 0.4em; /* Balaca həcm */
+  border-radius: 10px; /* Yuvarlaq kənar */
+  background-color: red; /* Arxa fonun rəngi */
+  color: white; /* Yazının rəngi */
+}
+
+.nav-link.active {
+  color: orange !important; /* Aktif linkin narıncı rəngi */
+}
+
+/* Modal */
+
+.modal-header {
+  border-bottom: none; /* Alt xəti silir */
+}
+
+.modal-header .btn-close {
+  filter: invert(1); /* Rəngi ağ edir */
+}
+
+.modal-header .btn-close:hover {
+  filter: invert(0.5); /* Hover zamanı fərqli rəng */
+}
+
+.sign-up{
+  transition: color 300ms ease !important;
+}
+.sign-up:hover{
+  color: orange !important;
+}

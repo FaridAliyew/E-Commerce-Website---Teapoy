@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+
+/* Navbarın altına yerləşdirmək üçün */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.image-container {
+  position: relative;
+  display: block;
+  height: 300px;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Şəkili ekranın tam sahəsinə sığdırır */
+  opacity: 0.4;
+  /* Şəkilin opasitesini azaltdıq */
+}
+
+.image-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 24px;
+  /* font-weight: bold; */
+  text-align: center;
+  font-family: "Gowun Batang", serif;
+  font-size: 4.1vw;
+}
+
+.image-container {
+  position: relative;
+  text-align: center;
+}
+
+.img-fluid {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+a.text-center {
+  font-family: "Gowun Batang", serif;
+}
+
+a.text-center{
+  transition: color 600ms ease;
+}
+
+a.text-center:hover{
+  color: rgb(255, 115, 0) !important;
+}
+

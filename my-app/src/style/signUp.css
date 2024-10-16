@@ -1,0 +1,49 @@
+.signup-container {
+    min-height: 100vh;
+
+    .signup-box {
+        background-color: #161616; /* Formun arxa fonu */
+        border-radius: 10px;
+        width: 550px;
+
+        h2 {
+            color: #ffffff; /* "Sign Up" başlığı ağ rəngdə */
+        }
+
+        p {
+            color: #ffffff;
+
+            .signin-link {
+                color: #ffb300; /* "Sign In" linkinin rəngi */
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .form-input {
+            background-color: #2e2e2e;
+            border: 1px solid #444;
+            color: #ffffff;
+            margin-bottom: 15px;
+            padding: 12px;
+            font-size: 15px;
+
+            &::placeholder {
+                color: #aaaaaa;
+            }
+        }
+
+        .create-btn {
+            background-color: #ff7f00; /* "CREATE" düyməsinin rəngi */
+            border: none;
+            width: 100px;
+
+            &:hover {
+                background-color: #ff8f1f;
+            }
+        }
+    }
+}

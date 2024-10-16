@@ -1,0 +1,20 @@
+.main-container{
+    position: relative;
+    width: 100px;
+    .quantity-badge{
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        padding: 1px 8px;
+        border-radius: 50%;
+        background-color: red;
+        font-size: 12px;
+    }
+}
+.form-group{
+    position: sticky;
+    top: 72px;
+}
+.product-name{
+    font-size: 14px;
+}

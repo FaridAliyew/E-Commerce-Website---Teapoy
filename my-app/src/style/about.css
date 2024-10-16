@@ -1,0 +1,108 @@
+.about-section {
+    font-family: "Gowun Batang",
+        serif;
+
+    h6,
+    h1,
+    p {
+        text-align: start;
+    }
+
+
+
+    .text-light {
+        color: rgb(189, 189, 189) !important;
+    }
+
+    .check-icon {
+        color: orange;
+        font-size: 20px;
+    }
+
+    .container-1 {
+        margin-top: 165px;
+
+        h6 {
+            color: orange !important;
+        }
+    }
+
+    .container-2 {
+        margin-top: 130px;
+    }
+
+    @media (min-width:300px) {
+        .container-2 {
+            margin-top: 20px !important;
+        }
+    }
+
+    @media (min-width:768px) {
+        .container-2 {
+            margin-top: 130px !important;
+        }
+    }
+}
+
+.team {
+    margin-top: 200px;
+    h6{
+        color: orange;
+    }
+}
+
+.team .col {
+    position: relative;
+    text-align: center;
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.team img {
+    width: 100% !important;
+    height: 100% !important;
+    height: auto;
+    transition: all 0.3s ease-in-out;
+}
+
+.team .col h4 {
+    color: white;
+    margin-top: 15px;
+}
+
+.team .col p{
+    color: gray;
+}
+
+.team .social-icons {
+    position: absolute;
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+    display: flex;
+    gap: 10px;
+}
+
+.team .social-icons a {
+    color: white;
+    font-size: 24px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px 10px;
+    border-radius: 50%;
+    transition: all 0.3s ease-in-out;
+}
+
+.team .col:hover img {
+    opacity: 0.5;
+}
+
+.team .col:hover .social-icons {
+    bottom: 25%;
+    opacity: 1;
+}
+
+.team .social-icons a:hover {
+    background: orange;
+}

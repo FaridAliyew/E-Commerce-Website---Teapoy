@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+.slider-two {
+    font-family: "Gowun Batang", serif;
+    margin-top: 130px;
+
+    h6 {
+        color: orange;
+    }
+}
+
+.carousel-container {
+    height: 300px;
+    background-color: #101010;
+}
+
+.carousel-caption {
+    color: #ffffff;
+    text-align: center;
+}
+
+.main-carusel {
+    font-family: "Gowun Batang", serif;
+    
+    .carousel-content p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .carousel-content h5 {
+        margin-top: 15px;
+        font-weight: bold;
+    }
+
+    .carousel-content img {
+        border-radius: 50%;
+    }
+
+    img{
+        width: 100px;
+        height: 100px;
+    }
+
+}

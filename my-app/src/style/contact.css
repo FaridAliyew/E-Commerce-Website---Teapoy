@@ -1,0 +1,77 @@
+/* contact.css */
+.contact-container {
+    padding: 50px 0;
+    color: white;
+    background-color: #141414;
+    border-radius: 100px;
+    padding: 40px;
+}
+
+.text-note {
+    color: #f0a500;
+    letter-spacing: 1px;
+}
+
+.contact-title {
+    font-size: 2.5rem;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.contact-description {
+    margin-top: 20px;
+    font-size: 1rem;
+    color: #bbbbbb;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.form-control {
+    background-color: #222;
+    color: white;
+    border: 1px solid #444;
+    border-radius: 40px;
+    padding: 20px;
+    /* border-radius: 10px; */
+}
+
+.form-control::placeholder{
+    color: white;
+}
+
+.form-control:focus {
+    background-color: #222;
+    border-color: #f0a500;
+    box-shadow: none;
+    color: white;
+}
+
+.submit-btn {
+    background-color: #f0a500;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-btn:hover {
+    background-color: #d48800;
+}
+
+h6, h1, p {
+    text-align: center;
+}
+
+textarea.form-control {
+    height: 150px;
+}
+
+.map-container {
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}

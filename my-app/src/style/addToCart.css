@@ -1,0 +1,43 @@
+.addToCart {
+    .quantity-control {
+        border-radius: 40px;
+        border: solid 2px orange;
+        min-width: 120px ;
+        margin: 0 auto !important;
+
+        .quantity {
+            border: none;
+            background-color: #101010;
+            color: white;
+        }
+
+        
+    }
+    .delete{
+        cursor: pointer ;
+    }
+
+    h6{
+        text-align: start !important;
+    }
+
+    textarea{
+        background-color: #101010;
+        border-color: rgb(46, 46, 46);
+        outline: none;
+        transition: border-color 600ms ease-in;
+        color: white;
+        &:focus{
+            border-color: orange !important;
+        }
+        &::placeholder{
+            color: gray;
+            font-weight: bold;
+        }
+    }
+
+    .check-out{
+        border: none;
+        background-color: rgb(255, 111, 0);
+    }
+}

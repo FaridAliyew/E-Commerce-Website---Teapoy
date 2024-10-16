@@ -1,0 +1,114 @@
+/* Spinner ölçüsünü artırmaq üçün */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+}
+
+.spinner-container .spinner-border {
+  width: 4rem;
+  height: 4rem;
+  border-width: 0.5rem;
+}
+
+
+.slider-img {
+  width: 100%;
+  height: 350px;
+  object-fit: contain;
+  /* Şəkilləri düzgün göstərmək üçün */
+}
+
+.img-text {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.img-text .img-text-1 {
+  color: #fff;
+  /* Mətnin ağ rəngdə olması */
+  margin: 0;
+  /* Əlavə boşluqları aradan qaldırmaq */
+  line-height: 1.2;
+  /* Line-height dəyərini azaltmaq */
+  margin-top: 10px;
+}
+
+.img-text .categoria {
+  line-height: 1.2;
+  /* Line-height dəyərini azaltmaq */
+  color: rgb(103, 103, 103);
+}
+
+.swiper-container {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.swiper-initialized {
+  height: 500px;
+}
+
+.swiper-pagination-bullet {
+  background-color: #007bff;
+}
+
+.swiper-pagination-bullet-active {
+  background-color: #ff5722;
+}
+
+.swiper-pagination {
+  position: absolute !important;
+  bottom: 0px !important;
+}
+
+/* ------------- */
+
+.image-wrapper {
+  position: relative;
+}
+
+.img-icons {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  /* İkonlar başlanğıcda görünməyəcək */
+  transition: opacity 0.3s ease;
+  /* İkonların çıxışı daha hamar olsun */
+}
+
+.image-wrapper:hover .img-icons {
+  opacity: 1;
+  /* Şəkilin üzərinə gəldikdə ikonlar görünəcək */
+}
+
+.img-icons .icon {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 10px;
+  /* İkonların ətrafında daha çox yer */
+  margin-bottom: 5px;
+  border-radius: 50%;
+  font-size: 35px;
+  /* Font ölçüsünü böyütdük */
+  cursor: pointer;
+  transition: background-color 400ms ease;
+}
+
+.img-icons .icon:hover {
+  background-color: orange;
+}
+
+.slider-img {
+  width: 100%;
+  height: auto;
+}
+
+.img-text {
+  text-align: center;
+}
+
