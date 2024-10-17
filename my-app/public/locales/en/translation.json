@@ -152,6 +152,12 @@
       "submitButton": "SUBMIT QUERY"
     },
 
+    "wishlist": "Wishlist",
+    "addToCartSuccess": "Successfully added to the cart!",
+    "remove": "REMOVE",
+    "emptyWishlist": "Your wishlist is empty!",
+    "totalItems": "Total Items",
+
     "title": "Your Shopping Cart",
     "empty": "Your Cart Is Empty",
     "continueShopping": "Continue shopping",

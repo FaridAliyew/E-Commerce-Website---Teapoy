@@ -1,8 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import '../style/checkOut.css';
+import { motion } from 'framer-motion';
+import { FaRegCircleCheck } from "react-icons/fa6";
 
 function CheckOut({ cartItems, quantities }) {
+    const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
+    const navigate = useNavigate();
+
     // Local storage-dan quantities oxumaq
     useEffect(() => {
         const savedQuantities = localStorage.getItem('quantities');
@@ -30,109 +36,156 @@ function CheckOut({ cartItems, quantities }) {
         }, 0).toFixed(2);
     };
 
+    // Formu təqdim edən funksiyanı yarat
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        // Burada ödəniş təsdiqi və ya server sorğusu aparıla bilər
+        setIsPaymentSuccessful(true); // Ödəniş uğurlu olduqda success vəziyyətini təyin et
+    };
+
+    // Yönləndirmə üçün useEffect istifadə et
+    useEffect(() => {
+        if (isPaymentSuccessful) {
+            const timer = setTimeout(() => {
+                navigate('/'); // Ana səhifəyə yönləndir
+            }, 4000); // 2 saniyə sonra yönləndir
+
+            return () => clearTimeout(timer); // Cleanup funksiyası
+        }
+    }, [isPaymentSuccessful, navigate]);
+
     return (
         <Container fluid className='mt-5 check-out d-flex justify-content-center'>
             <Row className=' w-75 justify-content-between'>
-                <Col lg={5} >
-                    <Form className='form-group'>
-                        <h2 className='text-white text-start mb-3'>Contact</h2>
-                        <Form.Group controlId="contact">
-                            <Form.Control
-                                type="text"
-                                placeholder="Email or mobile phone number"
-                            />
-                        </Form.Group>
+                {isPaymentSuccessful ? (
+                    <div className="success-animation text-center " style={{ marginTop: 100, marginBottom: 150 }}>
+                        <motion.div
+                            initial={{ scale: 0, opacity: 0, rotate: 0 }}
+                            animate={{ scale: 1.2, opacity: 1, rotate: 720, color: "#00ff00" }}
+                            transition={{
+                                duration: 2,
+                                ease: [0.175, 0.85, 0.42, 0.96], // Bəzi yaylanma effekti
+                                repeatType: "reverse" // Təkrar animasiya geri dönüş edir
+                            }}
+                            style={{ color: 'green' }} // İkincil rəng təyin etmək üçün
+                        >
+                            <FaRegCircleCheck size={100} />
+                        </motion.div>
 
-                        <h2 className="mt-5 text-start text-white mb-3">Delivery</h2>
-                        <Form.Group controlId="country">
-                            <Form.Control type="text" placeholder='Country/Region' />
-                        </Form.Group>
 
-                        <Row className='mt-3'>
-                            <Col>
-                                <Form.Group controlId="firstname">
-                                    <Form.Control type="text" placeholder='First Name' />
-                                </Form.Group>
-                            </Col>
-                            <Col>
-                                <Form.Group controlId="lastname">
-                                    <Form.Control type="text" placeholder='Last Name' />
-                                </Form.Group>
-                            </Col>
-                        </Row>
+                    </div>
+                ) : (
+                    <Col lg={5}>
+                        <Form className='form-group' onSubmit={handleSubmit}>
+                            <h2 className='text-white text-start mb-3'>Contact</h2>
+                            <Form.Group controlId="contact">
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Email or mobile phone number"
+                                    className='rounded-3'
+                                    required
+                                />
+                            </Form.Group>
 
-                        <Form.Group controlId="apartment" className='mt-3'>
-                            <Form.Control type="text" placeholder='Apartment, suite, etc. (optional)' />
-                        </Form.Group>
+                            <h2 className="mt-5 text-start text-white mb-3">Delivery</h2>
+                            <Form.Group controlId="country">
+                                <Form.Control type="text" placeholder='Country/Region' className='rounded-3' required />
+                            </Form.Group>
 
-                        <Form.Group controlId="city" className='mt-3'>
-                            <Form.Control type="text" placeholder='City' />
-                        </Form.Group>
+                            <Row className='mt-3'>
+                                <Col>
+                                    <Form.Group controlId="firstname">
+                                        <Form.Control type="text" placeholder='First Name' className='rounded-3' required />
+                                    </Form.Group>
+                                </Col>
+                                <Col>
+                                    <Form.Group controlId="lastname">
+                                        <Form.Control type="text" placeholder='Last Name' className='rounded-3' required />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
 
-                        <Form.Group controlId="state" className='mt-3'>
-                            <Form.Control type="text" placeholder='State' />
-                        </Form.Group>
+                            <Form.Group controlId="apartment" className='mt-3'>
+                                <Form.Control type="text" placeholder='Apartment, suite, etc. (optional)' className='rounded-3' />
+                            </Form.Group>
 
-                        <Form.Group controlId="pincode" className='mt-3'>
-                            <Form.Control type="text" placeholder='PIN code' />
-                        </Form.Group>
+                            <Row>
+                                <Col>
+                                    <Form.Group controlId="city" className='mt-3'>
+                                        <Form.Control type="text" placeholder='City' className='rounded-3' required />
+                                    </Form.Group>
+                                </Col>
+                                <Col>
+                                    <Form.Group controlId="state" className='mt-3'>
+                                        <Form.Control type="text" placeholder='State' className='rounded-3' required />
+                                    </Form.Group>
+                                </Col>
+                                <Col>
+                                    <Form.Group controlId="pincode" className='mt-3'>
+                                        <Form.Control type="text" placeholder='PIN code' className='rounded-3' required />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
 
-                        <h2 className="mt-5 text-start text-white mb-3">Payment</h2>
-                        <Form.Group controlId="cardNumber">
-                            <Form.Control type="text" placeholder='Card Number' />
-                        </Form.Group>
+                            <h2 className="mt-5 text-start text-white mb-3">Payment</h2>
+                            <Form.Group controlId="cardNumber">
+                                <Form.Control type="text" placeholder='Card Number' className='rounded-3' required />
+                            </Form.Group>
 
-                        <Row className='mt-3'>
-                            <Col>
-                                <Form.Group controlId="expirationDate">
-                                    <Form.Control type="text" placeholder='Expiration Date (MM / YY)' />
-                                </Form.Group>
-                            </Col>
-                            <Col>
-                                <Form.Group controlId="securityCode">
-                                    <Form.Control type="text" placeholder='Security Code' />
-                                </Form.Group>
-                            </Col>
-                        </Row>
+                            <Row className='mt-3'>
+                                <Col>
+                                    <Form.Group controlId="expirationDate">
+                                        <Form.Control type="text" placeholder='Expiration Date (MM / YY)' className='rounded-3' required />
+                                    </Form.Group>
+                                </Col>
+                                <Col>
+                                    <Form.Group controlId="securityCode">
+                                        <Form.Control type="text" placeholder='Security Code' className='rounded-3' required />
+                                    </Form.Group>
+                                </Col>
+                            </Row>
 
-                        <Form.Group controlId="nameOnCard" className='mt-3'>
-                            <Form.Control type="text" placeholder='Name on Card' />
-                        </Form.Group>
+                            <Form.Group controlId="nameOnCard" className='mt-3'>
+                                <Form.Control type="text" placeholder='Name on Card' className='rounded-3' required />
+                            </Form.Group>
 
-                        <Button className="mt-4 w-100" variant="primary" type="submit">
-                            Pay Now
-                        </Button>
-                    </Form>
-                </Col>
+                            <Button className="mt-4 w-100" variant="primary" type="submit">
+                                Pay Now
+                            </Button>
+                        </Form>
+                    </Col>
+                )}
 
                 {/* Sağ tərəfdə səbətə əlavə edilmiş məhsullar */}
-                <Col lg={5} className='mt-5 mt-lg-0'>
-                    {cartItems.length > 0 ? (
-                        <>
-                            {cartItems.map((item, index) => (
-                                <div key={index} className="product-container d-flex justify-content-between align-items-center mb-4 p-3 border rounded-3 w-100">
-                                    <div className="d-flex align-items-center">
-                                        <div className='main-container'>
-                                            {quantities[item.id] > 0 && (
-                                                <div className="quantity-badge text-white">
-                                                    {quantities[item.id]}
-                                                </div>
-                                            )}
-                                            <img src={item.image_url} alt={item.name1} className="img-fluid rounded-3" />
+                {isPaymentSuccessful ? '' : (
+                    <Col lg={5} className='mt-5 mt-lg-0'>
+                        {cartItems.length > 0 ? (
+                            <>
+                                {cartItems.map((item, index) => (
+                                    <div key={index} className="product-container d-flex justify-content-between align-items-center mb-4 p-3 border rounded-3 w-100">
+                                        <div className="d-flex align-items-center">
+                                            <div className='main-container'>
+                                                {quantities[item.id] > 0 && (
+                                                    <div className="quantity-badge text-white">
+                                                        {quantities[item.id]}
+                                                    </div>
+                                                )}
+                                                <img src={item.image_url} alt={item.name1} className="img-fluid rounded-3" />
+                                            </div>
+                                            <div className="ms-3">
+                                                <p className='text-white mb-1 ms-auto me-auto product-name'>{item.name2}</p>
+                                            </div>
                                         </div>
-                                        <div className="ms-3">
-                                            <p className='text-white mb-1 ms-auto me-auto product-name'>{item.name2}</p>
-                                        </div>
+                                        <p className='text-white fs-6'>${(item.price * (quantities[item.id] || 1)).toFixed(2)}</p>
                                     </div>
-                                    <p className='text-white fs-6'>${(item.price * (quantities[item.id] || 1)).toFixed(2)}</p>
-                                </div>
-                            ))}
-                            <h4 className='text-white mt-4'>Total: ${calculateTotal(cartItems, quantities)}</h4>
-                        </>
-                    ) : (
-                        <h5 className='text-center text-white'>Your Cart is Empty</h5>
-                    )}
-                </Col>
+                                ))}
+                                <h4 className='text-white mt-4'>Total: ${calculateTotal(cartItems, quantities)}</h4>
+                            </>
+                        ) : (
+                            <h5 className='text-center text-white'>Your Cart is Empty</h5>
+                        )}
+                    </Col>
+                )}
             </Row>
         </Container>
     );
