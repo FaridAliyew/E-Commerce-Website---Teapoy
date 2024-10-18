@@ -1,14 +1,12 @@
 .caption-center {
     position: absolute;
     top: 50%;
-    /* left: 50%; */
     transform: translate(0%, -50%);
     text-align: center;
     color: white;
     z-index: 10;
 }
 
-/* Carousel-indicator'ları gizlətmək üçün CSS */
 .carousel-indicators {
     display: none !important;
 }
@@ -17,28 +15,24 @@
 .carousel-item img {
     width: 100%;
     height: 600px;
-    /* Yüksəkliyi sabitləşdiririk */
     object-fit: cover;
-    /* Şəkilin tam çərçivəyə uyğun olmasını təmin edir */
 }
 
 .carousel-caption a {
     text-decoration: none;
-    padding: 10px 50px;
+    padding: 10px 45px;
     border: none;
     border-radius: 20px;
     color: white;
     background-color: rgb(255, 119, 0);
-    margin-top: 20px;
+    margin-top: 15px;
     font-weight: 500;
     transition: background-color 0.3s ease-in-out;
     display: inline-block;
-    /* Hover keçidi */
 }
 
-.carousel-caption button:hover {
+.carousel-caption a:hover {
     background-color: rgb(200, 100, 0);
-    /* Hover effekti ilə rəng dəyişikliyi */
 }
 
 @media (max-width:700px) {

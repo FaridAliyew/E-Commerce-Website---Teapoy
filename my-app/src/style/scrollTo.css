@@ -1,0 +1,41 @@
+.scroll-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #ff8c00;
+    color: white;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s ease;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+    z-index: 999;
+}
+
+.scroll-to-top.fade-in {
+    opacity: 1;
+    /* Görünməli */
+}
+
+@keyframes fadeIn {
+    from {
+        transform: translateY(20px);
+        /* Aşağıdan 20px yuxarı */
+        opacity: 0;
+        /* Başlanğıcda görünməz */
+    }
+
+    to {
+        transform: translateY(0);
+        /* Yuxarıda normala dön */
+        opacity: 1;
+        /* Tam görünən */
+    }
+}
+
+.scroll-to-top.fade-out {
+    animation: fadeOut 0.5s forwards;
+    /* İtme animasiyası */
+}

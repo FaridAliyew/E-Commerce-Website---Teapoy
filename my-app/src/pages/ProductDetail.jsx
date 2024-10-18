@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
 import { TbBus } from "react-icons/tb";
 import { LuShoppingBag } from "react-icons/lu";
 import { AiOutlineHeart } from "react-icons/ai";
+import '../style/productDetail.css'
+import { toast } from 'react-toastify';
 
 
-function ProductDetail() {
+function ProductDetail({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, cartItems, wishlistItems }) {
     const { id } = useParams(); // URL-dən məhsul ID-sini alın
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -45,18 +47,49 @@ function ProductDetail() {
         }
     };
 
+    const handleAddToCart = (item) => {
+        const existingItem = cartItems.find(cartItem => cartItem.id === item.id);
+        if (existingItem) {
+            // Əgər məhsul artıq səbətdə varsa, yalnız sayını artırın
+            setCartItems(cartItems.map(cartItem =>
+                cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + quantity } : cartItem
+            ));
+        } else {
+            // Əks halda, yeni məhsul əlavə edin
+            setCartItems([...cartItems, { ...item, quantity }]);
+            setCartCount(prev => prev + 1);
+            toast.success('Successfully added to cart!'); // 'successAddCart' yerinə birbaşa mesaj
+        }
+    };
+
+    const handleAddToWishlist = (item) => {
+        const existingItem = wishlistItems.find(wishlistItem => wishlistItem.id === item.id);
+        if (existingItem) {
+            // Əgər məhsul artıq istək siyahısındadırsa, sayını artırın
+            setWishlistItems(wishlistItems.map(wishlistItem =>
+                wishlistItem.id === item.id ? { ...wishlistItem, quantity: wishlistItem.quantity + 1 } : wishlistItem
+            ));
+        } else {
+            // Əks halda, yeni məhsul əlavə edin
+            setWishlistItems([...wishlistItems, { ...item, quantity: 1 }]);
+            setWishlistCount(prev => prev + 1);
+            toast.success('Successfully added to wishlist!'); // 'successAddWishlist' yerinə birbaşa mesaj
+        }
+    };
+
+
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
 
     return (
         <Container className='mt-5'>
-            <Row className="">
+            <Row>
                 {product && (
                     <>
                         <Col md={6}>
                             <img src={product.image_url} width={550} className='rounded-4 img-fluid' alt={product.name2} />
                         </Col>
-                        <Col md={6} className=''>
+                        <Col md={6}>
                             <p className='text-white text-start fs-1'>{product.name2}</p>
                             <div className='text-warning'>
                                 <FaStar />
@@ -75,12 +108,12 @@ function ProductDetail() {
                             <div className='d-flex align-items-center mt-4'>
                                 <Button variant='black' className='border-warning text-white' onClick={decrement}>-</Button>
                                 <span className='mx-3 fs-3 text-white'>{quantity}</span>
-                                <Button variant='black'className='border-warning text-white' onClick={increment}>+</Button>
-                                <Button variant="black" className='ms-3 w-75 border-warning text-white'>Add to Cart</Button>
-                                <AiOutlineHeart className='ms-2 fs-2 text-white' /> {/* Wishlist icon */}
+                                <Button variant='black' className='border-warning text-white' onClick={increment}>+</Button>
+                                <Button variant="black" className='ms-3 w-75 border-warning text-white' onClick={() => handleAddToCart(product)}>Add to Cart</Button>
+                                <AiOutlineHeart className='ms-2 fs-2 text-white cursor-pointer' onClick={() => handleAddToWishlist(product)} />
                             </div>
 
-                            <Button variant="warning" className='mt-4 w-100'>Buy it now</Button>
+                            <Link to={'/checkout'} variant="warning" className='mt-4 w-100 text-decoration-none text-black d-block by-now p-2 rounded-3'>Buy it now</Link>
                             <p className='text-white mt-3 fs-5'>Sub total: ${((product.price || 0) * quantity).toFixed(2)}</p> {/* Yekun məbləğ */}
                         </Col>
                     </>

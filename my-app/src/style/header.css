@@ -1,17 +1,13 @@
-
-/* İkonlar üçün standart rəng */
 .social-icon {
   color: white; 
   transition: color 0.7s ease; 
   cursor: pointer;
 }
 
-/* İkonların üzərinə gəldikdə rəngin narıncı olması */
 .social-icon:hover {
-  color: orange; /* Üzərinə gəldikdə narıncı rəng */
+  color: orange; 
 }
 
-/* Digər mövcud stil kodları */
 .marquee_annoucement {
   overflow: hidden;
   white-space: nowrap;
@@ -20,13 +16,13 @@
 
 .announcement-bar {
   display: inline-block;
-  padding-right: 50%; /* Mətni axıtmaq üçün genişlik əlavə edir */
-  animation: marquee 15s linear infinite; /* Mətni axıtmaq üçün animasiya */
+  padding-right: 50%; 
+  animation: marquee 15s linear infinite; 
 }
 
 .announcement-bar__message {
   display: inline;
-  margin-right: 2rem; /* Mətni bir-birindən ayıran məsafə */
+  margin-right: 2rem; 
   color: white;
 }
 
@@ -39,33 +35,31 @@
   }
 }
 
-
-
 /* Dropdown Toggle */
 .custom-dropdown-toggle {
-  background-color: black !important; /* Arxa fon qara */
-  color: white !important; /* Mətn ağ */
-  border: none !important; /* Sərhəd yox */
-  transition: background-color 0.3s ease, color 0.3s ease; /* Keçid effekti */
+  background-color: black !important; 
+  color: white !important; 
+  border: none !important; 
+  transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
 .custom-dropdown-toggle:hover {
-  background-color: #333 !important; /* Hover vəziyyətində daha tünd qara */
+  background-color: #333 !important; 
 }
 
 /* Dropdown Menu */
 .custom-dropdown-menu {
-  background-color: black !important; /* Arxa fon qara */
-  color: white !important; /* Mətn ağ */
+  background-color: black !important; 
+  color: white !important; 
   min-width: 10px !important;
   z-index: 999;
 }
 
 .custom-dropdown-menu .dropdown-item {
-  color: white !important; /* Mətn ağ */
-  transition: background-color 0.3s ease; /* Hover keçid effekti */
+  color: white !important;
+  transition: background-color 0.3s ease; 
 }
 
 .custom-dropdown-menu .dropdown-item:hover {
-  background-color: #333 !important; /* Hover vəziyyətində daha tünd qara */
+  background-color: #333 !important; 
 }

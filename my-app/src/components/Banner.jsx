@@ -72,7 +72,7 @@ function Banner() {
             <div className="overlay"></div>
             <Row className="justify-content-center align-items-center text-center content" style={{ minHeight: '50vh' }}>
                 {items.map((item, index) => (
-                    <Col xs={12} sm={6} md={3} className="item" key={index} onMouseEnter={() => handleMouseEnter(item.image)} onMouseLeave={handleMouseLeave}>
+                    <Col xs={6} md={3} className="item" key={index} onMouseEnter={() => handleMouseEnter(item.image)} onMouseLeave={handleMouseLeave}>
                         {item.icon}
                         <h2>{item.name}</h2>
                     </Col>

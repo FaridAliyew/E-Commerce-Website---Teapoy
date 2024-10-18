@@ -26,50 +26,46 @@
   display: inline-block;
   margin: 0 15px;
   text-decoration: none;
-  color: #ffffff; /* Default rəng */
+  color: #ffffff; 
   font-weight: bold;
   position: relative;
-  padding: 10px 0; /* Xəttin düzgün görünməsi üçün */
-  transition: color 0.3s ease; /* Rəng keçidi */
+  padding: 10px 0; 
+  transition: color 0.3s ease; 
 }
 
-/* Home Decoration linki üçün xüsusi tərtibat */
+
 .link-container a.active-link {
-  color: orange; /* Aktiv link rəngi */
+  color: orange;
 }
 
 .link-container a.active-link::after {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -5px; /* Xəttin mətndən nə qədər aşağıda olduğunu təyin edir */
+  bottom: -5px; 
   width: 100%;
-  height: 2px; /* Xəttin qalınlığı */
-  background-color: orange; /* Xəttin rəngi */
-  transform: scaleX(0); /* Xəttin başlanğıc vəziyyəti */
-  transform-origin: bottom left; /* Xəttin genişlənmə mənbəyi */
-  transition: transform 0.3s ease; /* Xəttin animasiyası */
+  height: 2px; 
+  background-color: orange; 
+  transform: scaleX(0); 
+  transform-origin: bottom left; 
+  transition: transform 0.3s ease; 
 }
 
-/* Aktiv linkdə hover olunmadığında xətt görünür */
+
 .link-container a.active-link:hover::after {
-  transform: scaleX(1); /* Xəttin genişlənməsi */
+  transform: scaleX(1); 
 }
 
 /* Aktiv olmayan linklərdə xətt görünməz */
 .link-container a:not(.active-link)::after {
-  display: none; /* Xətti gizlədir */
+  display: none; 
 }
 
-/* .dropdown-menu-custom {
-  background-color: orange !important;
-  width: 100% !important;
-} */
 
 .dropdown-toggle-custom {
   background-color: rgb(255, 149, 0) !important;
   width: 80% !important;
-  border: none; /* Əgər çərçivəsiz etmək istəyirsənsə */
+  border: none; 
   padding: 10px;
 }
 
@@ -80,4 +76,9 @@
 
 .dropdown-item{
   color: white !important;
+}
+
+.dropdown-item.active{
+  color: rgb(255, 140, 0) !important;
+  background-color: #2b2b2b;
 }

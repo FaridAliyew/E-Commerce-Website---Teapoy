@@ -53,37 +53,37 @@ function SectionTwo() {
                 </Row>
 
                 <Row className="justify-content-center mt-5">
-                    <Col sm={12} md={6} lg={4} xl={3} className="image-col">
+                    <Col sm={6} lg={4} xl={3} className="image-col">
                         <div className="img-container">
                             <img src={img2} alt="" />
                             <p className='text-center mt-2'>{t('HOME_FRAGRANCES')}</p>
                         </div>
                     </Col>
-                    <Col sm={12} md={6} lg={4} xl={3} className="image-col">
+                    <Col sm={6} lg={4} xl={3} className="image-col">
                         <div className="img-container">
                             <img src={img3} alt="" />
                             <p className='text-center mt-2'>{t('GARDEN_DECOR')}</p>
                         </div>
                     </Col>
-                    <Col sm={12} md={6} lg={4} xl={3} className="image-col">
+                    <Col sm={6} lg={4} xl={3} className="image-col">
                         <div className="img-container">
                             <img src={img4} alt="" />
                             <p className='text-center mt-2'>{t('CANDLE_HOLDERS')}</p>
                         </div>
                     </Col>
-                    <Col sm={12} md={6} lg={4} xl={3} className="image-col">
+                    <Col sm={6} lg={4} xl={3} className="image-col">
                         <div className="img-container">
                             <img src={img5} alt="" />
                             <p className='text-center mt-2'>{t('FURNITURE_ACCESSORIES')}</p>
                         </div>
                     </Col>
-                    <Col sm={12} md={6} lg={4} xl={6} className="image-col">
+                    <Col sm={6} lg={4} xl={6} className="image-col">
                         <div className="img-container">
                             <img src={img6} alt="" />
                             <p className='text-center mt-2'>{t('STORAGE_SOLUTIONS')}</p>
                         </div>
                     </Col>
-                    <Col sm={12} md={6} lg={4} xl={6} className="image-col">
+                    <Col sm={6} lg={4} xl={6} className="image-col">
                         <div className="img-container">
                             <img src={img7} alt="" />
                             <p className='text-center mt-2'>{t('SEASONAL_DECOR')}</p>

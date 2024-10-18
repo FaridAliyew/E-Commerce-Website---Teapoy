@@ -35,6 +35,7 @@ import AdminLogin from './pages/AdminLogin';
 import NotFound from './pages/NotFound';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
+import ScrollToTopButton from './components/ScrollToTopButton';
 
 function App() {
     const [cartCount, setCartCount] = useState(0);
@@ -142,13 +143,14 @@ function App() {
 
                     <Route path="*" element={<NotFound />} />
 
-                    <Route path="/product/:id" element={<ProductDetail />} />
+                    <Route path="/product/:id" element={<ProductDetail setCartCount={setCartCount} setCartItems={setCartItems} setWishlistCount={setWishlistCount} setWishlistItems={setWishlistItems} cartItems={cartItems} wishlistItems={wishlistItems} quantities={quantities}  setQuantities={setQuantities}/>} />
 
                     <Route path='checkout' element={<CheckOut cartItems={cartItems} quantities={quantities} />} />
 
                     {/* Digər səhifələr */}
                     <Route path="/other" element={<div>Other page</div>} />
                 </Routes>
+                <ScrollToTopButton/>
                 <Footer />
             </I18nextProvider>
         </>
