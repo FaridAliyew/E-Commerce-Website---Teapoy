@@ -165,6 +165,14 @@
     "total": "Total: ",
     "taxesNote": "Taxes and shipping calculated at checkout",
     "checkout": "CHECK OUT",
-    "addNotePlaceholder": "Enter the text here..."
+    "addNotePlaceholder": "Enter the text here...",
+
+    "add_to_cart": "Add to Cart",
+    "buy_now": "Buy Now",
+    "categories": "Category",
+    "estimate_delivery": "Estimated delivery time: 12-26 days (International)",
+    "free_return": "Free return within 30 days of purchase.",
+    "sub_total": "Subtotal",
+    "product_description": "The quality of our products and customer satisfaction is always our top priority. Our products are carefully selected to ensure comfortable and long-lasting use."
 
 }

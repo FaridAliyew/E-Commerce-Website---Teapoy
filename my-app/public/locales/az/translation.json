@@ -167,6 +167,13 @@
   "total": "Cəmi: ",
   "taxesNote": "Vergilər və çatdırılma qiymətləndiriləcək",
   "checkout": "SİFARİŞ VER",
-  "addNotePlaceholder": "Mətni bura daxil edin..."
-  
+  "addNotePlaceholder": "Mətni bura daxil edin...",
+
+  "add_to_cart": "Səbətə əlavə et",
+  "buy_now": "İndi al",
+  "categories": "Kateqoriya",
+  "estimate_delivery": "Təxmini çatdırılma müddəti: 12-26 gün (Beynəlxalq)",
+  "free_return": "Alışdan sonra 30 gün ərzində pulsuz qaytarılma.",
+  "sub_total": "Yekun məbləğ",
+  "product_description": "Bizim məhsulların keyfiyyəti və müştəri məmnuniyyəti həmişə ən önəmli prioritetimizdir. Məhsullarımızın rahat və uzunömürlü istifadəsi üçün diqqətlə seçilir."
 }

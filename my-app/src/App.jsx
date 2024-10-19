@@ -36,6 +36,7 @@ import NotFound from './pages/NotFound';
 import { I18nextProvider } from 'react-i18next';
 import i18n from './i18n';
 import ScrollToTopButton from './components/ScrollToTopButton';
+import Recommended from './components/Recommended';
 
 function App() {
     const [cartCount, setCartCount] = useState(0);
@@ -122,6 +123,7 @@ function App() {
                             cartItems={cartItems}
                             setCartItems={setCartItems}
                             setCartCount={setCartCount} // yeni əlavə
+                            isAuthenticated={isAuthenticated}
                         />
                     } />
 
@@ -143,14 +145,19 @@ function App() {
 
                     <Route path="*" element={<NotFound />} />
 
-                    <Route path="/product/:id" element={<ProductDetail setCartCount={setCartCount} setCartItems={setCartItems} setWishlistCount={setWishlistCount} setWishlistItems={setWishlistItems} cartItems={cartItems} wishlistItems={wishlistItems} quantities={quantities}  setQuantities={setQuantities}/>} />
+                    <Route path="/product/:id" element={
+                        <>
+                            <ProductDetail setCartCount={setCartCount} setCartItems={setCartItems} setWishlistCount={setWishlistCount} setWishlistItems={setWishlistItems} cartItems={cartItems} wishlistItems={wishlistItems} quantities={quantities} setQuantities={setQuantities} isAuthenticated={isAuthenticated}/>
+                            <Recommended quantities={quantities} setCartItems={setCartItems} cartItems={cartItems} setCartCount={setCartCount} wishlistItems={wishlistItems} setWishlistItems={setWishlistItems} setWishlistCount={setWishlistCount}/>
+                        </>
+                    } />
 
                     <Route path='checkout' element={<CheckOut cartItems={cartItems} quantities={quantities} />} />
 
                     {/* Digər səhifələr */}
                     <Route path="/other" element={<div>Other page</div>} />
                 </Routes>
-                <ScrollToTopButton/>
+                <ScrollToTopButton />
                 <Footer />
             </I18nextProvider>
         </>

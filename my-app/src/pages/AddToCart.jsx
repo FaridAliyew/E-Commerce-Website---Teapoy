@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import img from '../imgs/Rectangle_2.jpg';
 import '../style/addToCart.css';
 import { RiDeleteBin5Line } from "react-icons/ri";
@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { GrNotes } from "react-icons/gr";
 import { useTranslation } from 'react-i18next'; // Import useTranslation hook
 
-function AddToCart({ cartItems, setCartItems, setCartCount, quantities, setQuantities }) {
+function AddToCart({ cartItems, setCartItems, setCartCount, quantities, setQuantities, isAuthenticated }) {
     const { t } = useTranslation(); // Initialize translation
 
     const navigate = useNavigate();
@@ -50,6 +50,14 @@ function AddToCart({ cartItems, setCartItems, setCartCount, quantities, setQuant
         localStorage.setItem('quantities', JSON.stringify(updatedQuantities));
         setQuantities(updatedQuantities);
     };
+
+    const success = () => {
+        if(isAuthenticated){
+            navigate('/checkout')
+        } else{
+            navigate('/signin')
+        }
+    }
 
     const calculateTotal = () => {
         return cartItems.reduce((total, item) => {
@@ -130,7 +138,7 @@ function AddToCart({ cartItems, setCartItems, setCartCount, quantities, setQuant
                             <div className='text-white text-center '>
                                 <h3 className='fs-4 float-md-end'>{t('total')}: ${calculateTotal().toFixed(2)}</h3><br /> <br />
                                 <p className='float-md-end'>{t('taxesNote')}</p> <br /><br />
-                                <Link to={'/checkout'} className='float-md-end check-out text-white rounded-4 w-50 py-2 text-decoration-none'>{t('checkout')}</Link><br /><br />
+                                <Button onClick={success} className='float-md-end check-out text-white rounded-4 w-50 py-2 text-decoration-none'>{t('checkout')}</Button><br /><br />
                             </div>
                         </Col>
                     </Row>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
@@ -8,14 +8,16 @@ import { LuShoppingBag } from "react-icons/lu";
 import { AiOutlineHeart } from "react-icons/ai";
 import '../style/productDetail.css'
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next'; // Tərcümə hook-u daxil edin
 
-
-function ProductDetail({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, cartItems, wishlistItems }) {
+function ProductDetail({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, cartItems, wishlistItems, setQuantities, isAuthenticated }) {
     const { id } = useParams(); // URL-dən məhsul ID-sini alın
+    const { t } = useTranslation(); // Tərcümə funksiyasını çağırın
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [quantity, setQuantity] = useState(1);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchProduct = async () => {
@@ -36,16 +38,6 @@ function ProductDetail({ setCartCount, setWishlistCount, setCartItems, setWishli
 
         fetchProduct();
     }, [id]);
-
-    const increment = () => {
-        setQuantity(quantity + 1); // Counter artır
-    };
-
-    const decrement = () => {
-        if (quantity > 1) { // Minimum 1 olmalıdır
-            setQuantity(quantity - 1); // Counter azald
-        }
-    };
 
     const handleAddToCart = (item) => {
         const existingItem = cartItems.find(cartItem => cartItem.id === item.id);
@@ -77,6 +69,28 @@ function ProductDetail({ setCartCount, setWishlistCount, setCartItems, setWishli
         }
     };
 
+    const handleQuantityChange = (id, change) => {
+        setQuantity(prev => Math.max(1, prev + change));
+        setQuantities((prev) => {
+            const newQuantity = Math.max(1, (prev[id] || 1) + change);
+            const updatedQuantities = {
+                ...prev,
+                [id]: newQuantity,
+            };
+            localStorage.setItem('quantities', JSON.stringify(updatedQuantities));
+            return updatedQuantities;
+        });
+    };
+
+    const success = () => {
+        if(isAuthenticated){
+            handleAddToCart(product)
+            navigate('/checkout')
+        } else{
+            navigate('/signin')
+        }
+    }
+
 
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error: {error.message}</div>;
@@ -99,22 +113,22 @@ function ProductDetail({ setCartCount, setWishlistCount, setCartItems, setWishli
                                 <FaStarHalfAlt />
                             </div>
                             <p className='text-white text-start mt-3 fs-2'>${product.price}</p>
-                            <p className='text-start text-secondary'>Vestibulum dapibus ultrices arcu, id varius mauris viverra ac. Aliquam erat volutpat. Pellentesque commodo ut elit at gravida. Nunc ac molestie turpis. san, fermentum condimentum ligula.</p>
-                            <b className='text-white fs-5'>Vendor: </b>
+                            <p className='text-start text-secondary'>{t('product_description')}</p>
+                            <b className='text-white fs-5'>{t('categories')}: </b>
                             <span className='text-secondary text-start'>{product.name1}</span> <br />
-                            <TbBus className='fs-2 text-secondary mt-4 me-2' /> <span className='text-secondary' style={{ position: 'relative', top: '12px' }}>Estimate delivery times:12-26 days (International)</span> <br />
-                            <LuShoppingBag className='fs-2 text-secondary mt-3 me-2' /> <span className='text-secondary' style={{ position: 'relative', top: '12px' }}>Free return within 30 days of purchase.$79</span>
+                            <TbBus className='fs-2 text-secondary mt-4 me-2' /> <span className='text-secondary' style={{ position: 'relative', top: '12px' }}>{t('estimate_delivery')}</span> <br />
+                            <LuShoppingBag className='fs-2 text-secondary mt-3 me-2' /> <span className='text-secondary' style={{ position: 'relative', top: '12px' }}>{t('free_return')}</span>
 
                             <div className='d-flex align-items-center mt-4'>
-                                <Button variant='black' className='border-warning text-white' onClick={decrement}>-</Button>
+                                <Button variant='black' className='border-warning text-white' onClick={() => handleQuantityChange(product.id, -1)}>-</Button>
                                 <span className='mx-3 fs-3 text-white'>{quantity}</span>
-                                <Button variant='black' className='border-warning text-white' onClick={increment}>+</Button>
-                                <Button variant="black" className='ms-3 w-75 border-warning text-white' onClick={() => handleAddToCart(product)}>Add to Cart</Button>
+                                <Button variant='black' className='border-warning text-white' onClick={() => handleQuantityChange(product.id, 1)}>+</Button>
+                                <Button variant="black" className='ms-3 w-75 border-warning text-white' onClick={() => handleAddToCart(product)}>{t('add_to_cart')}</Button>
                                 <AiOutlineHeart className='ms-2 fs-2 text-white cursor-pointer' onClick={() => handleAddToWishlist(product)} />
                             </div>
 
-                            <Link to={'/checkout'} variant="warning" className='mt-4 w-100 text-decoration-none text-black d-block by-now p-2 rounded-3'>Buy it now</Link>
-                            <p className='text-white mt-3 fs-5'>Sub total: ${((product.price || 0) * quantity).toFixed(2)}</p> {/* Yekun məbləğ */}
+                            <Button  variant="warning" onClick={success} className='mt-4 w-100 text-decoration-none text-black d-block by-now p-2 rounded-3'>{t('buy_now')}</Button>
+                            <p className='text-white mt-3 fs-5'>{t('sub_total')}: ${((product.price || 0) * quantity).toFixed(2)}</p> {/* Yekun məbləğ */}
                         </Col>
                     </>
                 )}
