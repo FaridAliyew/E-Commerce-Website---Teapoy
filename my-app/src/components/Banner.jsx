@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next'; // Import useTranslation hook
 import { FaCouch, FaArchive, FaCubes, FaTable, FaUtensils, FaImage, FaDesktop, FaBoxes } from 'react-icons/fa';
@@ -11,10 +11,12 @@ import Kitchen_Furniture from '../imgs/Kitchen_Furniture.jpg';
 import Decors from '../imgs/Decors.jpg';
 import Office_Table from '../imgs/Office_Table.jpg';
 import Storage_Furniture from '../imgs/Storage_Furniture.jpg';
+import { ThemeContext } from './ThemeContext';
 
 function Banner() {
     const { t } = useTranslation(); // Initialize translation
     const [backgroundImage, setBackgroundImage] = useState(Sofa);
+    const { isDarkMode } = useContext(ThemeContext); // ThemeContext-dən istifadə
 
     const items = [
         {
@@ -68,17 +70,18 @@ function Banner() {
     };
 
     return (
-        <Container fluid className="banner-container" style={{ backgroundImage: `url(${backgroundImage})` }}>
-            <div className="overlay"></div>
-            <Row className="justify-content-center align-items-center text-center content" style={{ minHeight: '50vh' }}>
-                {items.map((item, index) => (
-                    <Col xs={6} md={3} className="item" key={index} onMouseEnter={() => handleMouseEnter(item.image)} onMouseLeave={handleMouseLeave}>
-                        {item.icon}
-                        <h2>{item.name}</h2>
-                    </Col>
-                ))}
-            </Row>
-        </Container>
+
+            <Container fluid className={`banner-container`} style={{ backgroundImage: `url(${backgroundImage})` }}>
+                <div className="overlay"></div>
+                <Row className="justify-content-center align-items-center text-center content" style={{ minHeight: '50vh' }}>
+                    {items.map((item, index) => (
+                        <Col xs={6} md={3} className="item" key={index} onMouseEnter={() => handleMouseEnter(item.image)} onMouseLeave={handleMouseLeave}>
+                            {item.icon}
+                            <h2>{item.name}</h2>
+                        </Col>
+                    ))}
+                </Row>
+            </Container>
     );
 }
 

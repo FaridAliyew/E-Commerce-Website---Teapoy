@@ -2,8 +2,12 @@
 
 .collection-container {
   padding: 20px;
-  margin-top: 130px;
+  /* margin-top: 130px; */
   font-family: "Gowun Batang", serif;
+}
+
+.collection-container .container-one{
+  margin-top: 140px;
 }
 
 .collection-container h6 {

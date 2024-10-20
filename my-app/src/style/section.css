@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
-body {
-    background-color: #101010 !important;
-}
-
 .section {
+    .section-row{
+        margin-bottom: 100px;
+    }
     h1,p{
         text-align: start;
     }

@@ -1,11 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Navbar as BootstrapNavbar, Nav, NavDropdown, Form, Button, Container, Modal } from 'react-bootstrap';
 import { FaShoppingCart, FaHeart, FaUser, FaSearch } from 'react-icons/fa';
 import '../style/navbar.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { MdOutlineDarkMode } from "react-icons/md";
+import { MdDarkMode } from "react-icons/md";
+import { ThemeContext } from './ThemeContext';
 
 function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated }) {
+    const { isDarkMode, toggleTheme } = useContext(ThemeContext); // ThemeContext-dən istifadə
+
     const { t, i18n } = useTranslation(); // useTranslation istifadə olunur
     const [navBackground, setNavBackground] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
@@ -77,16 +82,15 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
             alert('Invalid email or password');
         }
     };
-    const changeLanguage = (lng) => {
-        i18n.changeLanguage(lng); // Dil dəyişmə funksiyası
-    };
+
+
     return (
         <>
             <BootstrapNavbar
                 variant="dark"
                 expand="lg"
                 sticky="top"
-                className={`${navBackground || menuOpen ? 'navbar-scrolled' : ''}`}
+                className={`${navBackground || menuOpen ? 'navbar-scrolled' : ''} `}
             >
                 <Container fluid>
                     <BootstrapNavbar.Brand href="#">
@@ -124,6 +128,9 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
                         </Nav>
 
                         <Form className="d-flex ms-auto">
+                            <Button variant="outline-light" className='fs-5 icons' onClick={toggleTheme}> 
+                            {isDarkMode ? <MdDarkMode /> : <MdOutlineDarkMode />}
+                            </Button>
                             <Button variant="outline-light" className="fs-5 icons" onClick={() => navigate("/shop")}>
                                 <FaSearch />
                             </Button>

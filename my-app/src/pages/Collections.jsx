@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import img from '../imgs/Rectangle_2.jpg';
@@ -8,13 +8,22 @@ import img2 from '../imgs/shop-2.jpg';
 import img3 from '../imgs/shop-3.jpg';
 import img4 from '../imgs/shop-4.jpg';
 import { useTranslation } from 'react-i18next';
+import { ThemeContext } from '../components/ThemeContext';
 
 function Collections() {
+    const { isDarkMode } = useContext(ThemeContext); // ThemeContext-dən istifadə
+
     const { t } = useTranslation();
+    useEffect(() => {
+        window.scrollTo(0,0);
+      
+    }, [])
+
+    
 
     return (
         <>
-            <Container fluid className="p-0 m-0">
+            <Container fluid className={`${isDarkMode ? 'dark-mode' : 'light-mode'} p-0 m-0`}>
                 <Row className="g-0">
                     <Col>
                         <div className='image-container'>
@@ -24,7 +33,7 @@ function Collections() {
                     </Col>
                 </Row>
 
-                <Row className="g-0 p-5 mt-5">
+                <Row className="g-0 p-5 mt-5 collections-row">
                     <Col sm={12} md={6} lg={3}>
                         <img src={img4} className='img-fluid rounded-3' width={300} alt="shopImg1" />
                         <Link to={"/shop"} className='text-center text-white mt-2 fs-3 d-block text-decoration-none'>{t('HOME_DECORATION')}</Link>

@@ -86,7 +86,7 @@ function IndoorDecoration({ setCartCount, setWishlistCount, setCartItems, setWis
             {data.map((item, index) => (
               <SwiperSlide key={index}>
                 <div className="image-wrapper">
-                  <img src={item.image_url} alt={item.title} className="slider-img" />
+                  <img src={item.image_url} alt={item.title} className="slider-img rounded-4" />
                   <div className="img-icons">
                     <FaHeart className="icon" onClick={() => handleAddToWishlist(item)} />
                     <FaShoppingCart className="icon" onClick={() => handleAddToCart(item)} />
@@ -100,7 +100,6 @@ function IndoorDecoration({ setCartCount, setWishlistCount, setCartItems, setWis
               </SwiperSlide>
             ))}
           </Swiper>
-
         </Row>
       </Container>
     </div>

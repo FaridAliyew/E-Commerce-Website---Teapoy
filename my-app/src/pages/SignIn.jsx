@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import '../style/signIn.css';
+import { ThemeContext } from '../components/ThemeContext';
 
 function SignIn({ setIsAuthenticated }) {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({ email: '', password: '' });
     const navigate = useNavigate();
+    const { isDarkMode } = useContext(ThemeContext);
 
     const handleInputChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -46,7 +48,7 @@ function SignIn({ setIsAuthenticated }) {
     };
 
     return (
-        <div className="signin-container">
+        <div className={`${isDarkMode ? 'dark-mode' : 'light-mode'} signin-container`}>
             <div className="signin-box">
                 <h2>Sign In</h2>
                 <Form onSubmit={handleSubmit}>

@@ -1,12 +1,14 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Container, Row, Col, Card, Spinner } from 'react-bootstrap'; // Spinner əlavə olundu
 import img from '../imgs/Rectangle_2.jpg';
 import '../style/blog.css'
 import axios from 'axios';
+import { ThemeContext } from '../components/ThemeContext';
 
 function BLog() {
   const [blogs, setBlogs] = useState([]);
   const [isLoading, setIsLoading] = useState(true); // isLoading state-i əlavə olundu
+  const { isDarkMode } = useContext(ThemeContext); // ThemeContext-dən istifadə
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -37,7 +39,7 @@ function BLog() {
 
   return (
     <>
-      <Container fluid className="p-0 m-0">
+      <Container fluid className={`${isDarkMode ? 'dark-mode' : 'light-mode'} p-0 m-0`}>
         <Row className="g-0">
           <Col>
             <div className='image-container'>
@@ -48,7 +50,7 @@ function BLog() {
         </Row>
       </Container>
 
-      <Container className="mt-5 blog-container">
+      <Container fluid className={`${isDarkMode ? 'dark-mode' : 'light-mode'} p-5 blog-container`}>
         <Row>
           {isLoading ? ( // Əgər loading true-dursa spinner görünsün
             <Col className="text-center">

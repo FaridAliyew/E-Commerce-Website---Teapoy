@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import img1 from '../imgs/img-1.jpg';
 import img2 from '../imgs/img-2.jpg';
 import { GoCheck } from "react-icons/go";
 import '../style/section.css';
 import { useTranslation } from 'react-i18next';
+import { ThemeContext } from './ThemeContext';
 
 function Section() {
+    const { isDarkMode } = useContext(ThemeContext); // ThemeContext-dən istifadə
     const { t } = useTranslation();
 
     return (
-        <Container fluid className='section p-5'>
+        <Container fluid className={`${isDarkMode ? 'dark-mode' : 'light-mode'} section p-5`}>
             <Row className='section-row d-flex g-md-5'>
                 <Col sm={12} md={6} className='container-1'>
                     <h6 className='text-orange'>{t('SECTION_TITLE')}</h6>

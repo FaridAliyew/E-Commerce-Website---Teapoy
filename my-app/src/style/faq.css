@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
 .faq-container {
-    margin-top: 150px;
-    margin-bottom: 150px;
+    /* margin-top: 150px; */
+    /* margin-bottom: 150px; */
 
     p,
     h1,
@@ -17,6 +17,10 @@
     .accordion {
 
         position: relative;
+    }
+
+    .faqs{
+        margin-top: 150px;
     }
 }
 
@@ -74,4 +78,9 @@
 
 .contact-us{
     font-family: "Gowun Batang", serif;
+    margin-top: 125px;
+    /* margin-bottom: 150px; */
+}
+.faq-furniture{
+    margin-bottom: 150px;
 }

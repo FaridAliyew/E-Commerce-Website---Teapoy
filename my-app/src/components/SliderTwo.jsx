@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Row, Carousel } from 'react-bootstrap';
 import img1 from '../imgs/profileImg_1.jpg';
 import img2 from '../imgs/profileImg_2.jpg';
@@ -7,13 +7,15 @@ import { FaStar } from 'react-icons/fa';
 import { FaStarHalfAlt } from 'react-icons/fa';
 import '../style/sliderTwo.css';
 import { useTranslation } from 'react-i18next';
+import { ThemeContext } from './ThemeContext';
 
 function SliderTwo() {
     const { t } = useTranslation();
+    const { isDarkMode } = useContext(ThemeContext); 
 
     return (
         <>
-            <Container>
+            <Container fluid className={`${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
                 <Row>
                     <div className='slider-two text-center mb-5'>
                         <h6>{t('CUSTOMER_COMMENTS')}</h6>
@@ -22,7 +24,7 @@ function SliderTwo() {
                 </Row>
             </Container>
 
-            <Carousel className='main-carusel'>
+            <Carousel className={`${isDarkMode ? 'dark-mode' : 'light-mode'} main-carusel`}>
                 <Carousel.Item>
                     <div className="carousel-content text-center w-75 ms-auto me-auto">
                         <div className='mb-4 text-warning'>

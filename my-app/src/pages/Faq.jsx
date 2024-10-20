@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Row, Col, Accordion } from 'react-bootstrap';
 import img from '../imgs/Rectangle_2.jpg';
 import faq from '../imgs/faq.jpg';
 import '../style/faq.css';
-import { useTranslation } from 'react-i18next'; // Import useTranslation hook
+import { useTranslation } from 'react-i18next'; 
+import { ThemeContext } from '../components/ThemeContext';
 
 function Faq() {
-    const { t } = useTranslation(); // Initialize translation
+    const { t } = useTranslation(); 
+    const { isDarkMode } = useContext(ThemeContext);
+
     return (
         <>
-            <Container fluid className="p-0 m-0">
+            <Container fluid className={`${isDarkMode ? 'dark-mode' : 'light-mode'} p-0 m-0`}>
                 <Row className="g-0">
                     <Col>
                         <div className='image-container'>
@@ -20,10 +23,10 @@ function Faq() {
                 </Row>
             </Container>
 
-            <Container fluid className='faq-container'>
+            <Container fluid className={`${isDarkMode ? 'dark-mode' : 'light-mode'} faq-container`}>
                 <div className='d-flex justify-content-center ms-5'>
                     <Row>
-                        <Col sm={12} md={6} className='text-white'>
+                        <Col sm={12} md={6} className='text-white faqs'>
                             <h6 className='ms-3'>{t('productsAndService')}</h6>
                             <h1 className='ms-3'>{t('productsAndService')}</h1>
                             <Accordion defaultActiveKey="0" className='mt-4'>
@@ -62,14 +65,13 @@ function Faq() {
                             </Accordion>
                         </Col>
                         <Col sm={12} md={6} className='mt-5 mt-md-0'>
-                            <div style={{position:'sticky', top:'100px'}}>
-
+                            <div>
                                 <div className='text-white ms-5 contact-us'>
                                     <h4>{t('contactUs')}</h4>
                                     <p className='mt-4 text-white-50 fw-bold'>{t('contactAddress')}</p>
                                     <p className='text-white-50 fw-bold'>{t('contactPhone')}</p>
                                 </div>
-                                <img src={faq} width={600} className='img-fluid' alt="faq-furniture" />
+                                <img src={faq} width={600} className='img-fluid faq-furniture' alt="faq-furniture" />
                             </div>
                         </Col>
                     </Row>

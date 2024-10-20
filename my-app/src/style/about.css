@@ -8,8 +8,6 @@
         text-align: start;
     }
 
-
-
     .text-light {
         color: rgb(189, 189, 189) !important;
     }
@@ -45,10 +43,13 @@
 }
 
 .team {
-    margin-top: 200px;
     h6{
         color: orange;
     }
+}
+
+.team .text-group{
+    margin-top: 100px;
 }
 
 .team .col {

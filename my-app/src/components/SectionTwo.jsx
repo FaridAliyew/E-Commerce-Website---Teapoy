@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import img from '../imgs/Rectangle_2.jpg';
 import img2 from '../imgs/Frame_1.png';
@@ -9,15 +9,17 @@ import img6 from '../imgs/Frame_5.png';
 import img7 from '../imgs/Frame_6.png';
 import '../style/sectionTwo.css';
 import { useTranslation } from 'react-i18next'; // i18n kitabxanasından istifadə
+import { ThemeContext } from './ThemeContext';
 
 function SectionTwo() {
     const { t } = useTranslation(); // useTranslation hook
+    const { isDarkMode } = useContext(ThemeContext); // ThemeContext-dən istifadə
 
     return (
         <>
-            <Container fluid>
+            <Container fluid className={`${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
                 <Row>
-                    <div className="moving-list-container">
+                    <div className='moving-list-container'>
                         <ul className="moving-list">
                             <div>
                                 <img width={30} src="https://wdt-teapoy.myshopify.com/cdn/shop/files/marquee_icon_dc329c34-c962-4b3a-85de-f432c888a143.svg?v=1719912196&width=1920" alt="logo" />
@@ -40,8 +42,8 @@ function SectionTwo() {
                 </Row>
             </Container>
 
-            <Container fluid className='multicolumn-list p-5 mt-5'>
-                <Row>
+            <Container fluid className={`${isDarkMode ? 'dark-mode' : 'light-mode'}  multicolumn-list p-5`}>
+                <Row className='mt-5 multirow'>
                     <Col sm={12} lg={6}>
                         <h6>{t('SLEEK_AND_STYLISH')}</h6>
                         <h1 className='text-white'>{t('STYLISH_FURNITURE_DESIGNS')}</h1>

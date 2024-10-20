@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Container, Row, Col, Dropdown } from 'react-bootstrap';
 import { NavLink, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'; // i18next-in import edilməsi
 import '../style/collection.css';
+import { ThemeContext } from './ThemeContext';
 
 function Collection() {
   const { t } = useTranslation(); // Tercüməni əldə etmək
   const [selectedDecoration, setSelectedDecoration] = useState(t('HOME_DECORATION'));
+  const { isDarkMode } = useContext(ThemeContext); // ThemeContext-dən istifadə
+
+
+
   return (
-    <Container className="collection-container">
+    <Container fluid className={`${isDarkMode ? 'dark-mode' : 'light-mode'} collection-container`}>
       <Row className="justify-content-center text-center">
-        <Col>
+        <Col className='container-one'>
           <h6>{t('EXPLORE_OUR')}</h6>
           <h1>{t('LUXURIOUS_HAVEN_COLLECTION')}</h1>
 

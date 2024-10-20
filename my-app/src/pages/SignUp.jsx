@@ -1,13 +1,15 @@
 // SignUp.js
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import '../style/signUp.css';
+import { ThemeContext } from '../components/ThemeContext';
 
 function SignUp() {
     const [formData, setFormData] = useState({ username: '', email: '', password: '' });
     const [errors, setErrors] = useState({ username: '', email: '', password: '' });
     const navigate = useNavigate();
+    const { isDarkMode } = useContext(ThemeContext);
 
     const handleInputChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -50,7 +52,7 @@ function SignUp() {
     };
 
     return (
-        <Container className="signup-container d-flex align-items-center justify-content-center">
+        <Container fluid className={`${isDarkMode ? 'dark-mode' : 'light-mode'} signup-container d-flex align-items-center justify-content-center`}>
             <div className="signup-box p-4">
                 <h2 className="text-center mb-3 fs-1">Sign Up</h2>
                 <p className="text-center">

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Container, Row, Col, Spinner, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom'; // Link-i import edin
 import img from '../imgs/Rectangle_2.jpg';
@@ -7,6 +7,7 @@ import axios from 'axios';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next'; // i18next-in import edilməsi
+import { ThemeContext } from '../components/ThemeContext';
 
 function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, cartItems, wishlistItems }) {
 
@@ -24,6 +25,7 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
     const [selectedBrand, setSelectedBrand] = useState('');
     const [sortOrder, setSortOrder] = useState('A-Z');
     const [searchTerm, setSearchTerm] = useState(''); //Search state
+    const { isDarkMode } = useContext(ThemeContext);
 
 
     useEffect(() => {
@@ -82,6 +84,10 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
         setFilteredData(filtered);
     }, [data, filter, priceRange, selectedBrand, sortOrder, searchTerm]);
     
+    useEffect(() => {
+        window.scrollTo(0,0);
+      
+    }, [])
 
     if (loading) {
         return (
@@ -144,9 +150,12 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
         setSortOrder(e.target.value);
     };
 
+   
+    
+
     return (
         <>
-            <Container fluid className="p-0 m-0">
+            <Container fluid className={`${isDarkMode ? 'dark-mode' : 'light-mode'} p-0 m-0`}>
                 <Row className="g-0">
                     <Col>
                         <div className='image-container'>
@@ -157,9 +166,9 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
                 </Row>
             </Container>
 
-            <Container fluid className='shop-container mt-5'>
+            <Container fluid className={`${isDarkMode ? 'dark-mode' : 'light-mode'} shop-container`}>
                 <Row>
-                    <Col lg={3}>
+                    <Col lg={3} className='shop-col mt-5'>
                         <div style={{ position: 'sticky', top: '80px' }}>
                             <h2 className='fs-2 text-white p-4'>Filter:</h2>
                             <Form className="ps-4 pt-4">
@@ -213,21 +222,21 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
                         </div>
                     </Col>
 
-                    <Col lg={9} style={{ padding: '80px' }}>
-                        <div className="d-flex justify-content-between align-items-center mb-4">
-                            <h2 className="text-white">{t('products')}</h2>
+                    <Col lg={9} style={{ padding: '80px' }} className='shop-col-2 mt-5'>
+                        <div className="d-flex justify-content-between  align-items-center mb-4">
+                            {/* <h2 className="text-white">{t('products')}</h2> */}
                             <Form.Control
                                 type="text"
                                 placeholder={t('searchPlaceholder')}
                                 style={{ width: '200px', backgroundColor: '#101010', color: 'white' }}
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="rounded-3 border-1"
+                                className="rounded-3 border-1 search-input"
                             />
                             <Form.Select
                                 aria-label="Default select example"
                                 style={{ width: '150px', backgroundColor: '#101010' }}
-                                className='rounded-3 border-1 text-white'
+                                className='rounded-3 border-1 text-white drop-down'
                                 onChange={handleSortChange}
                                 defaultValue="A-Z">
                                  <option value="A-Z">{t('aToZ')}</option>
@@ -239,7 +248,7 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
 
                         <Row>
                             {filteredData.map((item) => (
-                                <Col lg={4} md={6} sm={12} key={item.id}>
+                                <Col lg={4} md={6} sm={12} key={item.id} className='shop-col-3'>
                                     <div className="image-wrapper">
                                         <Link to={`/product/${item.id}`}> {/* Məhsulun ID-si ilə keçid yarat */}
                                             <img src={item.image_url} alt={item.title} className="slider-img img-fluid w-100 rounded-4" />

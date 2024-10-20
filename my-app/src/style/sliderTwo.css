@@ -21,6 +21,10 @@
 .main-carusel {
     font-family: "Gowun Batang", serif;
     
+    .carousel-content{
+        margin-bottom: 100px;
+    }
+
     .carousel-content p {
         font-size: 1rem;
         margin-bottom: 20px;
@@ -41,3 +45,4 @@
     }
 
 }
+

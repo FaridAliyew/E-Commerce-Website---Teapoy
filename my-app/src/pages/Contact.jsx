@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next'; // i18n kitabxanasından istifadə
+import { useTranslation } from 'react-i18next'; 
 import '../style/contact.css';
+import { ThemeContext } from '../components/ThemeContext';
 
 function Contact() {
-    const { t } = useTranslation(); // tərcümə üçün hook
+    const { t } = useTranslation();
+    const { isDarkMode } = useContext(ThemeContext);
 
     return (
-        <>
-            <Container className="contact-container mt-5">
+        <div className={`${isDarkMode ? 'dark-mode' : 'light-mode'}`}>
+            <Container className={`${isDarkMode ? 'dark-mode' : 'light-mode'} contact-container`}>
                 <Row className="text-center">
                     <Col>
-                        <h6 className="text-note">{t('contact.textNote')}</h6>
+                        <h6 className="text-note mt-5">{t('contact.textNote')}</h6>
                         <h1 className="contact-title">{t('contact.title')}</h1>
                         <p className="contact-description">
                             {t('contact.description')}
@@ -64,7 +66,7 @@ function Contact() {
                     </Col>
                 </Row>
             </Container>
-        </>
+        </div>
     );
 }
 
