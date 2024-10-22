@@ -149,7 +149,7 @@ function CheckOut({ cartItems, quantities }) {
                                 <Form.Control type="text" placeholder='Name on Card' className='rounded-3' required />
                             </Form.Group>
 
-                            <Button className="mt-4 w-100" variant="primary" type="submit">
+                            <Button className="mt-4 mb-5 w-100" variant="primary" type="submit">
                                 Pay Now
                             </Button>
                         </Form>

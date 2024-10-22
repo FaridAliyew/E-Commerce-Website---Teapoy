@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import img from '../imgs/Rectangle_2.jpg';
 import '../style/addToCart.css';
@@ -11,6 +11,44 @@ function AddToCart({ cartItems, setCartItems, setCartCount, quantities, setQuant
     const { t } = useTranslation(); // Initialize translation
 
     const navigate = useNavigate();
+
+    // ------------
+
+    const [couponCode, setCouponCode] = useState(''); // Kupon kodu üçün state əlavə olundu
+    const [finalPrice, setFinalPrice] = useState(null); // Yekun məbləğ üçün state əlavə olundu
+    const [errorMessage, setErrorMessage] = useState(''); // Hata mesajı üçün state əlavə olundu
+
+
+    // Kupon kodları və endirim faizləri
+    const coupons = {
+        "SALE20": 20, // 20% endirim
+        "DISCOUNT10": 10, // 10% endirim
+        "SAVE5": 5 // 5% endirim
+    };
+
+    const applyDiscount = () => {
+        const discountPercentage = coupons[couponCode];
+
+        if (!discountPercentage) {
+            setErrorMessage("Invalid coupon code."); // Yanlış kupon kodu
+            return;
+        }
+
+        const total = calculateTotal();
+        const discountAmount = (total * discountPercentage) / 100;
+        const updatedFinalPrice = total - discountAmount;
+        setFinalPrice(updatedFinalPrice);
+        setErrorMessage('');
+    };
+
+    const calculateTotal = () => {
+        return cartItems.reduce((total, item) => {
+            return total + item.price * (quantities[item.id] || 1);
+        }, 0);
+    };
+
+    // ------------
+
 
     useEffect(() => {
         const storedQuantities = localStorage.getItem('quantities');
@@ -59,11 +97,11 @@ function AddToCart({ cartItems, setCartItems, setCartCount, quantities, setQuant
         }
     }
 
-    const calculateTotal = () => {
-        return cartItems.reduce((total, item) => {
-            return total + item.price * (quantities[item.id] || 1);
-        }, 0);
-    };
+    // const calculateTotal = () => {
+    //     return cartItems.reduce((total, item) => {
+    //         return total + item.price * (quantities[item.id] || 1);
+    //     }, 0);
+    // };
 
     return (
         <div className='addToCart'>
@@ -136,10 +174,22 @@ function AddToCart({ cartItems, setCartItems, setCartCount, quantities, setQuant
 
                         <Col sm={12} md={6} className='mt-4 mt-md-0'>
                             <div className='text-white text-center '>
-                                <h3 className='fs-4 float-md-end'>{t('total')}: ${calculateTotal().toFixed(2)}</h3><br /> <br />
+                                <h3 className='fs-4 float-md-end'>{t('total')}: ${finalPrice !== null ? finalPrice.toFixed(2) : calculateTotal().toFixed(2)}</h3><br /><br />
                                 <p className='float-md-end'>{t('taxesNote')}</p> <br /><br />
                                 <Button onClick={success} className='float-md-end check-out text-white rounded-4 w-50 py-2 text-decoration-none'>{t('checkout')}</Button><br /><br />
                             </div>
+
+                            <input
+                                    type="text"
+                                    placeholder="Add discount code"
+                                    value={couponCode}
+                                    onChange={(e) => setCouponCode(e.target.value)}
+                                    className='rounded-4 p-2 w-50 float-md-end text-center d-block ms-auto me-auto'
+                                /> <br /> <br className='d-none d-md-block'/>
+                                 {errorMessage && <p className='text-danger text-center text-md-end'>{errorMessage}</p>}
+                                <Button onClick={applyDiscount} className='float-md-end check-out text-white rounded-4 w-50 py-2 mb-5 d-block ms-auto me-auto'>
+                                    APPLY
+                                </Button>
                         </Col>
                     </Row>
                 </Container>) : ''}

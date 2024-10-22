@@ -40,4 +40,8 @@
         border: none;
         background-color: rgb(255, 111, 0);
     }
+
+    .check-out:active{
+        background-color: none !important;
+    }
 }

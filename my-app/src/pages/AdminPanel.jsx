@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { Table, Container, Button, Modal, Form } from 'react-bootstrap';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import { ThemeContext } from '../components/ThemeContext';
 
 function AdminPanel() {
+    const { isDarkMode } = useContext(ThemeContext); 
     const [blogs, setBlogs] = useState([]);
     const [show, setShow] = useState(false);
     const [editMode, setEditMode] = useState(false);
@@ -116,13 +118,13 @@ function AdminPanel() {
     };
 
     return (
-        <Container>
-            <h1 className='text-white mt-5'>Dashboard</h1>
+        <Container fluid className={`${isDarkMode ? 'dark-mode' : 'light-mode'} p-5`}>
+            <h1 className='text-white dashboard'>Dashboard</h1>
             <Button variant="danger" className='mb-3' onClick={() => { setEditMode(false); handleShow(); }}>
                 New Blog
             </Button>
-            <Table striped bordered hover>
-                <thead>
+            <Table striped bordered hover >
+                <thead >
                     <tr>
                         <th>ID</th>
                         <th>Image</th>

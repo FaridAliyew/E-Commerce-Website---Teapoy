@@ -1,6 +1,10 @@
 .dark-mode {
   background-color: #121212 !important;
   color: #fff;
+  .table>:not(caption)>*>*{
+    background-color:#111111;
+    color: white;
+  }
 }
 
 .light-mode {
@@ -216,5 +220,17 @@
 
   .signin-box {
     background-color: #a0a0a0 !important;
+  }
+
+  .admin-login {
+    margin: 130px 130px;
+
+    h3 {
+      color: #111111 !important;
+    }
+  }
+
+  .dashboard{
+    color: #111111 !important;
   }
 }
