@@ -7,6 +7,8 @@ import { FaRegCircleCheck } from "react-icons/fa6";
 
 function CheckOut({ cartItems, quantities }) {
     const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
+    const [finalPrice, setFinalPrice] = useState();
+    const [finalPriceValue, setFinalPriceValue] = useState(false);
     const navigate = useNavigate();
 
     // Local storage-dan quantities oxumaq
@@ -22,6 +24,14 @@ function CheckOut({ cartItems, quantities }) {
             });
         }
     }, [quantities]);
+
+    useEffect(() => {
+        const finalPricee = localStorage.getItem('finalPrice');
+        if (finalPricee) {
+            setFinalPrice(finalPricee);
+            setFinalPriceValue(true);
+        }
+    }, [finalPriceValue]);
 
     // Quantities-i local storage-a yazırıq
     useEffect(() => {
@@ -179,7 +189,7 @@ function CheckOut({ cartItems, quantities }) {
                                         <p className='text-white fs-6'>${(item.price * (quantities[item.id] || 1)).toFixed(2)}</p>
                                     </div>
                                 ))}
-                                <h4 className='text-white mt-4'>Total: ${calculateTotal(cartItems, quantities)}</h4>
+                                <h4 className='text-white mt-4'>Total: ${finalPriceValue ? finalPrice : calculateTotal(cartItems, quantities)}</h4>
                             </>
                         ) : (
                             <h5 className='text-center text-white'>Your Cart is Empty</h5>

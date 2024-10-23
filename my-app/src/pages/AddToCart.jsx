@@ -27,25 +27,30 @@ function AddToCart({ cartItems, setCartItems, setCartCount, quantities, setQuant
     };
 
     const applyDiscount = () => {
-        const discountPercentage = coupons[couponCode];
+    const discountPercentage = coupons[couponCode];
 
-        if (!discountPercentage) {
-            setErrorMessage("Invalid coupon code."); // Yanlış kupon kodu
-            return;
-        }
+    if (!discountPercentage) {
+        setErrorMessage("Invalid coupon code."); // Yanlış kupon kodu
+        return;
+    }
 
-        const total = calculateTotal();
-        const discountAmount = (total * discountPercentage) / 100;
-        const updatedFinalPrice = total - discountAmount;
-        setFinalPrice(updatedFinalPrice);
-        setErrorMessage('');
-    };
+    const total = calculateTotal();
+    const discountAmount = (total * discountPercentage) / 100;
+    const updatedFinalPrice = total - discountAmount;
+    setFinalPrice(updatedFinalPrice);
+    setErrorMessage('');
+
+    // Endirim olunmuş qiyməti localStorage-ə əlavə et
+    localStorage.setItem('finalPrice', updatedFinalPrice.toFixed(2));
+};
+
 
     const calculateTotal = () => {
         return cartItems.reduce((total, item) => {
             return total + item.price * (quantities[item.id] || 1);
         }, 0);
     };
+
 
     // ------------
 
@@ -96,6 +101,7 @@ function AddToCart({ cartItems, setCartItems, setCartCount, quantities, setQuant
             navigate('/signin')
         }
     }
+
 
     // const calculateTotal = () => {
     //     return cartItems.reduce((total, item) => {
