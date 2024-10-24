@@ -2,19 +2,14 @@
 .moving-list-container {
     background-color: rgb(255, 132, 0);
     overflow: hidden;
-    /* Sonsuz animasiya zamanı daşma olmasın deyə */
     white-space: nowrap;
-    /* Mətni bir sətirdə saxlayır */
     padding: 20px;
-    /* Biraz boşluq əlavə edir */
     margin-top: 170px;
 }
 
 .moving-list {
     display: inline-block;
-    /* Li elementlərini bir sətirə qoyur */
     animation: moveLeft 45s linear infinite;
-    /* Animasiya daha yavaş edir */
     padding: 0;
     margin: 0;
     display: flex;
@@ -29,7 +24,6 @@
     margin: 0 300px 0 150px;
 }
 
-/* Sağdan sola hərəkət etmək üçün animasiya */
 @keyframes moveLeft {
     0% {
         transform: translateX(100%);

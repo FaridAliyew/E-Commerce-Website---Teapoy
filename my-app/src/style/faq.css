@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
 .faq-container {
-    /* margin-top: 150px; */
-    /* margin-bottom: 150px; */
-
     p,
     h1,
     h6 {
@@ -24,44 +21,35 @@
     }
 }
 
-/* Accordion Header Active Background Color */
-/* .accordion-header{
-    background-color: #101010;
-} */
-
 .accordion-collapse{
     width: 100%;
 }
 
 .accordion-button:not(.collapsed) {
-    background-color: #101010; /* İstədiyiniz fon rəngini burada təyin edin */
-    color: #f39c12; /* Yazı rəngi */
+    background-color: #101010; 
+    color: #f39c12; 
     width: 100%;
     font-family: "Gowun Batang", serif;
 }
 
-/* Accordion Body Background Color */
 .accordion-body {
-    background-color: #101010; /* Accordion Body-nin fon rəngi */
-    color: rgba(255, 255, 255, 0.8); /* Yazı rəngi */
+    background-color: #101010; 
+    color: rgba(255, 255, 255, 0.8); 
     font-family: "Gowun Batang", serif;
-    /* width: 70%; */
 }
 
-/* Accordion Header Default State */
 .accordion-button {
-    background-color: #101010; /* Defolt vəziyyətdə başlığın rəngi */
-    color: white; /* Defolt vəziyyətdə yazı rəngi */
-    border-bottom: none; /* Yalnız aşağıda xətt olsun */
+    background-color: #101010; 
+    color: white; 
+    border-bottom: none; 
     font-size: 1.40rem;
     width: 100%;
     margin-right: 12.3vw;
     font-family: "Gowun Batang", serif;
 }
 
-/* Accordion Arrow (Chevron) Color */
 .accordion-button::after {
-    filter: invert(1); /* Oxu ağ rəng etmək üçün invert edirik */
+    filter: invert(1); 
 }
 
 .accordion-item{
@@ -72,14 +60,13 @@
 }
 
 .accordion-button:focus {
-    outline: none; /* Fokus effektini yığışdırır */
-    box-shadow: none; /* Fokusda yaranan kölgəni də yığışdırır */
+    outline: none; 
+    box-shadow: none; 
 }
 
 .contact-us{
     font-family: "Gowun Batang", serif;
     margin-top: 125px;
-    /* margin-bottom: 150px; */
 }
 .faq-furniture{
     margin-bottom: 150px;

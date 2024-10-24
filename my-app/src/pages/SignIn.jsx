@@ -12,14 +12,13 @@ function SignIn({ setIsAuthenticated }) {
 
     const handleInputChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
-        setErrors({ ...errors, [e.target.name]: '' }); // Xətaları təmizləyir
+        setErrors({ ...errors, [e.target.name]: '' }); 
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
         const storedUserData = JSON.parse(localStorage.getItem('userData'));
 
-        // Validasiya yoxlamaları
         let newErrors = {};
         if (!formData.email) {
             newErrors.email = 'Email is required';
@@ -31,19 +30,17 @@ function SignIn({ setIsAuthenticated }) {
             newErrors.password = 'Password is required';
         }
 
-        // Əgər səhvlər varsa, formu submit etmə
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
             return;
         }
 
-        // Yoxlama: email və password uyğun gəlirmi?
         if (storedUserData && formData.email === storedUserData.email && formData.password === storedUserData.password) {
             setIsAuthenticated(true);
-            localStorage.setItem('isAuthenticated', 'true'); // Auth məlumatını localStorage-ə qeyd edir
+            localStorage.setItem('isAuthenticated', 'true'); 
             navigate('/');
         } else {
-            alert('Invalid credentials'); // Yanlış məlumat varsa xəbərdarlıq
+            alert('Invalid credentials'); 
         }
     };
 

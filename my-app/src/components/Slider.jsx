@@ -3,9 +3,9 @@ import Carousel from 'react-bootstrap/Carousel';
 import img1 from '../imgs/slider-img-2.jpg';
 import img3 from '../imgs/slider-img-3.jpg';
 import img4 from '../imgs/slider-img-4.jpg';
-import '../style/slider.css';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import '../style/slider.css';
 
 const Slider = () => {
   const { t } = useTranslation();

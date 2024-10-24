@@ -2,9 +2,9 @@ import React, { useContext } from 'react';
 import { Container, Row, Col, Accordion } from 'react-bootstrap';
 import img from '../imgs/Rectangle_2.jpg';
 import faq from '../imgs/faq.jpg';
-import '../style/faq.css';
 import { useTranslation } from 'react-i18next'; 
 import { ThemeContext } from '../components/ThemeContext';
+import '../style/faq.css';
 
 function Faq() {
     const { t } = useTranslation(); 

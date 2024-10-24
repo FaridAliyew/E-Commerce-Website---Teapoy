@@ -22,7 +22,6 @@ function AdminPanel() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    // fetchBlogs funksiyasını useEffect-dən kənarda tərtib edirik
     const fetchBlogs = async () => {
         try {
             const response = await axios.get('https://xnykiejhjsppxvnmqcev.supabase.co/rest/v1/Blog?select=*', {
@@ -37,7 +36,6 @@ function AdminPanel() {
         }
     };
 
-    // useEffect içərisində fetchBlogs çağırırıq
     useEffect(() => {
         fetchBlogs();
     }, []);
@@ -79,7 +77,6 @@ function AdminPanel() {
             setEditMode(false);
             setSelectedBlog(null);
 
-            // Yeniləndikdən sonra siyahını təzələmək üçün fetchBlogs çağırırıq
             fetchBlogs();
         } catch (error) {
             console.error('Error saving blog:', error);
@@ -97,8 +94,6 @@ function AdminPanel() {
 
             setBlogs((prevBlogs) => prevBlogs.filter(blog => blog.id !== id));
             toast.success("Delete Blog");
-
-            // Silindikdən sonra siyahını yeniləmək üçün fetchBlogs çağırırıq
             fetchBlogs();
         } catch (error) {
             console.error('Error deleting blog:', error);

@@ -14,30 +14,30 @@
 
 .img-icons {
     position: absolute;
-    top: 10px; /* Yuxarıdan məsafəni tənzimləyin */
-    right: 10px; /* Sağdan məsafəni tənzimləyin */
+    top: 10px; 
+    right: 10px; 
     display: flex;
     flex-direction: column;
-    opacity: 0; /* İkonlar başlanğıcda görünməyəcək */
-    transition: opacity 0.3s ease; /* İkonların çıxışı daha hamar olsun */
+    opacity: 0; 
+    transition: opacity 0.3s ease; 
 }
 
 .image-wrapper:hover .img-icons {
-    opacity: 1; /* Şəkilin üzərinə gəldikdə ikonlar görünəcək */
+    opacity: 1;
 }
 
 .img-icons .icon {
     color: white;
     background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px; /* İkonların ətrafında daha çox yer */
+    padding: 10px; 
     margin-bottom: 5px;
     border-radius: 50%;
-    font-size: 35px; /* Font ölçüsünü böyütdük */
+    font-size: 35px; 
     cursor: pointer;
     transition: background-color 400ms ease;
 }
 
 .img-icons .icon:hover {
-    background-color: orange; /* Hover effekti */
+    background-color: orange; 
 }
 

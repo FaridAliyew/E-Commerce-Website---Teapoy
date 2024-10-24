@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { FaChevronUp } from 'react-icons/fa'; // Font Awesome ikonunu istifadə et
+import { FaChevronUp } from 'react-icons/fa'; 
 import '../style/scrollTo.css'
 
 const ScrollToTopButton = () => {
   const [isVisible, setIsVisible] = useState(false);
 
   const handleScroll = () => {
-    if (window.scrollY > 300) { // Səhifənin 300px aşağısına düşdükdə ikonu göstər
+    if (window.scrollY > 300) { 
       setIsVisible(true);
     } else {
       setIsVisible(false);

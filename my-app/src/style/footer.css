@@ -1,11 +1,9 @@
-
 .footer {
     p{
         text-align: start;
     }
     h2 {
         text-align: none !important;
-        /* margin-left: 30px; */
         color: white;
     }
     a{

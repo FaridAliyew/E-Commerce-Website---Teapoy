@@ -9,16 +9,15 @@ import { MdDarkMode } from "react-icons/md";
 import { ThemeContext } from './ThemeContext';
 
 function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated }) {
-    const { isDarkMode, toggleTheme } = useContext(ThemeContext); // ThemeContext-dən istifadə
-
-    const { t, i18n } = useTranslation(); // useTranslation istifadə olunur
+    const { isDarkMode, toggleTheme } = useContext(ThemeContext);
+    const { t } = useTranslation();
     const [navBackground, setNavBackground] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const [showSignInModal, setShowSignInModal] = useState(false);
     const [showProfileModal, setShowProfileModal] = useState(false);
-    const [credentials, setCredentials] = useState({ email: '', password: '' }); // Object state
+    const [credentials, setCredentials] = useState({ email: '', password: '' });
     const location = useLocation();
-    const userData = JSON.parse(localStorage.getItem('userData')) || {}; // Yoxlama əlavə edildi
+    const userData = JSON.parse(localStorage.getItem('userData')) || {};
     const navigate = useNavigate();
 
     const handleSignInModalOpen = () => setShowSignInModal(true);
@@ -30,7 +29,6 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
         setShowProfileModal(false);
     };
 
-    // Scroll funksiyası
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 0) {
@@ -47,7 +45,6 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
         };
     }, []);
 
-    // Səhifə yenilənəndə "isAuthenticated" dəyərini yoxla
     useEffect(() => {
         const authStatus = localStorage.getItem('isAuthenticated');
         if (authStatus === 'true') {
@@ -71,7 +68,6 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
 
         const storedUserData = JSON.parse(localStorage.getItem('userData'));
 
-        // Email və parol yoxlanışı
         if (storedUserData &&
             storedUserData.email === credentials.email &&
             storedUserData.password === credentials.password) {
@@ -118,18 +114,11 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
                             </NavDropdown>
 
                             <Nav.Link as={Link} to={"/contact"} className={`me-4 ${getActiveLinkClass('/contact')}`}>{t('CONTACT')}</Nav.Link>
-
-                            {/* Dil seçimi */}
-                            {/* <NavDropdown title="Languages" id="language-dropdown" className='me-4'>
-                                <NavDropdown.Item onClick={() => changeLanguage('az')}>Az</NavDropdown.Item>
-                                <NavDropdown.Item onClick={() => changeLanguage('en')}>En</NavDropdown.Item>
-                                <NavDropdown.Item onClick={() => changeLanguage('ru')}>Ru</NavDropdown.Item>
-                            </NavDropdown> */}
                         </Nav>
 
                         <Form className="d-flex ms-auto">
-                            <Button variant="outline-light" className='fs-5 icons' onClick={toggleTheme}> 
-                            {isDarkMode ? <MdDarkMode /> : <MdOutlineDarkMode />}
+                            <Button variant="outline-light" className='fs-5 icons' onClick={toggleTheme}>
+                                {isDarkMode ? <MdDarkMode /> : <MdOutlineDarkMode />}
                             </Button>
                             <Button variant="outline-light" className="fs-5 icons" onClick={() => navigate("/shop")}>
                                 <FaSearch />
@@ -160,7 +149,6 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
                 </Container>
             </BootstrapNavbar>
 
-            {/* Sign In Modal */}
             <Modal show={showSignInModal} onHide={handleSignInModalClose} centered>
                 <Modal.Header closeButton className='bg-black text-white'>
                     <Modal.Title className='w-100 text-center fs-2'>{t('SIGN_IN')}</Modal.Title>
@@ -199,8 +187,6 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
                 </Modal.Body>
             </Modal>
 
-
-            {/* Profile Modal */}
             <Modal show={showProfileModal} onHide={() => setShowProfileModal(false)} centered>
                 <Modal.Header closeButton className='bg-black text-white'>
                     <Modal.Title className='w-100 text-center fs-2 ms-3'>{t('PROFILE')}:</Modal.Title>

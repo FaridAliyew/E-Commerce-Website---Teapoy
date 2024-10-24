@@ -11,15 +11,13 @@ import { useTranslation } from 'react-i18next';
 import { ThemeContext } from '../components/ThemeContext';
 
 function Collections() {
-    const { isDarkMode } = useContext(ThemeContext); // ThemeContext-dən istifadə
+    const { isDarkMode } = useContext(ThemeContext);
 
     const { t } = useTranslation();
     useEffect(() => {
         window.scrollTo(0,0);
       
     }, [])
-
-    
 
     return (
         <>

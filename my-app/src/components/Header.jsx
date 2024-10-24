@@ -5,30 +5,26 @@ import { FaFacebook } from 'react-icons/fa';
 import { FiInstagram } from 'react-icons/fi';
 import ReactCountryFlag from "react-country-flag";
 import { useTranslation } from 'react-i18next';
-import '../style/header.css'; // CSS faylını import edin
+import '../style/header.css'; 
 
 function Header() {
   const { t, i18n } = useTranslation();
 
-  // Dil dəyişmək funksiyası
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
   };
 
-  // Seçili dilin kodunu əldə et
   const currentLanguage = i18n.language;
 
   return (
     <Container fluid>
       <Row className="p-3 bg-black">
-        {/* Sosial Media İkonları */}
         <Col xs={4} className="d-flex align-items-center justify-content-start gap-3">
           <RiTwitterXFill size={24} onClick={() => window.open('https://x.com/', '_blank')} className="social-icon" />
           <FaFacebook size={24} onClick={() => window.open('https://www.facebook.com', '_blank')} className="social-icon" />
           <FiInstagram size={24} onClick={() => window.open('https://www.instagram.com/', '_blank')} className="social-icon" />
         </Col>
 
-        {/* Mətn - Mərkəz */}
         <Col xs={4} className="d-flex align-items-center justify-content-center">
           <div className="marquee_annoucement">
             <div className="announcement-bar" role="region" aria-label="Announcement">
@@ -49,7 +45,6 @@ function Header() {
           </div>
         </Col>
 
-        {/* Dropdown Menü - Sağ */}
         <Col xs={4} className="d-flex align-items-center justify-content-end gap-3">
           <Dropdown>
             <Dropdown.Toggle className="custom-dropdown-toggle" id="dropdown-basic">
@@ -63,7 +58,7 @@ function Header() {
 
             <Dropdown.Menu className="custom-dropdown-menu text-end">
               {['az', 'ru', 'en'].map((lang) => (
-                currentLanguage !== lang && ( // Yalnız seçilməmiş dilləri göstər
+                currentLanguage !== lang && (
                   <Dropdown.Item
                     onClick={() => changeLanguage(lang)}
                     key={lang}

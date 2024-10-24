@@ -10,6 +10,7 @@ function AdminLogin({setIsLoggedIn}) {
     username: '',
     password: '',
   });
+  
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate()
 
@@ -19,13 +20,12 @@ function AdminLogin({setIsLoggedIn}) {
       ...formData,
       [name]: value,
     });
-    setErrorMessage(''); // Form dəyişdiyində səhv mesajını təmizləyir
+    setErrorMessage('');
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validasiya
     if (formData.username === 'admin' && formData.password === 'admin') {
       setErrorMessage('');
       setIsLoggedIn(true)

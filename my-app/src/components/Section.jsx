@@ -3,12 +3,12 @@ import { Container, Row, Col } from 'react-bootstrap';
 import img1 from '../imgs/img-1.jpg';
 import img2 from '../imgs/img-2.jpg';
 import { GoCheck } from "react-icons/go";
-import '../style/section.css';
 import { useTranslation } from 'react-i18next';
 import { ThemeContext } from './ThemeContext';
+import '../style/section.css';
 
 function Section() {
-    const { isDarkMode } = useContext(ThemeContext); // ThemeContext-dən istifadə
+    const { isDarkMode } = useContext(ThemeContext); 
     const { t } = useTranslation();
 
     return (

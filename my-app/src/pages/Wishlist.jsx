@@ -1,16 +1,13 @@
-// Wishlist.js
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import '../style/wishlist.css';
 import { FaShoppingCart } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import img from '../imgs/Rectangle_2.jpg';
-import { useTranslation } from 'react-i18next'; // Import useTranslation hook
+import { useTranslation } from 'react-i18next';
 
 function Wishlist({ wishlistItems, setWishlistItems, setWishlistCount, cartItems, setCartItems, setCartCount }) {
-  
-  const { t } = useTranslation(); // Initialize translation
-
+  const { t } = useTranslation(); 
   const [quantities, setQuantities] = useState({});
 
   useEffect(() => {
@@ -19,7 +16,7 @@ function Wishlist({ wishlistItems, setWishlistItems, setWishlistCount, cartItems
       setQuantities(JSON.parse(storedQuantities));
     } else {
       const initialQuantities = wishlistItems.reduce((acc, item) => {
-        acc[item.id] = 1; // Varsayılan sayını 1 təyin edirik
+        acc[item.id] = 1;
         return acc;
       }, {});
       setQuantities(initialQuantities);
@@ -29,7 +26,7 @@ function Wishlist({ wishlistItems, setWishlistItems, setWishlistCount, cartItems
 
   const handleDeleteItem = (id) => {
     const updatedWishlistItems = wishlistItems.filter((item) => item.id !== id);
-    setWishlistCount(updatedWishlistItems.length); // Yeni sayını təyin edin
+    setWishlistCount(updatedWishlistItems.length);
     setWishlistItems(updatedWishlistItems);
 
     const updatedQuantities = { ...quantities };
@@ -41,19 +38,15 @@ function Wishlist({ wishlistItems, setWishlistItems, setWishlistCount, cartItems
   const addToCart = (item) => {
     const existingItem = cartItems.find(cartItem => cartItem.id === item.id);
     if (existingItem) {
-      // Əgər məhsul artıq səbətdə varsa, yalnız sayını artırın
       setCartItems(cartItems.map(cartItem =>
         cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + (quantities[item.id] || 1) } : cartItem
       ));
     } else {
-      // Əks halda, yeni məhsul əlavə edin
       setCartItems([...cartItems, { ...item, quantity: quantities[item.id] || 1 }]);
-      setCartCount(prev => prev + (quantities[item.id] || 1)); // Səbət sayını yeniləyin
-      toast.success(t('addToCartSuccess')); // Toast mesajını göstər
+      setCartCount(prev => prev + (quantities[item.id] || 1)); 
+      toast.success(t('addToCartSuccess')); 
     }
   };
-
- 
 
   return (
     <div className='wishlist'>

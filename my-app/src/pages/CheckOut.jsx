@@ -11,12 +11,10 @@ function CheckOut({ cartItems, quantities }) {
     const [finalPriceValue, setFinalPriceValue] = useState(false);
     const navigate = useNavigate();
 
-    // Local storage-dan quantities oxumaq
     useEffect(() => {
         const savedQuantities = localStorage.getItem('quantities');
         if (savedQuantities) {
             const parsedQuantities = JSON.parse(savedQuantities);
-            // props olan quantities-i localStorage-dan gətirilmiş dəyərlərlə yeniləyirik
             Object.keys(parsedQuantities).forEach((key) => {
                 if (!(key in quantities)) {
                     quantities[key] = parsedQuantities[key];
@@ -33,12 +31,10 @@ function CheckOut({ cartItems, quantities }) {
         }
     }, [finalPriceValue]);
 
-    // Quantities-i local storage-a yazırıq
     useEffect(() => {
         localStorage.setItem('quantities', JSON.stringify(quantities));
     }, [quantities]);
 
-    // Total qiyməti hesablamaq
     const calculateTotal = (cartItems, quantities) => {
         return cartItems.reduce((total, item) => {
             const itemQuantity = quantities[item.id] || 1;
@@ -46,21 +42,18 @@ function CheckOut({ cartItems, quantities }) {
         }, 0).toFixed(2);
     };
 
-    // Formu təqdim edən funksiyanı yarat
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Burada ödəniş təsdiqi və ya server sorğusu aparıla bilər
-        setIsPaymentSuccessful(true); // Ödəniş uğurlu olduqda success vəziyyətini təyin et
+        setIsPaymentSuccessful(true); 
     };
 
-    // Yönləndirmə üçün useEffect istifadə et
     useEffect(() => {
         if (isPaymentSuccessful) {
             const timer = setTimeout(() => {
-                navigate('/'); // Ana səhifəyə yönləndir
-            }, 4000); // 2 saniyə sonra yönləndir
+                navigate('/'); 
+            }, 4000); 
 
-            return () => clearTimeout(timer); // Cleanup funksiyası
+            return () => clearTimeout(timer); 
         }
     }, [isPaymentSuccessful, navigate]);
 
@@ -74,10 +67,10 @@ function CheckOut({ cartItems, quantities }) {
                             animate={{ scale: 1.2, opacity: 1, rotate: 720, color: "#00ff00" }}
                             transition={{
                                 duration: 2,
-                                ease: [0.175, 0.85, 0.42, 0.96], // Bəzi yaylanma effekti
-                                repeatType: "reverse" // Təkrar animasiya geri dönüş edir
+                                ease: [0.175, 0.85, 0.42, 0.96],
+                                repeatType: "reverse" 
                             }}
-                            style={{ color: 'green' }} // İkincil rəng təyin etmək üçün
+                            style={{ color: 'green' }}
                         >
                             <FaRegCircleCheck size={100} />
                         </motion.div>
@@ -166,7 +159,6 @@ function CheckOut({ cartItems, quantities }) {
                     </Col>
                 )}
 
-                {/* Sağ tərəfdə səbətə əlavə edilmiş məhsullar */}
                 {isPaymentSuccessful ? '' : (
                     <Col lg={5} className='mt-5 mt-lg-0'>
                         {cartItems.length > 0 ? (

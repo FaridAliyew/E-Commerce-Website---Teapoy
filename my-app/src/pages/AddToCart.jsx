@@ -3,34 +3,28 @@ import { Container, Row, Col, Button } from 'react-bootstrap';
 import img from '../imgs/Rectangle_2.jpg';
 import '../style/addToCart.css';
 import { RiDeleteBin5Line } from "react-icons/ri";
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { GrNotes } from "react-icons/gr";
-import { useTranslation } from 'react-i18next'; // Import useTranslation hook
+import { useTranslation } from 'react-i18next'; 
 
 function AddToCart({ cartItems, setCartItems, setCartCount, quantities, setQuantities, isAuthenticated }) {
-    const { t } = useTranslation(); // Initialize translation
-
+    const { t } = useTranslation(); 
     const navigate = useNavigate();
+    const [couponCode, setCouponCode] = useState(''); 
+    const [finalPrice, setFinalPrice] = useState(null); 
+    const [errorMessage, setErrorMessage] = useState(''); 
 
-    // ------------
-
-    const [couponCode, setCouponCode] = useState(''); // Kupon kodu üçün state əlavə olundu
-    const [finalPrice, setFinalPrice] = useState(null); // Yekun məbləğ üçün state əlavə olundu
-    const [errorMessage, setErrorMessage] = useState(''); // Hata mesajı üçün state əlavə olundu
-
-
-    // Kupon kodları və endirim faizləri
     const coupons = {
-        "SALE20": 20, // 20% endirim
-        "DISCOUNT10": 10, // 10% endirim
-        "SAVE5": 5 // 5% endirim
+        "SALE20": 20, 
+        "DISCOUNT10": 10, 
+        "SAVE5": 5 
     };
 
     const applyDiscount = () => {
     const discountPercentage = coupons[couponCode];
 
     if (!discountPercentage) {
-        setErrorMessage("Invalid coupon code."); // Yanlış kupon kodu
+        setErrorMessage("Invalid coupon code."); 
         return;
     }
 
@@ -40,20 +34,14 @@ function AddToCart({ cartItems, setCartItems, setCartCount, quantities, setQuant
     setFinalPrice(updatedFinalPrice);
     setErrorMessage('');
 
-    // Endirim olunmuş qiyməti localStorage-ə əlavə et
     localStorage.setItem('finalPrice', updatedFinalPrice.toFixed(2));
 };
-
 
     const calculateTotal = () => {
         return cartItems.reduce((total, item) => {
             return total + item.price * (quantities[item.id] || 1);
         }, 0);
     };
-
-
-    // ------------
-
 
     useEffect(() => {
         const storedQuantities = localStorage.getItem('quantities');
@@ -84,8 +72,7 @@ function AddToCart({ cartItems, setCartItems, setCartCount, quantities, setQuant
     const handleDeleteItem = (id) => {
         const updatedCartItems = cartItems.filter((item) => item.id !== id);
 
-        // Səbətdəki sayını yeniləyin
-        setCartCount(updatedCartItems.length); // yeni sayını təyin edin
+        setCartCount(updatedCartItems.length); 
         setCartItems(updatedCartItems);
 
         const updatedQuantities = { ...quantities };
@@ -101,13 +88,6 @@ function AddToCart({ cartItems, setCartItems, setCartCount, quantities, setQuant
             navigate('/signin')
         }
     }
-
-
-    // const calculateTotal = () => {
-    //     return cartItems.reduce((total, item) => {
-    //         return total + item.price * (quantities[item.id] || 1);
-    //     }, 0);
-    // };
 
     return (
         <div className='addToCart'>
@@ -153,7 +133,7 @@ function AddToCart({ cartItems, setCartItems, setCartCount, quantities, setQuant
                             <Col sm={12} lg={3}>
                                 <RiDeleteBin5Line
                                     className='fs-2 mb-4 text-danger delete d-block ms-auto me-auto'
-                                    onClick={() => handleDeleteItem(item.id)}  // Delete icon click
+                                    onClick={() => handleDeleteItem(item.id)}  
                                 />
                             </Col>
                         </Row>

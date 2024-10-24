@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { FaStar, FaStarHalfAlt } from 'react-icons/fa';
@@ -8,11 +8,11 @@ import { LuShoppingBag } from "react-icons/lu";
 import { AiOutlineHeart } from "react-icons/ai";
 import '../style/productDetail.css'
 import { toast } from 'react-toastify';
-import { useTranslation } from 'react-i18next'; // Tərcümə hook-u daxil edin
+import { useTranslation } from 'react-i18next'; 
 
 function ProductDetail({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, cartItems, wishlistItems, setQuantities, isAuthenticated }) {
-    const { id } = useParams(); // URL-dən məhsul ID-sini alın
-    const { t } = useTranslation(); // Tərcümə funksiyasını çağırın
+    const { id } = useParams(); 
+    const { t } = useTranslation(); 
     const [product, setProduct] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -28,7 +28,7 @@ function ProductDetail({ setCartCount, setWishlistCount, setCartItems, setWishli
                         Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhueWtpZWpoanNwcHh2bm1xY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyODk0NDcsImV4cCI6MjAzODg2NTQ0N30.GTpLwlyahu9lMtSdKkCX4C9PtcT_7rvZPRCPYdkP1NY`
                     }
                 });
-                setProduct(response.data[0]); // Məhsul məlumatını təyin edin
+                setProduct(response.data[0]); 
                 setLoading(false);
             } catch (err) {
                 setError(err);
@@ -42,30 +42,26 @@ function ProductDetail({ setCartCount, setWishlistCount, setCartItems, setWishli
     const handleAddToCart = (item) => {
         const existingItem = cartItems.find(cartItem => cartItem.id === item.id);
         if (existingItem) {
-            // Əgər məhsul artıq səbətdə varsa, yalnız sayını artırın
             setCartItems(cartItems.map(cartItem =>
                 cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + quantity } : cartItem
             ));
         } else {
-            // Əks halda, yeni məhsul əlavə edin
             setCartItems([...cartItems, { ...item, quantity }]);
             setCartCount(prev => prev + 1);
-            toast.success('Successfully added to cart!'); // 'successAddCart' yerinə birbaşa mesaj
+            toast.success('Successfully added to cart!');
         }
     };
 
     const handleAddToWishlist = (item) => {
         const existingItem = wishlistItems.find(wishlistItem => wishlistItem.id === item.id);
         if (existingItem) {
-            // Əgər məhsul artıq istək siyahısındadırsa, sayını artırın
             setWishlistItems(wishlistItems.map(wishlistItem =>
                 wishlistItem.id === item.id ? { ...wishlistItem, quantity: wishlistItem.quantity + 1 } : wishlistItem
             ));
         } else {
-            // Əks halda, yeni məhsul əlavə edin
             setWishlistItems([...wishlistItems, { ...item, quantity: 1 }]);
             setWishlistCount(prev => prev + 1);
-            toast.success('Successfully added to wishlist!'); // 'successAddWishlist' yerinə birbaşa mesaj
+            toast.success('Successfully added to wishlist!');
         }
     };
 
@@ -128,7 +124,7 @@ function ProductDetail({ setCartCount, setWishlistCount, setCartItems, setWishli
                             </div>
 
                             <Button  variant="warning" onClick={success} className='mt-4 w-100 text-decoration-none text-black d-block by-now p-2 rounded-3'>{t('buy_now')}</Button>
-                            <p className='text-white mt-3 fs-5'>{t('sub_total')}: ${((product.price || 0) * quantity).toFixed(2)}</p> {/* Yekun məbləğ */}
+                            <p className='text-white mt-3 fs-5'>{t('sub_total')}: ${((product.price || 0) * quantity).toFixed(2)}</p>
                         </Col>
                     </>
                 )}

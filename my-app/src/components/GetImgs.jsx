@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css'; // Əsas Swiper üslubu
-import 'swiper/css/pagination'; // Pagination üslubu
-import '../style/getImgs.css'; // GetImgs üçün özəlləşdirilmiş CSS
+import 'swiper/css'; 
+import 'swiper/css/pagination'; 
+import '../style/getImgs.css'; 
 import { Pagination } from 'swiper/modules';
 import { Container, Row } from 'react-bootstrap';
 

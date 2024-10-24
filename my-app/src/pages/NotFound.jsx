@@ -1,4 +1,3 @@
-// NotFound.jsx
 import React from 'react';
 import { FaExclamationTriangle } from 'react-icons/fa';
 import { motion } from 'framer-motion';

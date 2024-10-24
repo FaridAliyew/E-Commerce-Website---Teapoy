@@ -1,12 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Spinner } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Container, Row, Spinner } from 'react-bootstrap';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
-
 import 'swiper/css';
 import 'swiper/css/pagination';
 
@@ -16,7 +14,7 @@ function Recommended({ quantity, cartItems, setCartItems, setCartCount, wishlist
     const [error, setError] = useState(null);
 
     const baseUrl = 'https://xnykiejhjsppxvnmqcev.supabase.co';
-    const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhueWtpZWpoanNwcHh2bm1xY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyODk0NDcsImV4cCI6MjAzODg2NTQ0N30.GTpLwlyahu9lMtSdKkCX4C9PtcT_7rvZPRCPYdkP1NY'; // Buraya düzgün API açarınızı daxil edin
+    const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhueWtpZWpoanNwcHh2bm1xY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyODk0NDcsImV4cCI6MjAzODg2NTQ0N30.GTpLwlyahu9lMtSdKkCX4C9PtcT_7rvZPRCPYdkP1NY'; 
 
     useEffect(() => {
         const fetchData = async () => {
@@ -41,30 +39,26 @@ function Recommended({ quantity, cartItems, setCartItems, setCartCount, wishlist
     const handleAddToCart = (item) => {
         const existingItem = cartItems.find(cartItem => cartItem.id === item.id);
         if (existingItem) {
-            // Əgər məhsul artıq səbətdə varsa, yalnız sayını artırın
             setCartItems(cartItems.map(cartItem =>
                 cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + quantity } : cartItem
             ));
         } else {
-            // Əks halda, yeni məhsul əlavə edin
             setCartItems([...cartItems, { ...item, quantity }]);
             setCartCount(prev => prev + 1);
-            toast.success('Successfully added to cart!'); // 'successAddCart' yerinə birbaşa mesaj
+            toast.success('Successfully added to cart!'); 
         }
     };
 
     const handleAddToWishlist = (item) => {
         const existingItem = wishlistItems.find(wishlistItem => wishlistItem.id === item.id);
         if (existingItem) {
-            // Əgər məhsul artıq istək siyahısındadırsa, sayını artırın
             setWishlistItems(wishlistItems.map(wishlistItem =>
                 wishlistItem.id === item.id ? { ...wishlistItem, quantity: wishlistItem.quantity + 1 } : wishlistItem
             ));
         } else {
-            // Əks halda, yeni məhsul əlavə edin
             setWishlistItems([...wishlistItems, { ...item, quantity: 1 }]);
             setWishlistCount(prev => prev + 1);
-            toast.success('Successfully added to wishlist!'); // 'successAddWishlist' yerinə birbaşa mesaj
+            toast.success('Successfully added to wishlist!');
         }
     };
 
@@ -89,8 +83,8 @@ function Recommended({ quantity, cartItems, setCartItems, setCartCount, wishlist
                 modules={[Pagination, Autoplay]}
                 className="mySwiper"
                 autoplay={{
-                    delay: 3000, // Slide delay in milliseconds
-                    disableOnInteraction: false, // Continue autoplay after user interactions
+                    delay: 3000, 
+                    disableOnInteraction: false, 
                 }}
                 breakpoints={{
                     320: {

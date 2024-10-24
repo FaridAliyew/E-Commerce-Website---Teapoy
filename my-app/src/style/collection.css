@@ -2,7 +2,6 @@
 
 .collection-container {
   padding: 20px;
-  /* margin-top: 130px; */
   font-family: "Gowun Batang", serif;
 }
 
@@ -60,7 +59,6 @@
   transform: scaleX(1); 
 }
 
-/* Aktiv olmayan linklərdə xətt görünməz */
 .link-container a:not(.active-link)::after {
   display: none; 
 }

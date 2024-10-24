@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import Header from './components/Header';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -29,7 +28,6 @@ import IndoorDecoration from './pages/IndoorDecoration';
 import OutdoorDecoration from './pages/OutdoorDecoration';
 import Wishlist from './pages/Wishlist';
 import AdminPanel from './pages/AdminPanel';
-// import './i18n';
 import ProductDetail from './pages/ProductDetail';
 import CheckOut from './pages/CheckOut';
 import AdminLogin from './pages/AdminLogin';
@@ -45,12 +43,11 @@ function App() {
     const [wishlistCount, setWishlistCount] = useState(0);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [cartItems, setCartItems] = useState([]);
-    const [wishlistItems, setWishlistItems] = useState([]); // Yeni wishlist state
-    const [quantities, setQuantities] = useState({}); //Add to cartdakı sayğac
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // İstifadəçi girişi statusu
+    const [wishlistItems, setWishlistItems] = useState([]);
+    const [quantities, setQuantities] = useState({});
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 
-    // Səhifə açıldığında localStorage-dan cartCount, wishlistCount və cartItems-u yüklə
     useEffect(() => {
         const storedCartCount = localStorage.getItem('cartCount');
         const storedWishlistCount = localStorage.getItem('wishlistCount');
@@ -71,7 +68,6 @@ function App() {
         }
     }, []);
 
-    // cartCount, wishlistCount və cartItems dəyişdikcə localStorage-a yaz
     useEffect(() => {
         localStorage.setItem('cartCount', cartCount);
         localStorage.setItem('wishlistCount', wishlistCount);
@@ -80,91 +76,83 @@ function App() {
     }, [cartCount, wishlistCount, cartItems, wishlistItems]);
 
     return (
-        <>
-            <I18nextProvider i18n={i18n}>
-                <ThemeProvider>
+        <I18nextProvider i18n={i18n}>
+            <ThemeProvider>
+                <Header />
+                <Navbar
+                    cartCount={cartCount}
+                    wishlistCount={wishlistCount}
+                    isAuthenticated={isAuthenticated}
+                    setIsAuthenticated={setIsAuthenticated}
+                />
+                <ToastContainer position="bottom-left" autoClose={1500} hideProgressBar={false} newestOnTop={false} closeOnClick pauseOnFocusLoss draggable pauseOnHover />
+                <Routes>
 
-                    <Header />
-                    <Navbar
-                        cartCount={cartCount}
-                        wishlistCount={wishlistCount}
-                        isAuthenticated={isAuthenticated}
-                        setIsAuthenticated={setIsAuthenticated}
-                    />
-                    <ToastContainer position="bottom-left" autoClose={1500} hideProgressBar={false} newestOnTop={false} closeOnClick pauseOnFocusLoss draggable pauseOnHover />
-                    <Routes>
-                        {/* Ana səhifə */}
-                        <Route path="/" element={
-                            <>
-                                <Slider />
-                                <Section />
-                                <Banner />
-                                <Collection />
-                                <SectionTwo />
-                                <SliderTwo />
-                            </>
-                        }>
-                            <Route path="/" element={<HomeDecoration setCartCount={setCartCount} setWishlistCount={setWishlistCount} setCartItems={setCartItems} setWishlistItems={setWishlistItems} />} />
-                            <Route path="office-decoration" element={<OfficeDecoration setCartCount={setCartCount} setWishlistCount={setWishlistCount} setCartItems={setCartItems} setWishlistItems={setWishlistItems} />} />
-                            <Route path="indoor-decoration" element={<IndoorDecoration setCartCount={setCartCount} setWishlistCount={setWishlistCount} setCartItems={setCartItems} setWishlistItems={setWishlistItems} />} />
-                            <Route path="outdoor-decoration" element={<OutdoorDecoration setCartCount={setCartCount} setWishlistCount={setWishlistCount} setCartItems={setCartItems} setWishlistItems={setWishlistItems} />} />
-                        </Route>
+                    <Route path="/" element={
+                        <>
+                            <Slider />
+                            <Section />
+                            <Banner />
+                            <Collection />
+                            <SectionTwo />
+                            <SliderTwo />
+                        </>
+                    }>
+                        <Route path="/" element={<HomeDecoration setCartCount={setCartCount} setWishlistCount={setWishlistCount} setCartItems={setCartItems} setWishlistItems={setWishlistItems} />} />
+                        <Route path="office-decoration" element={<OfficeDecoration setCartCount={setCartCount} setWishlistCount={setWishlistCount} setCartItems={setCartItems} setWishlistItems={setWishlistItems} />} />
+                        <Route path="indoor-decoration" element={<IndoorDecoration setCartCount={setCartCount} setWishlistCount={setWishlistCount} setCartItems={setCartItems} setWishlistItems={setWishlistItems} />} />
+                        <Route path="outdoor-decoration" element={<OutdoorDecoration setCartCount={setCartCount} setWishlistCount={setWishlistCount} setCartItems={setCartItems} setWishlistItems={setWishlistItems} />} />
+                    </Route>
 
-                        <Route path='/collection' element={<Collections />} />
-                        <Route path='/shop' element={<Shop setCartCount={setCartCount} setWishlistCount={setWishlistCount} setCartItems={setCartItems} setWishlistItems={setWishlistItems} cartItems={cartItems} wishlistItems={wishlistItems} />} />
-                        <Route path='/blog' element={<BLog />} />
-                        <Route path='/contact' element={<Contact />} />
-                        <Route path='/about' element={<About />} />
-                        <Route path='/faq' element={<Faq />} />
-                        <Route path='/signup' element={<SignUp />} />
-                        <Route path='/signin' element={<SignIn setIsAuthenticated={setIsAuthenticated} />} />
+                    <Route path='/collection' element={<Collections />} />
+                    <Route path='/shop' element={<Shop setCartCount={setCartCount} setWishlistCount={setWishlistCount} setCartItems={setCartItems} setWishlistItems={setWishlistItems} cartItems={cartItems} wishlistItems={wishlistItems} />} />
+                    <Route path='/blog' element={<BLog />} />
+                    <Route path='/contact' element={<Contact />} />
+                    <Route path='/about' element={<About />} />
+                    <Route path='/faq' element={<Faq />} />
+                    <Route path='/signup' element={<SignUp />} />
+                    <Route path='/signin' element={<SignIn setIsAuthenticated={setIsAuthenticated} />} />
 
-                        <Route path='/addtocart' element={
-                            <AddToCart
-                                quantities={quantities}
-                                setQuantities={setQuantities}
-                                cartItems={cartItems}
-                                setCartItems={setCartItems}
-                                setCartCount={setCartCount} // yeni əlavə
-                                isAuthenticated={isAuthenticated}
-                            />
-                        } />
-
-                        <Route path='/wishlist' element={<Wishlist
-                            wishlistItems={wishlistItems}
-                            setWishlistItems={setWishlistItems}
-                            setWishlistCount={setWishlistCount}
+                    <Route path='/addtocart' element={
+                        <AddToCart
+                            quantities={quantities}
+                            setQuantities={setQuantities}
                             cartItems={cartItems}
                             setCartItems={setCartItems}
                             setCartCount={setCartCount}
-                        />} />
-
-                        <Route path='/admin' element={<AdminLogin setIsLoggedIn={setIsLoggedIn} />} />
-
-                        <Route
-                            path="/adminpanel"
-                            element={isLoggedIn ? <AdminPanel /> : <Navigate to="*" />}
+                            isAuthenticated={isAuthenticated}
                         />
+                    } />
 
-                        <Route path="*" element={<NotFound />} />
+                    <Route path='/wishlist' element={<Wishlist
+                        wishlistItems={wishlistItems}
+                        setWishlistItems={setWishlistItems}
+                        setWishlistCount={setWishlistCount}
+                        cartItems={cartItems}
+                        setCartItems={setCartItems}
+                        setCartCount={setCartCount}
+                    />} />
 
-                        <Route path="/product/:id" element={
-                            <>
-                                <ProductDetail setCartCount={setCartCount} setCartItems={setCartItems} setWishlistCount={setWishlistCount} setWishlistItems={setWishlistItems} cartItems={cartItems} wishlistItems={wishlistItems} quantities={quantities} setQuantities={setQuantities} isAuthenticated={isAuthenticated} />
-                                <Recommended quantities={quantities} setCartItems={setCartItems} cartItems={cartItems} setCartCount={setCartCount} wishlistItems={wishlistItems} setWishlistItems={setWishlistItems} setWishlistCount={setWishlistCount} />
-                            </>
-                        } />
+                    <Route path='/admin' element={<AdminLogin setIsLoggedIn={setIsLoggedIn} />} />
+                    <Route
+                        path="/adminpanel"
+                        element={isLoggedIn ? <AdminPanel /> : <Navigate to="*" />}
+                    />
+                    <Route path="*" element={<NotFound />} />
 
-                        <Route path='checkout' element={<CheckOut cartItems={cartItems} quantities={quantities} />} />
-
-                        {/* Digər səhifələr */}
-                        <Route path="/other" element={<div>Other page</div>} />
-                    </Routes>
-                    <ScrollToTopButton />
-                    <Footer />
-                </ThemeProvider>
-            </I18nextProvider>
-        </>
+                    <Route path="/product/:id" element={
+                        <>
+                            <ProductDetail setCartCount={setCartCount} setCartItems={setCartItems} setWishlistCount={setWishlistCount} setWishlistItems={setWishlistItems} cartItems={cartItems} wishlistItems={wishlistItems} quantities={quantities} setQuantities={setQuantities} isAuthenticated={isAuthenticated} />
+                            <Recommended quantities={quantities} setCartItems={setCartItems} cartItems={cartItems} setCartCount={setCartCount} wishlistItems={wishlistItems} setWishlistItems={setWishlistItems} setWishlistCount={setWishlistCount} />
+                        </>
+                    } />
+                    <Route path='checkout' element={<CheckOut cartItems={cartItems} quantities={quantities} />} />
+                    <Route path="/other" element={<div>Other page</div>} />
+                </Routes>
+                <ScrollToTopButton />
+                <Footer />
+            </ThemeProvider>
+        </I18nextProvider>
     );
 }
 

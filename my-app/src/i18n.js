@@ -8,13 +8,13 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    supportedLngs: ['az', 'en', 'ru'], // Desteklenen diller
-    fallbackLng: 'az', // Eğer dil bulunamazsa bu dil kullanılır
+    supportedLngs: ['az', 'en', 'ru'], 
+    fallbackLng: 'az',
     backend: {
-      loadPath: '/locales/{{lng}}/translation.json', // Çeviri dosyalarının yolu
+      loadPath: '/locales/{{lng}}/translation.json', 
     },
     interpolation: {
-      escapeValue: false, // React otomatik olarak xss temizliği yapar
+      escapeValue: false, 
     },
   });
 

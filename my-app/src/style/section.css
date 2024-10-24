@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
 .section {
+    font-family: "Gowun Batang", serif;
+
     .section-row{
         margin-bottom: 100px;
     }
     h1,p{
         text-align: start;
     }
-
-    font-family: "Gowun Batang", serif;
 
     .text-light {
         color: rgb(189, 189, 189) !important;

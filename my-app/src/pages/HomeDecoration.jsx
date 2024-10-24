@@ -1,4 +1,3 @@
-// HomeDecoration.js
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
@@ -9,12 +8,8 @@ import '../style/homeDecoration.css';
 import { Pagination } from 'swiper/modules';
 import { Container, Row, Spinner } from 'react-bootstrap';
 import { toast } from 'react-toastify';
-// import { useTranslation } from 'react-i18next'; // i18next-in import edilməsi
-
 
 function HomeDecoration({ setCartCount, setWishlistCount, setCartItems, setWishlistItems }) {
-    // const { t } = useTranslation(); // Tercüməni əldə etmək
-
     const baseUrl = 'https://xnykiejhjsppxvnmqcev.supabase.co';
     const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhueWtpZWpoanNwcHh2bm1xY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyODk0NDcsImV4cCI6MjAzODg2NTQ0N30.GTpLwlyahu9lMtSdKkCX4C9PtcT_7rvZPRCPYdkP1NY';
 

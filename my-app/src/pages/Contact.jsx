@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next'; 
-import '../style/contact.css';
 import { ThemeContext } from '../components/ThemeContext';
+import '../style/contact.css';
 
 function Contact() {
     const { t } = useTranslation();

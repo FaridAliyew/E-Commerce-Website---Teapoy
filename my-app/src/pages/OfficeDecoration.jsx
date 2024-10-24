@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { FaHeart, FaShoppingCart } from 'react-icons/fa'; // İkonlar import olundu
-import 'swiper/css'; // Əsas Swiper üslubu
-import 'swiper/css/pagination'; // Pagination üslubu
+import { FaHeart, FaShoppingCart } from 'react-icons/fa'; 
+import 'swiper/css'; 
+import 'swiper/css/pagination'; 
 import { Pagination } from 'swiper/modules';
-import { Container, Row, Spinner } from 'react-bootstrap'; // Spinner-i import edin
+import { Container, Row, Spinner } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 
 function OfficeDecoration({ setCartCount, setWishlistCount, setCartItems, setWishlistItems }) {
@@ -68,15 +68,12 @@ function OfficeDecoration({ setCartCount, setWishlistCount, setCartItems, setWis
             className="mySwiper"
             breakpoints={{
               320: {
-                // Telefonlarda 2 slayd göstərilsin
                 slidesPerView: 2,
               },
               768: {
-                // Tablet modunda 4 slayd göstərilsin
                 slidesPerView: 3,
               },
               1024: {
-                // Daha böyük ekranlarda 4 slayd
                 slidesPerView: 4,
               },
             }}

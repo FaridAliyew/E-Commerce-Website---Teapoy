@@ -1,4 +1,3 @@
-/* Spinner ölçüsünü artırmaq üçün */
 .spinner-container {
   display: flex;
   justify-content: center;
@@ -17,7 +16,6 @@
   width: 100%;
   height: 350px;
   object-fit: contain;
-  /* Şəkilləri düzgün göstərmək üçün */
 }
 
 .img-text {
@@ -27,17 +25,13 @@
 
 .img-text .img-text-1 {
   color: #fff;
-  /* Mətnin ağ rəngdə olması */
   margin: 0;
-  /* Əlavə boşluqları aradan qaldırmaq */
   line-height: 1.2;
-  /* Line-height dəyərini azaltmaq */
   margin-top: 10px;
 }
 
 .img-text .categoria {
   line-height: 1.2;
-  /* Line-height dəyərini azaltmaq */
   color: rgb(103, 103, 103);
 }
 
@@ -63,8 +57,6 @@
   bottom: 0px !important;
 }
 
-/* ------------- */
-
 .image-wrapper {
   position: relative;
 }
@@ -76,25 +68,20 @@
   display: flex;
   flex-direction: column;
   opacity: 0;
-  /* İkonlar başlanğıcda görünməyəcək */
   transition: opacity 0.3s ease;
-  /* İkonların çıxışı daha hamar olsun */
 }
 
 .image-wrapper:hover .img-icons {
   opacity: 1;
-  /* Şəkilin üzərinə gəldikdə ikonlar görünəcək */
 }
 
 .img-icons .icon {
   color: white;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 10px;
-  /* İkonların ətrafında daha çox yer */
   margin-bottom: 5px;
   border-radius: 50%;
   font-size: 35px;
-  /* Font ölçüsünü böyütdük */
   cursor: pointer;
   transition: background-color 400ms ease;
 }

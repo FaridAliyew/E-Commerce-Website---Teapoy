@@ -1,5 +1,7 @@
 import React, { useContext } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { useTranslation } from 'react-i18next'; 
+import { ThemeContext } from './ThemeContext';
 import img from '../imgs/Rectangle_2.jpg';
 import img2 from '../imgs/Frame_1.png';
 import img3 from '../imgs/Frame_2.png';
@@ -8,12 +10,10 @@ import img5 from '../imgs/Frame_4.png';
 import img6 from '../imgs/Frame_5.png';
 import img7 from '../imgs/Frame_6.png';
 import '../style/sectionTwo.css';
-import { useTranslation } from 'react-i18next'; // i18n kitabxanasından istifadə
-import { ThemeContext } from './ThemeContext';
 
 function SectionTwo() {
-    const { t } = useTranslation(); // useTranslation hook
-    const { isDarkMode } = useContext(ThemeContext); // ThemeContext-dən istifadə
+    const { t } = useTranslation(); 
+    const { isDarkMode } = useContext(ThemeContext); 
 
     return (
         <>

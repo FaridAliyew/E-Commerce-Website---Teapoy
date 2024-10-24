@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Container, Row, Col, Card, Spinner } from 'react-bootstrap'; // Spinner əlavə olundu
+import { Container, Row, Col, Card, Spinner } from 'react-bootstrap'; 
 import img from '../imgs/Rectangle_2.jpg';
 import '../style/blog.css'
 import axios from 'axios';
@@ -7,8 +7,8 @@ import { ThemeContext } from '../components/ThemeContext';
 
 function BLog() {
   const [blogs, setBlogs] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); // isLoading state-i əlavə olundu
-  const { isDarkMode } = useContext(ThemeContext); // ThemeContext-dən istifadə
+  const [isLoading, setIsLoading] = useState(true); 
+  const { isDarkMode } = useContext(ThemeContext); 
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -20,21 +20,20 @@ function BLog() {
           }
         });
         setBlogs(response.data);
-        setIsLoading(false); // Datalar gəldikdən sonra loading-i false elə
+        setIsLoading(false); 
       } catch (error) {
         console.error('Error fetching blogs:', error);
-        setIsLoading(false); // Error olanda da loading-i false elə
+        setIsLoading(false); 
       }
     };
 
     fetchBlogs();
   }, []);
 
-  // Tarixi formatlamaq üçün funksiya
   const formatDate = (dateString) => {
-    const options = { day: 'numeric', month: 'short' }; // Ay qısa formada (short), gün rəqəmlə
+    const options = { day: 'numeric', month: 'short' }; 
     const date = new Date(dateString);
-    return new Intl.DateTimeFormat('en-US', options).format(date); // İngilis dilində qısa ay formatı
+    return new Intl.DateTimeFormat('en-US', options).format(date); 
   }
 
   return (
@@ -52,9 +51,9 @@ function BLog() {
 
       <Container fluid className={`${isDarkMode ? 'dark-mode' : 'light-mode'} p-5 blog-container`}>
         <Row>
-          {isLoading ? ( // Əgər loading true-dursa spinner görünsün
+          {isLoading ? ( 
             <Col className="text-center">
-              <div className="spinner-container text-white"> {/* Spinner stilini burda tətbiq edirik */}
+              <div className="spinner-container text-white">
                 <Spinner animation="border" role="status" className="custom-spinner">
                   <span className="visually-hidden">Loading...</span>
                 </Spinner>
@@ -68,7 +67,7 @@ function BLog() {
                     <Card.Img variant="top" src={blog.image_url} className="blog-image" />
                   </div>
                   <Card.Body>
-                    <Card.Text>{formatDate(blog.date)} - <span>{blog.author}</span></Card.Text> {/* Tarixi formatladıq */}
+                    <Card.Text>{formatDate(blog.date)} - <span>{blog.author}</span></Card.Text>
                     <Card.Title>{blog.title}</Card.Title>
                     <Card.Text>{blog.description}</Card.Text>
                   </Card.Body>

@@ -1,4 +1,3 @@
-// SignUp.js
 import React, { useContext, useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
@@ -13,13 +12,12 @@ function SignUp() {
 
     const handleInputChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
-        setErrors({ ...errors, [e.target.name]: '' }); // Error təmizlənir
+        setErrors({ ...errors, [e.target.name]: '' }); 
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        // Validasiya yoxlamaları
         let newErrors = {};
         if (!formData.username) {
             newErrors.username = 'Username is required';
@@ -35,19 +33,13 @@ function SignUp() {
             newErrors.password = 'Password must be at least 6 characters';
         }
 
-        // Əgər səhvlər varsa, formu submit etmə
         if (Object.keys(newErrors).length > 0) {
             setErrors(newErrors);
             return;
         }
 
-        // Dataları localStorage-ə qeyd et
         localStorage.setItem('userData', JSON.stringify(formData));
-
-        // Uğurlu qeydiyyat mesajı göstər
         alert('Registration completed successfully!');
-
-        // Sign in səhifəsinə yönləndir
         navigate('/signin');
     };
 

@@ -1,20 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Container, Row, Col, Spinner, Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom'; // Link-i import edin
+import { Link } from 'react-router-dom'; 
 import img from '../imgs/Rectangle_2.jpg';
 import '../style/shop.css';
 import axios from 'axios';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 import { toast } from 'react-toastify';
-import { useTranslation } from 'react-i18next'; // i18next-in import edilməsi
+import { useTranslation } from 'react-i18next';
 import { ThemeContext } from '../components/ThemeContext';
 
 function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, cartItems, wishlistItems }) {
-
-    const { t } = useTranslation(); // Tercüməni əldə etmək
-
+    const { t } = useTranslation();
     const baseUrl = 'https://xnykiejhjsppxvnmqcev.supabase.co';
-    const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhueWtpZWpoanNwcHh2bm1xY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyODk0NDcsImV4cCI6MjAzODg2NTQ0N30.GTpLwlyahu9lMtSdKkCX4C9PtcT_7rvZPRCPYdkP1NY'; // API açarınızı burada dəyişdirin
+    const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhueWtpZWpoanNwcHh2bm1xY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyODk0NDcsImV4cCI6MjAzODg2NTQ0N30.GTpLwlyahu9lMtSdKkCX4C9PtcT_7rvZPRCPYdkP1NY'; 
 
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -24,7 +22,7 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
     const [priceRange, setPriceRange] = useState([0, 300]);
     const [selectedBrand, setSelectedBrand] = useState('');
     const [sortOrder, setSortOrder] = useState('A-Z');
-    const [searchTerm, setSearchTerm] = useState(''); //Search state
+    const [searchTerm, setSearchTerm] = useState(''); 
     const { isDarkMode } = useContext(ThemeContext);
 
 
@@ -102,12 +100,10 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
     const handleAddToCart = (item) => {
         const existingItem = cartItems.find(cartItem => cartItem.id === item.id);
         if (existingItem) {
-            // Əgər məhsul artıq səbətdə varsa, yalnız sayını artırın
             setCartItems(cartItems.map(cartItem =>
                 cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
             ));
         } else {
-            // Əks halda, yeni məhsul əlavə edin
             setCartItems([...cartItems, { ...item, quantity: 1 }]);
             setCartCount(prev => prev + 1);
             toast.success(t('successAddCart'));
@@ -117,12 +113,10 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
     const handleAddToWishlist = (item) => {
         const existingItem = wishlistItems.find(wishlistItem => wishlistItem.id === item.id);
         if (existingItem) {
-            // Əgər məhsul artıq istək siyahısındadırsa, sayını artırın
             setWishlistItems(wishlistItems.map(wishlistItem =>
                 wishlistItem.id === item.id ? { ...wishlistItem, quantity: wishlistItem.quantity + 1 } : wishlistItem
             ));
         } else {
-            // Əks halda, yeni məhsul əlavə edin
             setWishlistItems([...wishlistItems, { ...item, quantity: 1 }]);
             setWishlistCount(prev => prev + 1);
             toast.success(t('successAddWishlist'));
@@ -149,9 +143,6 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
     const handleSortChange = (e) => {
         setSortOrder(e.target.value);
     };
-
-   
-    
 
     return (
         <>
@@ -224,7 +215,6 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
 
                     <Col lg={9} style={{ padding: '80px' }} className='shop-col-2 mt-5'>
                         <div className="d-flex justify-content-between  align-items-center mb-4">
-                            {/* <h2 className="text-white">{t('products')}</h2> */}
                             <Form.Control
                                 type="text"
                                 placeholder={t('searchPlaceholder')}
@@ -250,7 +240,7 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
                             {filteredData.map((item) => (
                                 <Col lg={4} md={6} sm={12} key={item.id} className='shop-col-3'>
                                     <div className="image-wrapper">
-                                        <Link to={`/product/${item.id}`}> {/* Məhsulun ID-si ilə keçid yarat */}
+                                        <Link to={`/product/${item.id}`}> 
                                             <img src={item.image_url} alt={item.title} className="slider-img img-fluid w-100 rounded-4" />
                                         </Link>
                                         <div className="img-icons">

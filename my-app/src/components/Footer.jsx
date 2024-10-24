@@ -4,15 +4,12 @@ import { RiTwitterXFill } from 'react-icons/ri';
 import { FaFacebook } from 'react-icons/fa';
 import { FiInstagram } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
-
 import { FaCcVisa, FaCcMastercard, FaCcAmex, FaPaypal, FaCcDinersClub, FaCcDiscover } from 'react-icons/fa';
-
 import '../style/footer.css'
 
 
 function Footer() {
     return (
-
         <Container fluid className='footer bg-black p-5 '>
             <Row className='footer-row d-flex justify-content-between'>
                 <Col sm={12} xl={2} className='text-sm-center text-xl-start ms-md-5'>
@@ -51,12 +48,12 @@ function Footer() {
                 </Col>
                 <Col sm={12} lg={5} className='text-center text-lg-end'>
                     <div>
-                        <FaCcVisa style={{ color: 'white', fontSize: '30px' }} /> {/* Visa - Blue */}
-                        <FaCcMastercard style={{ color: '#EB001B', fontSize: '30px' }} /> {/* Mastercard - Red */}
-                        <FaCcAmex style={{ color: '#2DAAE1', fontSize: '30px' }} /> {/* American Express - Bright Blue */}
-                        <FaPaypal style={{ color: '#253B80', fontSize: '30px' }} /> {/* PayPal - Deep Blue */}
-                        <FaCcDinersClub style={{ color: '#0079BE', fontSize: '30px' }} /> {/* Diners Club - Bright Blue */}
-                        <FaCcDiscover style={{ color: '#86B8E3', fontSize: '30px' }} /> {/* Discover - Light Blue */}
+                        <FaCcVisa style={{ color: 'white', fontSize: '30px' }} /> 
+                        <FaCcMastercard style={{ color: '#EB001B', fontSize: '30px' }} /> 
+                        <FaCcAmex style={{ color: '#2DAAE1', fontSize: '30px' }} /> 
+                        <FaPaypal style={{ color: '#253B80', fontSize: '30px' }} /> 
+                        <FaCcDinersClub style={{ color: '#0079BE', fontSize: '30px' }} /> 
+                        <FaCcDiscover style={{ color: '#86B8E3', fontSize: '30px' }} /> 
                     </div>
                 </Col>
             </Row>

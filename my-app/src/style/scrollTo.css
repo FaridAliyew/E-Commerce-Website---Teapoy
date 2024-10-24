@@ -16,26 +16,20 @@
 
 .scroll-to-top.fade-in {
     opacity: 1;
-    /* Görünməli */
 }
 
 @keyframes fadeIn {
     from {
         transform: translateY(20px);
-        /* Aşağıdan 20px yuxarı */
         opacity: 0;
-        /* Başlanğıcda görünməz */
     }
 
     to {
         transform: translateY(0);
-        /* Yuxarıda normala dön */
         opacity: 1;
-        /* Tam görünən */
     }
 }
 
 .scroll-to-top.fade-out {
     animation: fadeOut 0.5s forwards;
-    /* İtme animasiyası */
 }

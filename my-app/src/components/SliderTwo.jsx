@@ -5,9 +5,9 @@ import img2 from '../imgs/profileImg_2.jpg';
 import img3 from '../imgs/profileImg_3.jpg';
 import { FaStar } from 'react-icons/fa';
 import { FaStarHalfAlt } from 'react-icons/fa';
-import '../style/sliderTwo.css';
 import { useTranslation } from 'react-i18next';
 import { ThemeContext } from './ThemeContext';
+import '../style/sliderTwo.css';
 
 function SliderTwo() {
     const { t } = useTranslation();

@@ -2,19 +2,19 @@
     min-height: 100vh;
 
     .signup-box {
-        background-color: #161616; /* Formun arxa fonu */
+        background-color: #161616; 
         border-radius: 10px;
         width: 550px;
 
         h2 {
-            color: #ffffff; /* "Sign Up" başlığı ağ rəngdə */
+            color: #ffffff; 
         }
 
         p {
             color: #ffffff;
 
             .signin-link {
-                color: #ffb300; /* "Sign In" linkinin rəngi */
+                color: #ffb300; 
                 text-decoration: none;
 
                 &:hover {
@@ -37,7 +37,7 @@
         }
 
         .create-btn {
-            background-color: #ff7f00; /* "CREATE" düyməsinin rəngi */
+            background-color: #ff7f00; 
             border: none;
             width: 100px;
 
