@@ -3,12 +3,16 @@ import { Container, Row, Col, Card, Spinner } from 'react-bootstrap';
 import img from '../imgs/Rectangle_2.jpg';
 import '../style/blog.css'
 import axios from 'axios';
-import { ThemeContext } from '../components/ThemeContext';
+import { ThemeContext } from '../context api/ThemeContext';
 
 function BLog() {
   const [blogs, setBlogs] = useState([]);
   const [isLoading, setIsLoading] = useState(true); 
   const { isDarkMode } = useContext(ThemeContext); 
+  
+  useEffect(() => {
+    window.scrollTo(0,0);
+}, [])
 
   useEffect(() => {
     const fetchBlogs = async () => {

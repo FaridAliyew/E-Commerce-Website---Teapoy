@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next'; 
-import { ThemeContext } from './ThemeContext';
+import { ThemeContext } from '../context api/ThemeContext';
 import img from '../imgs/Rectangle_2.jpg';
 import img2 from '../imgs/Frame_1.png';
 import img3 from '../imgs/Frame_2.png';

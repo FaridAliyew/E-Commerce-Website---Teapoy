@@ -5,37 +5,37 @@ import '../style/addToCart.css';
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 import { GrNotes } from "react-icons/gr";
-import { useTranslation } from 'react-i18next'; 
+import { useTranslation } from 'react-i18next';
 
-function AddToCart({ cartItems, setCartItems, setCartCount, quantities, setQuantities, isAuthenticated }) {
-    const { t } = useTranslation(); 
+function AddToCart({ cartItems, setCartItems, quantities, setCartCount, setQuantities, isAuthenticated }) {
+    const { t } = useTranslation();
     const navigate = useNavigate();
-    const [couponCode, setCouponCode] = useState(''); 
-    const [finalPrice, setFinalPrice] = useState(null); 
-    const [errorMessage, setErrorMessage] = useState(''); 
+    const [couponCode, setCouponCode] = useState('');
+    const [finalPrice, setFinalPrice] = useState(null);
+    const [errorMessage, setErrorMessage] = useState('');
 
     const coupons = {
-        "SALE20": 20, 
-        "DISCOUNT10": 10, 
-        "SAVE5": 5 
+        "SALE20": 20,
+        "DISCOUNT10": 10,
+        "SAVE5": 5
     };
 
     const applyDiscount = () => {
-    const discountPercentage = coupons[couponCode];
+        const discountPercentage = coupons[couponCode];
 
-    if (!discountPercentage) {
-        setErrorMessage("Invalid coupon code."); 
-        return;
-    }
+        if (!discountPercentage) {
+            setErrorMessage("Invalid coupon code.");
+            return;
+        }
 
-    const total = calculateTotal();
-    const discountAmount = (total * discountPercentage) / 100;
-    const updatedFinalPrice = total - discountAmount;
-    setFinalPrice(updatedFinalPrice);
-    setErrorMessage('');
+        const total = calculateTotal();
+        const discountAmount = (total * discountPercentage) / 100;
+        const updatedFinalPrice = total - discountAmount;
+        setFinalPrice(updatedFinalPrice);
+        setErrorMessage('');
 
-    localStorage.setItem('finalPrice', updatedFinalPrice.toFixed(2));
-};
+        localStorage.setItem('finalPrice', updatedFinalPrice.toFixed(2));
+    };
 
     const calculateTotal = () => {
         return cartItems.reduce((total, item) => {
@@ -82,9 +82,9 @@ function AddToCart({ cartItems, setCartItems, setCartCount, quantities, setQuant
     };
 
     const success = () => {
-        if(isAuthenticated){
+        if (isAuthenticated) {
             navigate('/checkout')
-        } else{
+        } else {
             navigate('/signin')
         }
     }
@@ -133,7 +133,7 @@ function AddToCart({ cartItems, setCartItems, setCartCount, quantities, setQuant
                             <Col sm={12} lg={3}>
                                 <RiDeleteBin5Line
                                     className='fs-2 mb-4 text-danger delete d-block ms-auto me-auto'
-                                    onClick={() => handleDeleteItem(item.id)}  
+                                    onClick={() => handleDeleteItem(item.id)}
                                 />
                             </Col>
                         </Row>
@@ -166,16 +166,16 @@ function AddToCart({ cartItems, setCartItems, setCartCount, quantities, setQuant
                             </div>
 
                             <input
-                                    type="text"
-                                    placeholder="Add discount code"
-                                    value={couponCode}
-                                    onChange={(e) => setCouponCode(e.target.value)}
-                                    className='rounded-4 p-2 w-50 float-md-end text-center d-block ms-auto me-auto'
-                                /> <br /> <br className='d-none d-md-block'/>
-                                 {errorMessage && <p className='text-danger text-center text-md-end'>{errorMessage}</p>}
-                                <Button onClick={applyDiscount} className='float-md-end check-out text-white rounded-4 w-50 py-2 mb-5 d-block ms-auto me-auto'>
-                                    APPLY
-                                </Button>
+                                type="text"
+                                placeholder="Add discount code"
+                                value={couponCode}
+                                onChange={(e) => setCouponCode(e.target.value)}
+                                className='rounded-4 p-2 w-50 float-md-end text-center d-block ms-auto me-auto'
+                            /> <br /> <br className='d-none d-md-block' />
+                            {errorMessage && <p className='text-danger text-center text-md-end'>{errorMessage}</p>}
+                            <Button onClick={applyDiscount} className='float-md-end check-out text-white rounded-4 w-50 py-2 mb-5 d-block ms-auto me-auto'>
+                                APPLY
+                            </Button>
                         </Col>
                     </Row>
                 </Container>) : ''}

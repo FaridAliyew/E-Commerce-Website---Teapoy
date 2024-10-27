@@ -1,14 +1,18 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Container, Row, Col, Accordion } from 'react-bootstrap';
 import img from '../imgs/Rectangle_2.jpg';
 import faq from '../imgs/faq.jpg';
 import { useTranslation } from 'react-i18next'; 
-import { ThemeContext } from '../components/ThemeContext';
+import { ThemeContext } from '../context api/ThemeContext';
 import '../style/faq.css';
 
 function Faq() {
     const { t } = useTranslation(); 
     const { isDarkMode } = useContext(ThemeContext);
+
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, [])
 
     return (
         <>

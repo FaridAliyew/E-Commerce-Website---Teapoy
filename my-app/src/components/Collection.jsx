@@ -3,7 +3,7 @@ import { Container, Row, Col, Dropdown } from 'react-bootstrap';
 import { NavLink, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next'; 
 import '../style/collection.css';
-import { ThemeContext } from './ThemeContext';
+import { ThemeContext } from '../context api/ThemeContext';
 
 function Collection() {
   const { t } = useTranslation(); 

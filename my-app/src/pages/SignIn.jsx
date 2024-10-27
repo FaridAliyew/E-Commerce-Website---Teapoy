@@ -2,22 +2,24 @@ import React, { useContext, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import '../style/signIn.css';
-import { ThemeContext } from '../components/ThemeContext';
+import { ThemeContext } from '../context api/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 function SignIn({ setIsAuthenticated }) {
     const [formData, setFormData] = useState({ email: '', password: '' });
     const [errors, setErrors] = useState({ email: '', password: '' });
     const navigate = useNavigate();
     const { isDarkMode } = useContext(ThemeContext);
+    const { t } = useTranslation();
 
     const handleInputChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
-        setErrors({ ...errors, [e.target.name]: '' }); 
+        setErrors({ ...errors, [e.target.name]: '' });
     };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const storedUserData = JSON.parse(localStorage.getItem('userData'));
+        const storedUsers = JSON.parse(localStorage.getItem('users'))
 
         let newErrors = {};
         if (!formData.email) {
@@ -35,25 +37,30 @@ function SignIn({ setIsAuthenticated }) {
             return;
         }
 
-        if (storedUserData && formData.email === storedUserData.email && formData.password === storedUserData.password) {
+        const user = storedUsers.find(user => user.email === formData.email && user.password === formData.password);
+        console.log(user)
+
+        if (user) {
             setIsAuthenticated(true);
-            localStorage.setItem('isAuthenticated', 'true'); 
+            localStorage.setItem('isAuthenticated', 'true');
+            localStorage.setItem('username', user.username); 
+            localStorage.setItem('email', user.email); 
             navigate('/');
         } else {
-            alert('Invalid credentials'); 
+            alert('Invalid credentials');
         }
     };
 
     return (
         <div className={`${isDarkMode ? 'dark-mode' : 'light-mode'} signin-container`}>
             <div className="signin-box">
-                <h2>Sign In</h2>
+                <h2>{t('SIGN_IN')}</h2>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group controlId="formEmail">
                         <Form.Control
                             type="email"
                             name="email"
-                            placeholder="Email"
+                            placeholder={t('EMAIL_ADDRESS')}
                             className={`form-input ${errors.email && 'is-invalid'}`}
                             onChange={handleInputChange}
                         />
@@ -66,7 +73,7 @@ function SignIn({ setIsAuthenticated }) {
                         <Form.Control
                             type="password"
                             name="password"
-                            placeholder="Password"
+                            placeholder={t('PASSWORD')}
                             className={`form-input ${errors.password && 'is-invalid'}`}
                             onChange={handleInputChange}
                         />
@@ -76,11 +83,11 @@ function SignIn({ setIsAuthenticated }) {
                     </Form.Group>
 
                     <Button variant="primary" type="submit" className="signin-btn">
-                        SIGN IN
+                        {t('SIGN_IN')}
                     </Button>
                 </Form>
                 <div className="signup-link">
-                    Don't have an account? <Link to="/signup">Sign Up</Link>
+                    {t(`DON'T_HAVE_ACCOUNT`)} <Link to="/signup">{t('SIGN_UP')}</Link>
                 </div>
             </div>
         </div>

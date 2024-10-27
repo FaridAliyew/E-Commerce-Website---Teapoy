@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 import '../style/checkOut.css';
 import { motion } from 'framer-motion';
 import { FaRegCircleCheck } from "react-icons/fa6";
+import Recommended from '../components/Recommended';
 
 function CheckOut({ cartItems, quantities }) {
     const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
     const [finalPrice, setFinalPrice] = useState();
     const [finalPriceValue, setFinalPriceValue] = useState(false);
-    const navigate = useNavigate();
 
     useEffect(() => {
         const savedQuantities = localStorage.getItem('quantities');
@@ -44,39 +43,32 @@ function CheckOut({ cartItems, quantities }) {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setIsPaymentSuccessful(true); 
+        setIsPaymentSuccessful(true);
     };
-
-    useEffect(() => {
-        if (isPaymentSuccessful) {
-            const timer = setTimeout(() => {
-                navigate('/'); 
-            }, 4000); 
-
-            return () => clearTimeout(timer); 
-        }
-    }, [isPaymentSuccessful, navigate]);
 
     return (
         <Container fluid className='mt-5 check-out d-flex justify-content-center'>
-            <Row className=' w-75 justify-content-between'>
+            <Row className='w-75 justify-content-between'>
                 {isPaymentSuccessful ? (
-                    <div className="success-animation text-center " style={{ marginTop: 100, marginBottom: 150 }}>
-                        <motion.div
-                            initial={{ scale: 0, opacity: 0, rotate: 0 }}
-                            animate={{ scale: 1.2, opacity: 1, rotate: 720, color: "#00ff00" }}
-                            transition={{
-                                duration: 2,
-                                ease: [0.175, 0.85, 0.42, 0.96],
-                                repeatType: "reverse" 
-                            }}
-                            style={{ color: 'green' }}
-                        >
-                            <FaRegCircleCheck size={100} />
-                        </motion.div>
+                    <>
+                        <div className=" success-animation text-center" style={{ marginTop: 100 }}>
+                            <motion.div
+                                initial={{ scale: 0, opacity: 0, rotate: 0 }}
+                                animate={{ scale: 1.2, opacity: 1, rotate: 720, color: "#00ff00" }}
+                                transition={{
+                                    duration: 2,
+                                    ease: [0.175, 0.85, 0.42, 0.96],
+                                    repeatType: "reverse"
+                                }}
+                                style={{ color: 'green' }}
+                            >
+                                <FaRegCircleCheck size={100} />
+                            </motion.div>
+                        </div>
 
+                        <Recommended />
+                    </>
 
-                    </div>
                 ) : (
                     <Col lg={5}>
                         <Form className='form-group' onSubmit={handleSubmit}>

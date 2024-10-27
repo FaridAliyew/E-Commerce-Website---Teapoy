@@ -1,12 +1,44 @@
 .footer {
-    p{
+    p {
         text-align: start;
     }
+
     h2 {
         text-align: none !important;
         color: white;
     }
-    a{
+
+    a {
         font-size: 16px;
+    }
+
+    .visa {
+        color: white;
+        font-size: 30px;
+    }
+
+    .master {
+        color: #EB001B;
+        font-size: 30px;
+    }
+
+    .amex {
+        color: #2DAAE1;
+        font-size: 30px;
+    }
+
+    .paypal {
+        color: #253B80;
+        font-size: 30px;
+    }
+
+    .dinersClub{
+        color: #0079BE;
+        font-size: 30px;
+    }
+
+    .discover{
+        color: #86B8E3;
+        font-size: 30px;
     }
 }

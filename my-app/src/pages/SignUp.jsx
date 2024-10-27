@@ -2,17 +2,19 @@ import React, { useContext, useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import '../style/signUp.css';
-import { ThemeContext } from '../components/ThemeContext';
+import { ThemeContext } from '../context api/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 function SignUp() {
     const [formData, setFormData] = useState({ username: '', email: '', password: '' });
     const [errors, setErrors] = useState({ username: '', email: '', password: '' });
     const navigate = useNavigate();
     const { isDarkMode } = useContext(ThemeContext);
+    const { t } = useTranslation();
 
     const handleInputChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
-        setErrors({ ...errors, [e.target.name]: '' }); 
+        setErrors({ ...errors, [e.target.name]: '' });
     };
 
     const handleSubmit = (e) => {
@@ -21,6 +23,8 @@ function SignUp() {
         let newErrors = {};
         if (!formData.username) {
             newErrors.username = 'Username is required';
+        } else if (/[^a-zA-Z_]/.test(formData.username)) {
+            newErrors.username = 'Username must contain only letters and underscores';
         }
         if (!formData.email) {
             newErrors.email = 'Email is required';
@@ -38,17 +42,22 @@ function SignUp() {
             return;
         }
 
-        localStorage.setItem('userData', JSON.stringify(formData));
-        alert('Registration completed successfully!');
+        const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+
+        existingUsers.push(formData);
+
+        localStorage.setItem('users', JSON.stringify(existingUsers));
+
         navigate('/signin');
     };
+
 
     return (
         <Container fluid className={`${isDarkMode ? 'dark-mode' : 'light-mode'} signup-container d-flex align-items-center justify-content-center`}>
             <div className="signup-box p-4">
-                <h2 className="text-center mb-3 fs-1">Sign Up</h2>
+                <h2 className="text-center mb-3 fs-1">{t('SIGN_UP')}</h2>
                 <p className="text-center">
-                    Already have an account? <Link to={"/signin"} className="signin-link">Sign In</Link>
+                    {t('already_have_account')} <Link to={"/signin"} className="signin-link">{t('SIGN_IN')}</Link>
                 </p>
                 <Form onSubmit={handleSubmit}>
                     <Row>
@@ -57,7 +66,7 @@ function SignUp() {
                                 <Form.Control
                                     type="text"
                                     name="username"
-                                    placeholder="Username"
+                                    placeholder={t('USERNAME')}
                                     className={`form-input ${errors.username && 'is-invalid'}`}
                                     onChange={handleInputChange}
                                 />
@@ -73,7 +82,7 @@ function SignUp() {
                                 <Form.Control
                                     type="email"
                                     name="email"
-                                    placeholder="Email"
+                                    placeholder={t('EMAIL_ADDRESS')}
                                     className={`form-input ${errors.email && 'is-invalid'}`}
                                     onChange={handleInputChange}
                                 />
@@ -89,7 +98,7 @@ function SignUp() {
                                 <Form.Control
                                     type="password"
                                     name="password"
-                                    placeholder="Password"
+                                    placeholder={t('PASSWORD')}
                                     className={`form-input ${errors.password && 'is-invalid'}`}
                                     onChange={handleInputChange}
                                 />
@@ -100,7 +109,7 @@ function SignUp() {
                         </Col>
                     </Row>
                     <Button variant="primary" type="submit" className="create-btn mt-3 d-block ms-auto me-auto">
-                        CREATE
+                        {t('create')}
                     </Button>
                 </Form>
             </div>

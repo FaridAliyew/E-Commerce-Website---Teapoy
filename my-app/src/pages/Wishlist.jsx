@@ -39,11 +39,11 @@ function Wishlist({ wishlistItems, setWishlistItems, setWishlistCount, cartItems
     const existingItem = cartItems.find(cartItem => cartItem.id === item.id);
     if (existingItem) {
       setCartItems(cartItems.map(cartItem =>
-        cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + (quantities[item.id] || 1) } : cartItem
+        cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + (quantities[item.id]) } : cartItem
       ));
     } else {
-      setCartItems([...cartItems, { ...item, quantity: quantities[item.id] || 1 }]);
-      setCartCount(prev => prev + (quantities[item.id] || 1)); 
+      setCartItems([...cartItems, { ...item, quantity: quantities[item.id]}]);
+      setCartCount(prev => prev + (quantities[item.id])); 
       toast.success(t('addToCartSuccess')); 
     }
   };

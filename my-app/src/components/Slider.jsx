@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import img1 from '../imgs/slider-img-2.jpg';
 import img3 from '../imgs/slider-img-3.jpg';
@@ -9,6 +9,10 @@ import '../style/slider.css';
 
 const Slider = () => {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+}, [])
 
   return (
     <Carousel fade style={{ position: 'relative', marginTop: '-66px' }}>

@@ -7,7 +7,7 @@ import axios from 'axios';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { useTranslation } from 'react-i18next';
-import { ThemeContext } from '../components/ThemeContext';
+import { ThemeContext } from '../context api/ThemeContext';
 
 function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, cartItems, wishlistItems }) {
     const { t } = useTranslation();
@@ -84,7 +84,6 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
     
     useEffect(() => {
         window.scrollTo(0,0);
-      
     }, [])
 
     if (loading) {
@@ -103,6 +102,7 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
             setCartItems(cartItems.map(cartItem =>
                 cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
             ));
+            toast.success(t('productAlreadyInCart'));
         } else {
             setCartItems([...cartItems, { ...item, quantity: 1 }]);
             setCartCount(prev => prev + 1);
@@ -116,12 +116,12 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
             setWishlistItems(wishlistItems.map(wishlistItem =>
                 wishlistItem.id === item.id ? { ...wishlistItem, quantity: wishlistItem.quantity + 1 } : wishlistItem
             ));
+            toast.success(t('productAlreadyInWishlist'));
         } else {
             setWishlistItems([...wishlistItems, { ...item, quantity: 1 }]);
             setWishlistCount(prev => prev + 1);
             toast.success(t('successAddWishlist'));
         }
-
     };
 
     const handleFilterChange = (e) => {

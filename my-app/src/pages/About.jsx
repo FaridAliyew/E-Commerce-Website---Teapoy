@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap';
 import img from '../imgs/Rectangle_2.jpg';
 import { GoCheck } from "react-icons/go";
@@ -12,13 +12,17 @@ import team2 from '../imgs/Team-2.jpg';
 import team3 from '../imgs/Team-3.jpg';
 import team4 from '../imgs/Team-4.jpg';
 import { useTranslation } from 'react-i18next'; 
-import { ThemeContext } from '../components/ThemeContext';
+import { ThemeContext } from '../context api/ThemeContext';
 import '../style/about.css'
 
 
 function About() {
     const { t } = useTranslation(); 
     const { isDarkMode } = useContext(ThemeContext);
+
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, [])
 
     return (
         <>
@@ -111,7 +115,6 @@ function About() {
                     </Col>
                 </Row>
             </Container>
-
         </>
     )
 }

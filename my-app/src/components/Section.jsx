@@ -4,7 +4,7 @@ import img1 from '../imgs/img-1.jpg';
 import img2 from '../imgs/img-2.jpg';
 import { GoCheck } from "react-icons/go";
 import { useTranslation } from 'react-i18next';
-import { ThemeContext } from './ThemeContext';
+import { ThemeContext } from '../context api/ThemeContext';
 import '../style/section.css';
 
 function Section() {

@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { FaHeart, FaShoppingCart } from 'react-icons/fa'; 
-import 'swiper/css'; 
-import 'swiper/css/pagination'; 
+import { FaHeart, FaShoppingCart } from 'react-icons/fa';
+import 'swiper/css';
+import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { Container, Row, Spinner } from 'react-bootstrap';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 
-function OfficeDecoration({ setCartCount, setWishlistCount, setCartItems, setWishlistItems }) {
+function OfficeDecoration({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, cartItems, wishlistItems }) {
+  const { t } = useTranslation();
   const baseUrl = 'https://xnykiejhjsppxvnmqcev.supabase.co';
   const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhueWtpZWpoanNwcHh2bm1xY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyODk0NDcsImV4cCI6MjAzODg2NTQ0N30.GTpLwlyahu9lMtSdKkCX4C9PtcT_7rvZPRCPYdkP1NY';
 
@@ -46,16 +48,33 @@ function OfficeDecoration({ setCartCount, setWishlistCount, setCartItems, setWis
   if (error) return <p>Error: {error.message}</p>;
 
   const handleAddToCart = (item) => {
-    setCartCount(prev => prev + 1);
-    setCartItems(prev => [...prev, item]);
-    toast.success('Successfully added to cart!');
+    const existingItem = cartItems.find(cartItem => cartItem.id === item.id);
+    if (existingItem) {
+      setCartItems(cartItems.map(cartItem =>
+        cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + 1 } : cartItem
+      ));
+      toast.success(t('productAlreadyInCart'));
+    } else {
+      setCartItems([...cartItems, { ...item, quantity: 1 }]);
+      setCartCount(prev => prev + 1);
+      toast.success(t('successAddCart'));
+    }
   };
 
   const handleAddToWishlist = (item) => {
-    setWishlistCount(prev => prev + 1);
-    setWishlistItems(prev => [...prev, item]);
-    toast.success('successfully added to wishlist!');
+    const existingItem = wishlistItems.find(wishlistItem => wishlistItem.id === item.id);
+    if (existingItem) {
+      setWishlistItems(wishlistItems.map(wishlistItem =>
+        wishlistItem.id === item.id ? { ...wishlistItem, quantity: wishlistItem.quantity + 1 } : wishlistItem
+      ));
+      toast.success(t('productAlreadyInWishlist'));
+    } else {
+      setWishlistItems([...wishlistItems, { ...item, quantity: 1 }]);
+      setWishlistCount(prev => prev + 1);
+      toast.success(t('successAddWishlist'));
+    }
   };
+
 
   return (
     <div className="swiper-container">

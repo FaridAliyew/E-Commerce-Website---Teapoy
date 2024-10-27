@@ -45,10 +45,11 @@ function ProductDetail({ setCartCount, setWishlistCount, setCartItems, setWishli
             setCartItems(cartItems.map(cartItem =>
                 cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + quantity } : cartItem
             ));
+            toast.success(t('productAlreadyInCart'));
         } else {
             setCartItems([...cartItems, { ...item, quantity }]);
             setCartCount(prev => prev + 1);
-            toast.success('Successfully added to cart!');
+            toast.success(t('successAddCart'));
         }
     };
 
@@ -58,10 +59,11 @@ function ProductDetail({ setCartCount, setWishlistCount, setCartItems, setWishli
             setWishlistItems(wishlistItems.map(wishlistItem =>
                 wishlistItem.id === item.id ? { ...wishlistItem, quantity: wishlistItem.quantity + 1 } : wishlistItem
             ));
+            toast.success(t('productAlreadyInWishlist'));
         } else {
             setWishlistItems([...wishlistItems, { ...item, quantity: 1 }]);
             setWishlistCount(prev => prev + 1);
-            toast.success('Successfully added to wishlist!');
+            toast.success(t('successAddWishlist'));
         }
     };
 
@@ -92,7 +94,7 @@ function ProductDetail({ setCartCount, setWishlistCount, setCartItems, setWishli
     if (error) return <div>Error: {error.message}</div>;
 
     return (
-        <Container className='mt-5'>
+        <Container className='mt-5 mb-5'>
             <Row>
                 {product && (
                     <>

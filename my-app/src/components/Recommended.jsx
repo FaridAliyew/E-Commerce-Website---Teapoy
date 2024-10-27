@@ -73,7 +73,7 @@ function Recommended({ quantity, cartItems, setCartItems, setCartCount, wishlist
     if (error) return <p>Error: {error.message}</p>;
 
     return (
-        <Container fluid className='mt-5 p-5 recommended'>
+        <Container fluid className='mt-5 recommended'>
             <Row>
                 <h1 className='text-white mt-5 mb-5'>Recommended Products</h1>
             </Row>
@@ -94,7 +94,7 @@ function Recommended({ quantity, cartItems, setCartItems, setCartCount, wishlist
                         slidesPerView: 3,
                     },
                     1024: {
-                        slidesPerView: 5,
+                        slidesPerView: 6,
                     },
                 }}
             >

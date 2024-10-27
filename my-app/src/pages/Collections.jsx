@@ -8,7 +8,7 @@ import img2 from '../imgs/shop-2.jpg';
 import img3 from '../imgs/shop-3.jpg';
 import img4 from '../imgs/shop-4.jpg';
 import { useTranslation } from 'react-i18next';
-import { ThemeContext } from '../components/ThemeContext';
+import { ThemeContext } from '../context api/ThemeContext';
 
 function Collections() {
     const { isDarkMode } = useContext(ThemeContext);
@@ -16,7 +16,6 @@ function Collections() {
     const { t } = useTranslation();
     useEffect(() => {
         window.scrollTo(0,0);
-      
     }, [])
 
     return (

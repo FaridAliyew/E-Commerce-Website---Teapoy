@@ -3,10 +3,10 @@ import axios from 'axios';
 import { Table, Container, Button, Modal, Form } from 'react-bootstrap';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import { toast } from 'react-toastify';
-import { ThemeContext } from '../components/ThemeContext';
+import { ThemeContext } from '../context api/ThemeContext';
 
-function AdminPanel() {
-    const { isDarkMode } = useContext(ThemeContext); 
+function AdminPanel({ setIsLoggedIn }) {
+    const { isDarkMode } = useContext(ThemeContext);
     const [blogs, setBlogs] = useState([]);
     const [show, setShow] = useState(false);
     const [editMode, setEditMode] = useState(false);
@@ -18,6 +18,11 @@ function AdminPanel() {
         description: '',
         date: '',
     });
+
+    const logOut = () => {
+        localStorage.removeItem('isAdmin');
+        setIsLoggedIn(false);
+    }
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -118,6 +123,11 @@ function AdminPanel() {
             <Button variant="danger" className='mb-3' onClick={() => { setEditMode(false); handleShow(); }}>
                 New Blog
             </Button>
+
+            <Button variant="secondary" className='mb-3 ms-2' onClick={() => logOut()}>
+                Log Out
+            </Button>
+
             <Table striped bordered hover >
                 <thead >
                     <tr>

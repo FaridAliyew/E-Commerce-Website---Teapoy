@@ -6,7 +6,7 @@ import img3 from '../imgs/profileImg_3.jpg';
 import { FaStar } from 'react-icons/fa';
 import { FaStarHalfAlt } from 'react-icons/fa';
 import { useTranslation } from 'react-i18next';
-import { ThemeContext } from './ThemeContext';
+import { ThemeContext } from '../context api/ThemeContext';
 import '../style/sliderTwo.css';
 
 function SliderTwo() {

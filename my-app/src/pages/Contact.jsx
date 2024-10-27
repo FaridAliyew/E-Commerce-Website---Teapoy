@@ -1,12 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next'; 
-import { ThemeContext } from '../components/ThemeContext';
+import { ThemeContext } from '../context api/ThemeContext';
 import '../style/contact.css';
 
 function Contact() {
     const { t } = useTranslation();
     const { isDarkMode } = useContext(ThemeContext);
+
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, [])
 
     return (
         <div className={`${isDarkMode ? 'dark-mode' : 'light-mode'}`}>

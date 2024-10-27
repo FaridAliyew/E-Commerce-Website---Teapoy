@@ -1,23 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Navbar as BootstrapNavbar, Nav, NavDropdown, Form, Button, Container, Modal } from 'react-bootstrap';
 import { FaShoppingCart, FaHeart, FaUser, FaSearch } from 'react-icons/fa';
 import '../style/navbar.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { MdOutlineDarkMode } from "react-icons/md";
-import { MdDarkMode } from "react-icons/md";
-import { ThemeContext } from './ThemeContext';
 
 function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated }) {
-    const { isDarkMode, toggleTheme } = useContext(ThemeContext);
     const { t } = useTranslation();
     const [navBackground, setNavBackground] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
     const [showSignInModal, setShowSignInModal] = useState(false);
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [credentials, setCredentials] = useState({ email: '', password: '' });
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const location = useLocation();
-    const userData = JSON.parse(localStorage.getItem('userData')) || {};
     const navigate = useNavigate();
 
     const handleSignInModalOpen = () => setShowSignInModal(true);
@@ -26,12 +23,16 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
     const handleLogout = () => {
         setIsAuthenticated(false);
         localStorage.setItem('isAuthenticated', 'false');
+        localStorage.removeItem('username');
+        localStorage.removeItem('email');
         setShowProfileModal(false);
+        setUsername('');
+        setEmail('')
     };
 
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 0) {
+            if (window.scrollY > 70) {
                 setNavBackground(true);
             } else {
                 setNavBackground(false);
@@ -47,12 +48,18 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
 
     useEffect(() => {
         const authStatus = localStorage.getItem('isAuthenticated');
+        const storedUsername = localStorage.getItem('username');
+        const storedEmail = localStorage.getItem('email');
         if (authStatus === 'true') {
             setIsAuthenticated(true);
+            if (storedUsername && storedEmail) {
+                setUsername(storedUsername);
+                setEmail(storedEmail);
+            }
         } else {
             setIsAuthenticated(false);
         }
-    }, [setIsAuthenticated]);
+    }, [setIsAuthenticated, location]);
 
     const getActiveLinkClass = (path) => {
         return location.pathname === path ? 'active' : '';
@@ -66,17 +73,21 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
     const handleSignIn = (e) => {
         e.preventDefault();
 
-        const storedUserData = JSON.parse(localStorage.getItem('userData'));
+        const storedUserData = JSON.parse(localStorage.getItem('users'));
 
-        if (storedUserData &&
-            storedUserData.email === credentials.email &&
-            storedUserData.password === credentials.password) {
-            setIsAuthenticated(true);
-            localStorage.setItem('isAuthenticated', 'true');
-            handleSignInModalClose();
-        } else {
-            alert('Invalid email or password');
-        }
+        const user = storedUserData && storedUserData.find(user => user.email === credentials.email && user.password === credentials.password);
+
+        if (user) {
+        setIsAuthenticated(true);
+        localStorage.setItem('isAuthenticated', 'true');
+        localStorage.setItem('username', user.username); 
+        localStorage.setItem('email', user.email);
+        setUsername(user.username); 
+        setEmail(user.email);
+        handleSignInModalClose();
+    } else {
+        alert('Invalid email or password');
+    }
     };
 
 
@@ -117,9 +128,6 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
                         </Nav>
 
                         <Form className="d-flex ms-auto">
-                            <Button variant="outline-light" className='fs-5 icons' onClick={toggleTheme}>
-                                {isDarkMode ? <MdDarkMode /> : <MdOutlineDarkMode />}
-                            </Button>
                             <Button variant="outline-light" className="fs-5 icons" onClick={() => navigate("/shop")}>
                                 <FaSearch />
                             </Button>
@@ -133,9 +141,9 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
                             </Button>
                             {isAuthenticated ? (
                                 <>
-                                    {userData && (
+                                    {username && (
                                         <Button variant="outline-light" className="ms-3" onClick={() => setShowProfileModal(true)}>
-                                            {userData.username}
+                                            {username}
                                         </Button>
                                     )}
                                 </>
@@ -192,8 +200,8 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
                     <Modal.Title className='w-100 text-center fs-2 ms-3'>{t('PROFILE')}:</Modal.Title>
                 </Modal.Header>
                 <Modal.Body className='bg-black'>
-                    <p className='text-white fs-5'>{t('USERNAME')}: {userData?.username || ''}</p>
-                    <p className='text-white fs-5'>{t('EMAIL')}: {userData?.email || ''}</p>
+                    <p className='text-white fs-5'>{t('USERNAME')}: {username || ''}</p>
+                    <p className='text-white fs-5'>{t('EMAIL')}: {email || ''}</p>
                     <Button onClick={handleLogout} variant="danger" className='w-50 d-block ms-auto me-auto mt-4'>
                         {t('LOG_OUT')}
                     </Button>
