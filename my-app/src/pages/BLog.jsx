@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import { Container, Row, Col, Card, Spinner } from 'react-bootstrap'; 
+import { Container, Row, Col, Card, Spinner } from 'react-bootstrap';
 import img from '../imgs/Rectangle_2.jpg';
 import '../style/blog.css'
 import axios from 'axios';
@@ -7,27 +7,30 @@ import { ThemeContext } from '../context api/ThemeContext';
 
 function BLog() {
   const [blogs, setBlogs] = useState([]);
-  const [isLoading, setIsLoading] = useState(true); 
-  const { isDarkMode } = useContext(ThemeContext); 
-  
+  const [isLoading, setIsLoading] = useState(true);
+  const { isDarkMode } = useContext(ThemeContext);
+
   useEffect(() => {
-    window.scrollTo(0,0);
-}, [])
+    window.scrollTo(0, 0);
+  }, [])
+
+  const baseUrl = process.env.REACT_APP_API_URL;
+  const apiKey = process.env.REACT_APP_API_BLOG_KEY;
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        const response = await axios.get('https://xnykiejhjsppxvnmqcev.supabase.co/rest/v1/Blog?select=*', {
+        const response = await axios.get(`${baseUrl}/rest/v1/Blog?select=*`, {
           headers: {
-            apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhueWtpZWpoanNwcHh2bm1xY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyODk0NDcsImV4cCI6MjAzODg2NTQ0N30.GTpLwlyahu9lMtSdKkCX4C9PtcT_7rvZPRCPYdkP1NY',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhueWtpZWpoanNwcHh2bm1xY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyODk0NDcsImV4cCI6MjAzODg2NTQ0N30.GTpLwlyahu9lMtSdKkCX4C9PtcT_7rvZPRCPYdkP1NY'
+            apikey: apiKey,
+            Authorization: `Bearer ${apiKey}`
           }
         });
         setBlogs(response.data);
-        setIsLoading(false); 
+        setIsLoading(false);
       } catch (error) {
         console.error('Error fetching blogs:', error);
-        setIsLoading(false); 
+        setIsLoading(false);
       }
     };
 
@@ -35,9 +38,9 @@ function BLog() {
   }, []);
 
   const formatDate = (dateString) => {
-    const options = { day: 'numeric', month: 'short' }; 
+    const options = { day: 'numeric', month: 'short' };
     const date = new Date(dateString);
-    return new Intl.DateTimeFormat('en-US', options).format(date); 
+    return new Intl.DateTimeFormat('en-US', options).format(date);
   }
 
   return (
@@ -55,7 +58,7 @@ function BLog() {
 
       <Container fluid className={`${isDarkMode ? 'dark-mode' : 'light-mode'} p-5 blog-container`}>
         <Row>
-          {isLoading ? ( 
+          {isLoading ? (
             <Col className="text-center">
               <div className="spinner-container text-white">
                 <Spinner animation="border" role="status" className="custom-spinner">

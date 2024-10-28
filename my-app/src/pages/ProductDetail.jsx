@@ -122,7 +122,7 @@ function ProductDetail({ setCartCount, setWishlistCount, setCartItems, setWishli
                                 <span className='mx-3 fs-3 text-white'>{quantity}</span>
                                 <Button variant='black' className='border-warning text-white' onClick={() => handleQuantityChange(product.id, 1)}>+</Button>
                                 <Button variant="black" className='ms-3 w-75 border-warning text-white' onClick={() => handleAddToCart(product)}>{t('add_to_cart')}</Button>
-                                <AiOutlineHeart className='ms-2 fs-2 text-white cursor-pointer' onClick={() => handleAddToWishlist(product)} />
+                                <AiOutlineHeart className='ms-2 fs-2 text-white' onClick={() => handleAddToWishlist(product)}  style={{cursor:'pointer'}}/>
                             </div>
 
                             <Button  variant="warning" onClick={success} className='mt-4 w-100 text-decoration-none text-black d-block by-now p-2 rounded-3'>{t('buy_now')}</Button>

@@ -14,11 +14,15 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
     const [credentials, setCredentials] = useState({ email: '', password: '' });
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
+    const [errors, setErrors] = useState({ email: '', password: '' }); 
     const location = useLocation();
     const navigate = useNavigate();
 
     const handleSignInModalOpen = () => setShowSignInModal(true);
-    const handleSignInModalClose = () => setShowSignInModal(false);
+    const handleSignInModalClose = () => {
+        setShowSignInModal(false);
+        setErrors({ email: '', password: '' }); 
+    };
 
     const handleLogout = () => {
         setIsAuthenticated(false);
@@ -68,10 +72,28 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setCredentials((prev) => ({ ...prev, [name]: value }));
+        setErrors((prev) => ({ ...prev, [name]: '' }));
     };
 
     const handleSignIn = (e) => {
         e.preventDefault();
+
+        const { email, password } = credentials;
+        let formIsValid = true;
+        const newErrors = { email: '', password: '' };
+
+        if (!email) {
+            newErrors.email = 'Email doldurulmalıdır';
+            formIsValid = false;
+        }
+        if (!password) {
+            newErrors.password = 'Şifrə doldurulmalıdır';
+            formIsValid = false;
+        }
+
+        setErrors(newErrors);
+
+        if (!formIsValid) return; 
 
         const storedUserData = JSON.parse(localStorage.getItem('users'));
 
@@ -172,6 +194,7 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
                                 value={credentials.email}
                                 onChange={handleChange}
                             />
+                             {errors.email && <p className="text-danger text-start mt-2">{errors.email}</p>}
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -183,6 +206,7 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
                                 value={credentials.password}
                                 onChange={handleChange}
                             />
+                             {errors.password && <p className="text-danger text-start mt-2">{errors.password}</p>}
                         </Form.Group>
 
                         <Button variant="primary" type="submit" className="w-50 d-block ms-auto me-auto mt-4" style={{ backgroundColor: '#eb8934', border: 'none' }}>

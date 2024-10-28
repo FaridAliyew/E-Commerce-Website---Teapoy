@@ -12,8 +12,8 @@ import { useTranslation } from 'react-i18next';
 
 function HomeDecoration({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, cartItems, wishlistItems }) {
     const { t } = useTranslation();
-    const baseUrl = 'https://xnykiejhjsppxvnmqcev.supabase.co';
-    const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhueWtpZWpoanNwcHh2bm1xY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyODk0NDcsImV4cCI6MjAzODg2NTQ0N30.GTpLwlyahu9lMtSdKkCX4C9PtcT_7rvZPRCPYdkP1NY';
+    const baseUrl = process.env.REACT_APP_API_URL;
+    const apiKey = process.env.REACT_APP_API_KEY;
 
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);

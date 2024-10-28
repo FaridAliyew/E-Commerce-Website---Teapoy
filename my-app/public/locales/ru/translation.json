@@ -188,10 +188,12 @@
   "Collection": "Коллекции",
   "Shop": "Магазин",
   "Blog": "Блог",
-  "Login": "Войти",
+  "Admin_Login": "Войти",
+  "Login":"Войти",
   "copyright": "Все права защищены © 2024 Wedesigntech Pvt Ltd",
   "already_have_account": "Уже есть аккаунт?",
   "create": "Создать",
   "productAlreadyInCart": "Этот продукт уже добавлен в корзину.",
-  "productAlreadyInWishlist": "Этот продукт уже добавлен в список желаемого."
+  "productAlreadyInWishlist": "Этот продукт уже добавлен в список желаемого.",
+  "apply":"Подтвердить"
 }

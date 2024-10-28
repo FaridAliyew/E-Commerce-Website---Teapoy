@@ -188,10 +188,12 @@
   "Collection": "Kolleksiyalar",
   "Shop": "Mağaza",
   "Blog": "Blog",
-  "Login": "Daxil",
+  "Admin_Login": "Daxil ol",
+  "Login":"Daxil ol",
   "copyright": "Bütün hüquqlar qorunur © 2024 Wedesigntech Pvt Ltd",
   "already_have_account": "Artıq hesabınız var?",
   "create": "Yarat",
   "productAlreadyInCart": "Bu məhsul artıq səbətə əlavə olunub.",
-  "productAlreadyInWishlist": "Bu məhsul artıq istəklər listəsinə əlavə olunub."
+  "productAlreadyInWishlist": "Bu məhsul artıq istəklər listəsinə əlavə olunub.",
+  "apply":"Təsdiqlə"
 }

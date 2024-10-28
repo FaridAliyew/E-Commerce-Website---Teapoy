@@ -174,7 +174,7 @@ function AddToCart({ cartItems, setCartItems, quantities, setCartCount, setQuant
                             /> <br /> <br className='d-none d-md-block' />
                             {errorMessage && <p className='text-danger text-center text-md-end'>{errorMessage}</p>}
                             <Button onClick={applyDiscount} className='float-md-end check-out text-white rounded-4 w-50 py-2 mb-5 d-block ms-auto me-auto'>
-                                APPLY
+                                {t('apply')}
                             </Button>
                         </Col>
                     </Row>

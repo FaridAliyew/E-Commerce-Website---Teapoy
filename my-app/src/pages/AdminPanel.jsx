@@ -27,12 +27,15 @@ function AdminPanel({ setIsLoggedIn }) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const baseUrl = process.env.REACT_APP_API_URL;
+    const apiKey = process.env.REACT_APP_API_ADMIN_KEY;
+
     const fetchBlogs = async () => {
         try {
-            const response = await axios.get('https://xnykiejhjsppxvnmqcev.supabase.co/rest/v1/Blog?select=*', {
+            const response = await axios.get(`${baseUrl}/rest/v1/Blog?select=*`, {
                 headers: {
-                    apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhueWtpZWpoanNwcHh2bm1xY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyODk0NDcsImV4cCI6MjAzODg2NTQ0N30.GTpLwlyahu9lMtSdKkCX4C9PtcT_7rvZPRCPYdkP1NY',
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhueWtpZWpoanNwcHh2bm1xY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyODk0NDcsImV4cCI6MjAzODg2NTQ0N30.GTpLwlyahu9lMtSdKkCX4C9PtcT_7rvZPRCPYdkP1NY'
+                    apikey: apiKey,
+                    Authorization: `Bearer ${apiKey}`
                 }
             });
             setBlogs(response.data);
@@ -48,11 +51,10 @@ function AdminPanel({ setIsLoggedIn }) {
     const saveBlog = async () => {
         try {
             if (editMode && selectedBlog) {
-                await axios.patch(`https://xnykiejhjsppxvnmqcev.supabase.co/rest/v1/Blog?id=eq.${selectedBlog.id}`, blogData, {
+                await axios.patch(`${baseUrl}/rest/v1/Blog?id=eq.${selectedBlog.id}`, blogData, {
                     headers: {
-                        apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhueWtpZWpoanNwcHh2bm1xY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyODk0NDcsImV4cCI6MjAzODg2NTQ0N30.GTpLwlyahu9lMtSdKkCX4C9PtcT_7rvZPRCPYdkP1NY',
-                        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhueWtpZWpoanNwcHh2bm1xY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyODk0NDcsImV4cCI6MjAzODg2NTQ0N30.GTpLwlyahu9lMtSdKkCX4C9PtcT_7rvZPRCPYdkP1NY',
-                        'Content-Type': 'application/json',
+                        apikey: apiKey,
+                        Authorization: `Bearer ${apiKey}`,
                     }
                 });
 
@@ -65,10 +67,10 @@ function AdminPanel({ setIsLoggedIn }) {
                 const currentDate = new Date().toISOString();
                 const blogWithDate = { ...blogData, date: currentDate };
 
-                await axios.post('https://xnykiejhjsppxvnmqcev.supabase.co/rest/v1/Blog', blogWithDate, {
+                await axios.post(`${baseUrl}/rest/v1/Blog`, blogWithDate, {
                     headers: {
-                        apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhueWtpZWpoanNwcHh2bm1xY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyODk0NDcsImV4cCI6MjAzODg2NTQ0N30.GTpLwlyahu9lMtSdKkCX4C9PtcT_7rvZPRCPYdkP1NY',
-                        Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhueWtpZWpoanNwcHh2bm1xY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyODk0NDcsImV4cCI6MjAzODg2NTQ0N30.GTpLwlyahu9lMtSdKkCX4C9PtcT_7rvZPRCPYdkP1NY',
+                        apikey: apiKey,
+                        Authorization: `Bearer ${apiKey}`,
                         'Content-Type': 'application/json',
                     }
                 });
@@ -90,10 +92,10 @@ function AdminPanel({ setIsLoggedIn }) {
 
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`https://xnykiejhjsppxvnmqcev.supabase.co/rest/v1/Blog?id=eq.${id}`, {
+            await axios.delete(`${baseUrl}/rest/v1/Blog?id=eq.${id}`, {
                 headers: {
-                    apikey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhueWtpZWpoanNwcHh2bm1xY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyODk0NDcsImV4cCI6MjAzODg2NTQ0N30.GTpLwlyahu9lMtSdKkCX4C9PtcT_7rvZPRCPYdkP1NY',
-                    Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhueWtpZWpoanNwcHh2bm1xY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyODk0NDcsImV4cCI6MjAzODg2NTQ0N30.GTpLwlyahu9lMtSdKkCX4C9PtcT_7rvZPRCPYdkP1NY'
+                    apikey: apiKey,
+                    Authorization: `Bearer ${apiKey}`
                 }
             });
 

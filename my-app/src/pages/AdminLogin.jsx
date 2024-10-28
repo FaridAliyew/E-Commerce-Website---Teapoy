@@ -2,8 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { ThemeContext } from '../context api/ThemeContext';
 import AdminPanel from './AdminPanel';
+import { useTranslation } from 'react-i18next';
 
 function AdminLogin() {
+  const { t } = useTranslation();
   const { isDarkMode } = useContext(ThemeContext);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [admin, setAdmin] = useState(false);
@@ -52,11 +54,11 @@ function AdminLogin() {
       {admin ? <AdminPanel /> : (!isLoggedIn ? (
         <div className={`${isDarkMode ? 'dark-mode' : 'light-mode'} d-flex justify-content-center align-items-center`} >
           <Form onSubmit={handleSubmit} className="w-25 admin-login" style={{ margin: '130px 130px' }}>
-            <h3 className="text-center mb-3 text-white">Admin Login</h3>
+            <h3 className="text-center mb-3 text-white">{t('Admin_Login')}</h3>
             <Form.Group controlId="formUsername" className="mb-3">
               <Form.Control
                 type="text"
-                placeholder="Enter username"
+                placeholder={t('USERNAME')}
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
@@ -68,7 +70,7 @@ function AdminLogin() {
             <Form.Group controlId="formPassword" className="mb-3">
               <Form.Control
                 type="password"
-                placeholder="Enter password"
+                placeholder={t('PASSWORD')}
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
@@ -77,7 +79,7 @@ function AdminLogin() {
             </Form.Group>
 
             <Button variant="primary" type="submit" className="w-100">
-              Login
+              {t('Login')}
             </Button>
           </Form>
         </div>

@@ -188,10 +188,12 @@
   "Collection": "Collection",
   "Shop": "Shop",
   "Blog": "Blog",
-  "Login": "Login",
+  "Admin_Login": "Admin Login",
+  "Login":"Login",
   "copyright": "All Rights Reserved © 2024 Wedesigntech Pvt Ltd",
   "already_have_account": "Already have an account?",
   "create": "Create",
   "productAlreadyInCart": "This product is already added to the cart.",
-  "productAlreadyInWishlist": "This product is already added to the wishlist."
+  "productAlreadyInWishlist": "This product is already added to the wishlist.",
+  "apply":"Apply"
 }
