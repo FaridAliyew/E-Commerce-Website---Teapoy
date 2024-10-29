@@ -11,6 +11,15 @@
         font-size: 12px;
     }
 }
+
+.check-out{
+    .success-animation{
+        h3{
+            color: rgb(26, 255, 0);
+        }
+    }
+}
+
 .form-group{
     position: sticky;
     top: 72px;

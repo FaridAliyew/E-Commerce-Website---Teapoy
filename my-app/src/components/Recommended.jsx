@@ -7,14 +7,16 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import { useTranslation } from 'react-i18next';
 
 function Recommended({ quantity, cartItems, setCartItems, setCartCount, wishlistItems, setWishlistItems, setWishlistCount }) {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { t } = useTranslation();
 
-    const baseUrl = 'https://xnykiejhjsppxvnmqcev.supabase.co';
-    const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhueWtpZWpoanNwcHh2bm1xY2V2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjMyODk0NDcsImV4cCI6MjAzODg2NTQ0N30.GTpLwlyahu9lMtSdKkCX4C9PtcT_7rvZPRCPYdkP1NY'; 
+    const baseUrl = process.env.REACT_APP_API_URL;
+    const apiKey = process.env.REACT_APP_API_SHOP_KEY;
 
     useEffect(() => {
         const fetchData = async () => {
@@ -36,31 +38,35 @@ function Recommended({ quantity, cartItems, setCartItems, setCartCount, wishlist
         fetchData();
     }, [baseUrl, apiKey]);
 
-    const handleAddToCart = (item) => {
-        const existingItem = cartItems.find(cartItem => cartItem.id === item.id);
-        if (existingItem) {
-            setCartItems(cartItems.map(cartItem =>
-                cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + quantity } : cartItem
-            ));
-        } else {
-            setCartItems([...cartItems, { ...item, quantity }]);
-            setCartCount(prev => prev + 1);
-            toast.success('Successfully added to cart!'); 
-        }
-    };
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, [])
 
-    const handleAddToWishlist = (item) => {
-        const existingItem = wishlistItems.find(wishlistItem => wishlistItem.id === item.id);
-        if (existingItem) {
-            setWishlistItems(wishlistItems.map(wishlistItem =>
-                wishlistItem.id === item.id ? { ...wishlistItem, quantity: wishlistItem.quantity + 1 } : wishlistItem
-            ));
-        } else {
-            setWishlistItems([...wishlistItems, { ...item, quantity: 1 }]);
-            setWishlistCount(prev => prev + 1);
-            toast.success('Successfully added to wishlist!');
-        }
-    };
+    // const handleAddToCart = (item) => {
+    //     const existingItem = cartItems.find(cartItem => cartItem.id === item.id);
+    //     if (existingItem) {
+    //         setCartItems(cartItems.map(cartItem =>
+    //             cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + quantity } : cartItem
+    //         ));
+    //     } else {
+    //         setCartItems([...cartItems, { ...item, quantity }]);
+    //         setCartCount(prev => prev + 1);
+    //         toast.success('Successfully added to cart!'); 
+    //     }
+    // };
+
+    // const handleAddToWishlist = (item) => {
+    //     const existingItem = wishlistItems.find(wishlistItem => wishlistItem.id === item.id);
+    //     if (existingItem) {
+    //         setWishlistItems(wishlistItems.map(wishlistItem =>
+    //             wishlistItem.id === item.id ? { ...wishlistItem, quantity: wishlistItem.quantity + 1 } : wishlistItem
+    //         ));
+    //     } else {
+    //         setWishlistItems([...wishlistItems, { ...item, quantity: 1 }]);
+    //         setWishlistCount(prev => prev + 1);
+    //         toast.success('Successfully added to wishlist!');
+    //     }
+    // };
 
     if (loading) {
         return (
@@ -75,7 +81,7 @@ function Recommended({ quantity, cartItems, setCartItems, setCartCount, wishlist
     return (
         <Container fluid className='mt-5 recommended'>
             <Row>
-                <h1 className='text-white mt-5 mb-5'>Recommended Products</h1>
+                <h1 className='text-white mt-5 mb-5'>{t('recommendedProducts')}</h1>
             </Row>
             <Swiper
                 spaceBetween={20}
@@ -94,18 +100,14 @@ function Recommended({ quantity, cartItems, setCartItems, setCartCount, wishlist
                         slidesPerView: 3,
                     },
                     1024: {
-                        slidesPerView: 6,
+                        slidesPerView: 5,
                     },
                 }}
             >
                 {data.map((item, index) => (
                     <SwiperSlide key={index}>
                         <div className="image-wrapper">
-                            <img src={item.image_url} alt={item.title} className="slider-img" />
-                            <div className="img-icons">
-                                <FaHeart className="icon" onClick={() => handleAddToWishlist(item)} />
-                                <FaShoppingCart className="icon" onClick={() => handleAddToCart(item)} />
-                            </div>
+                            <img src={item.image_url} alt={item.title} className="img-fluid" />
                         </div>
                         <div className="img-text">
                             <p className='categoria'>{item.name1}</p>

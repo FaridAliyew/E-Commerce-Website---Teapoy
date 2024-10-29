@@ -1,8 +1,9 @@
 .dark-mode {
   background-color: #121212 !important;
   color: #fff;
-  .table>:not(caption)>*>*{
-    background-color:#111111;
+
+  .table>:not(caption)>*>* {
+    background-color: #111111;
     color: white;
   }
 }
@@ -230,7 +231,37 @@
     }
   }
 
-  .dashboard{
+  .dashboard {
     color: #111111 !important;
+  }
+
+  .form-group {
+    h2 {
+      color: #111111 !important;
+    }
+  }
+
+  .product {
+    .product-container {
+      background-color: #342d2d;
+    }
+
+    h4,
+    h5 {
+      color: #111111 !important;
+    }
+  }
+
+  .recommended {
+    h1 {
+      color: #111111 !important;
+    }
+
+    .img-text {
+      p {
+        color: #111111 !important;
+
+      }
+    }
   }
 }

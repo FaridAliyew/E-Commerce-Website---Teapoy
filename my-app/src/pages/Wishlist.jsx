@@ -41,6 +41,7 @@ function Wishlist({ wishlistItems, setWishlistItems, setWishlistCount, cartItems
       setCartItems(cartItems.map(cartItem =>
         cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + (quantities[item.id]) } : cartItem
       ));
+      toast.success(t('productAlreadyInCart')); 
     } else {
       setCartItems([...cartItems, { ...item, quantity: quantities[item.id]}]);
       setCartCount(prev => prev + (quantities[item.id])); 
