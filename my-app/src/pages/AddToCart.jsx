@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import img from '../imgs/Rectangle_2.jpg';
 import '../style/addToCart.css';
@@ -6,6 +6,7 @@ import { RiDeleteBin5Line } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 import { GrNotes } from "react-icons/gr";
 import { useTranslation } from 'react-i18next';
+import { ThemeContext } from '../context api/ThemeContext';
 
 function AddToCart({ cartItems, setCartItems, quantities, setCartCount, setQuantities, isAuthenticated }) {
     const { t } = useTranslation();
@@ -13,6 +14,7 @@ function AddToCart({ cartItems, setCartItems, quantities, setCartCount, setQuant
     const [couponCode, setCouponCode] = useState('');
     const [finalPrice, setFinalPrice] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
+    const { isDarkMode } = useContext(ThemeContext);
 
     const coupons = {
         "SALE20": 20,
@@ -72,7 +74,7 @@ function AddToCart({ cartItems, setCartItems, quantities, setCartCount, setQuant
     const handleDeleteItem = (id) => {
         const updatedCartItems = cartItems.filter((item) => item.id !== id);
 
-        setCartCount(updatedCartItems.length); 
+        setCartCount(updatedCartItems.length);
         setCartItems(updatedCartItems);
 
         const updatedQuantities = { ...quantities };
@@ -90,7 +92,7 @@ function AddToCart({ cartItems, setCartItems, quantities, setCartCount, setQuant
     }
 
     return (
-        <div className='addToCart'>
+        <div className={`${isDarkMode ? 'dark-mode' : 'light-mode'} addToCart`}>
             <Container fluid className="p-0 m-0">
                 <Row className="g-0">
                     <Col>
@@ -102,7 +104,7 @@ function AddToCart({ cartItems, setCartItems, quantities, setCartCount, setQuant
                 </Row>
             </Container>
 
-            <Container fluid className="mt-5">
+            <Container fluid className="mt-5 addToCart-item">
                 {cartItems.length > 0 ? (
                     cartItems.map((item, index) => (
                         <Row key={index} className="align-items-center justify-content-center p-5">
@@ -151,8 +153,8 @@ function AddToCart({ cartItems, setCartItems, quantities, setCartCount, setQuant
                     <Row>
                         <Col sm={12} md={6} >
                             <div className='d-flex text-white'>
-                                <GrNotes className='me-3' />
-                                <h6>{t('addNote')}</h6>
+                                <GrNotes className='me-3 add-icon' />
+                                <h6 className='add'>{t('addNote')}</h6>
 
                             </div>
                             <textarea placeholder={t('addNotePlaceholder')} rows={4} className='rounded-4 p-3 w-100'></textarea>
@@ -160,7 +162,7 @@ function AddToCart({ cartItems, setCartItems, quantities, setCartCount, setQuant
 
                         <Col sm={12} md={6} className='mt-4 mt-md-0'>
                             <div className='text-white text-center '>
-                                <h3 className='fs-4 float-md-end'>{t('total')}: ${finalPrice !== null ? finalPrice.toFixed(2) : calculateTotal().toFixed(2)}</h3><br /><br />
+                                <h3 className='fs-4 float-md-end total'>{t('total')}: ${finalPrice !== null ? finalPrice.toFixed(2) : calculateTotal().toFixed(2)}</h3><br /><br />
                                 <p className='float-md-end'>{t('taxesNote')}</p> <br /><br />
                                 <Button onClick={success} className='float-md-end check-out text-white rounded-4 w-50 py-2 text-decoration-none'>{t('checkout')}</Button><br /><br />
                             </div>

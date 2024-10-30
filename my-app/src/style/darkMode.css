@@ -264,4 +264,60 @@
       }
     }
   }
+
+  .wishlist-item {
+    .img-text {
+      p {
+        color: #111111 !important;
+
+      }
+    }
+  }
+
+  .addToCart-item {
+    .img-text {
+      p:nth-child(n+1) {
+        color: #111111 !important;
+      }
+    }
+
+    .quantity-control {
+      background-color: #111111;
+      border: none;
+    }
+  }
+
+  h6.add,
+  .add-icon,
+  p,
+  hr,
+  h3.total,
+  .categories {
+    color: #111111 !important;
+  }
+
+  .image-container {
+    p {
+      color: white !important;
+    }
+  }
+
+  .product-detail {
+
+    .decrement,
+    .increment {
+      background-color: #111111;
+      border: none;
+    }
+
+    span {
+      color: #111111 !important;
+    }
+
+    .add-to-cart {
+      background-color: orange !important;
+      border: solid 1px black !important;
+      color: #111111 !important;
+    }
+  }
 }

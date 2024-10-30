@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import '../style/wishlist.css';
 import { FaShoppingCart } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import img from '../imgs/Rectangle_2.jpg';
 import { useTranslation } from 'react-i18next';
+import { ThemeContext } from '../context api/ThemeContext';
 
 function Wishlist({ wishlistItems, setWishlistItems, setWishlistCount, cartItems, setCartItems, setCartCount }) {
   const { t } = useTranslation(); 
   const [quantities, setQuantities] = useState({});
+  const { isDarkMode } = useContext(ThemeContext);
 
   useEffect(() => {
     const storedQuantities = localStorage.getItem('wishlistQuantities');
@@ -50,7 +52,7 @@ function Wishlist({ wishlistItems, setWishlistItems, setWishlistCount, cartItems
   };
 
   return (
-    <div className='wishlist'>
+    <div className={`${isDarkMode ? 'dark-mode' : 'light-mode'} wishlist`}>
       <Container fluid className="p-0 m-0">
         <Row className="g-0">
           <Col>
@@ -62,7 +64,7 @@ function Wishlist({ wishlistItems, setWishlistItems, setWishlistCount, cartItems
         </Row>
       </Container>
 
-      <Container fluid className="mt-5">
+      <Container fluid className="mt-5 wishlist-item">
         {wishlistItems.length > 0 ? (
           <Row className="align-items-center justify-content-center">
             {wishlistItems.map((item, index) => (
@@ -85,11 +87,7 @@ function Wishlist({ wishlistItems, setWishlistItems, setWishlistCount, cartItems
           </Row>
         ) : (
           <p className='text-center'>{t('emptyWishlist')}</p>
-        )}
-        <hr className='text-white' />
-        <div className='text-white text-center'>
-          <h3 className='fs-4'>{t('totalItems')}: {wishlistItems.length}</h3>
-        </div>
+        )}        
       </Container>
     </div>
   );
