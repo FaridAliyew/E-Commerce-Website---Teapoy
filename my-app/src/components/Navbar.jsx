@@ -15,6 +15,7 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [errors, setErrors] = useState({ email: '', password: '' }); 
+    const [loginError, setLoginError] = useState('')
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -22,6 +23,7 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
     const handleSignInModalClose = () => {
         setShowSignInModal(false);
         setErrors({ email: '', password: '' }); 
+        setLoginError('');
     };
 
     const handleLogout = () => {
@@ -73,6 +75,7 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
         const { name, value } = e.target;
         setCredentials((prev) => ({ ...prev, [name]: value }));
         setErrors((prev) => ({ ...prev, [name]: '' }));
+        setLoginError('');
     };
 
     const handleSignIn = (e) => {
@@ -103,12 +106,13 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
         setIsAuthenticated(true);
         localStorage.setItem('isAuthenticated', 'true');
         localStorage.setItem('username', user.username); 
+        localStorage.setItem('usernamee', user.username); 
         localStorage.setItem('email', user.email);
         setUsername(user.username); 
         setEmail(user.email);
         handleSignInModalClose();
     } else {
-        alert('Invalid email or password');
+        setLoginError('Invalid email or password'); 
     }
     };
 
@@ -207,6 +211,7 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
                                 onChange={handleChange}
                             />
                              {errors.password && <p className="text-danger text-start mt-2">{errors.password}</p>}
+                             {loginError && <p className="text-danger text-center mt-3">{loginError}</p>}
                         </Form.Group>
 
                         <Button variant="primary" type="submit" className="w-50 d-block ms-auto me-auto mt-4" style={{ backgroundColor: '#eb8934', border: 'none' }}>

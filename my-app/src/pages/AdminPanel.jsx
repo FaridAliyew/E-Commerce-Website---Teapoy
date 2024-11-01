@@ -5,7 +5,7 @@ import { FaTrash, FaEdit } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { ThemeContext } from '../context api/ThemeContext';
 
-function AdminPanel({ setIsLoggedIn }) {
+function AdminPanel({ onLogout }) {
     const { isDarkMode } = useContext(ThemeContext);
     const [blogs, setBlogs] = useState([]);
     const [show, setShow] = useState(false);
@@ -19,10 +19,11 @@ function AdminPanel({ setIsLoggedIn }) {
         date: '',
     });
 
-    const logOut = () => {
-        localStorage.removeItem('isAdmin');
-        setIsLoggedIn(false);
-    }
+    // const logOut = () => {
+    //     localStorage.removeItem('isAdmin');
+    //     localStorage.removeItem('usernamee');
+    //     setIsLoggedIn(false);
+    // }
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -126,7 +127,7 @@ function AdminPanel({ setIsLoggedIn }) {
                 New Blog
             </Button>
 
-            <Button variant="secondary" className='mb-3 ms-2' onClick={() => logOut()}>
+            <Button variant="secondary" className='mb-3 ms-2' onClick={onLogout}>
                 Log Out
             </Button>
 

@@ -120,19 +120,26 @@ function ProductDetail({ setCartCount, setWishlistCount, setCartItems, setWishli
                                 <TbBus className='fs-2 text-secondary mt-4 me-2' /> <span className='text-secondary' style={{ position: 'relative', top: '12px' }}>{t('estimate_delivery')}</span> <br />
                                 <LuShoppingBag className='fs-2 text-secondary mt-3 me-2' /> <span className='text-secondary' style={{ position: 'relative', top: '12px' }}>{t('free_return')}</span>
 
-                                <div className='d-flex align-items-center mt-4'>
-                                    <Button variant='black' className='border-warning text-white decrement' onClick={() => handleQuantityChange(product.id, -1)}>-</Button>
+                                {product.stock_status === 'in stock' ? (
 
-                                    <span className='mx-3 fs-3 text-white'>{quantity}</span>
-                                    <Button variant='black' className='border-warning text-white increment' onClick={() => handleQuantityChange(product.id, 1)}>+</Button>
+                                    <div className='d-flex align-items-center mt-4'>
+                                        <Button variant='black' className='border-warning text-white decrement' onClick={() => handleQuantityChange(product.id, -1)}>-</Button>
 
-                                    <Button variant="black" className='ms-3 w-75 border-warning text-white add-to-cart' onClick={() => handleAddToCart(product)}>{t('add_to_cart')}</Button>
+                                        <span className='mx-3 fs-3 text-white'>{quantity}</span>
+                                        <Button variant='black' className='border-warning text-white increment' onClick={() => handleQuantityChange(product.id, 1)}>+</Button>
 
-                                    <AiOutlineHeart className='ms-2 fs-2 text-danger' onClick={() => handleAddToWishlist(product)} style={{ cursor: 'pointer' }} />
-                                </div>
+                                        <Button variant="black" className='ms-3 w-75 border-warning text-white add-to-cart' onClick={() => handleAddToCart(product)}>{t('add_to_cart')}</Button>
 
-                                <Button variant="warning" onClick={success} className='mt-4 w-100 text-decoration-none text-black d-block by-now p-2 rounded-3'>{t('buy_now')}</Button>
-                                <p className='text-white mt-3 fs-5'>{t('sub_total')}: ${((product.price || 0) * quantity).toFixed(2)}</p>
+                                        <AiOutlineHeart className='ms-2 fs-2 text-danger' onClick={() => handleAddToWishlist(product)} style={{ cursor: 'pointer' }} />
+                                    </div>
+                                ) : ''}
+
+                                {product.stock_status === 'in stock' ?
+                                    <>
+                                        <Button variant="warning" onClick={success} className='mt-4 w-100 text-decoration-none text-black d-block by-now p-2 rounded-3'>{t('buy_now')}</Button>
+                                        <p className='text-white mt-3 fs-5'>{t('sub_total')}: ${((product.price || 0) * quantity).toFixed(2)}</p>
+                                    </>
+                                    : ''}
                             </Col>
                         </>
                     )}

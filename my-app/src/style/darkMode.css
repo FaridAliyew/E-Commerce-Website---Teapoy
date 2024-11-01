@@ -250,6 +250,9 @@
     h5 {
       color: #111111 !important;
     }
+    p{
+      color: white !important;
+    }
   }
 
   .recommended {
@@ -318,6 +321,12 @@
       background-color: orange !important;
       border: solid 1px black !important;
       color: #111111 !important;
+    }
+  }
+
+  .blog-row{
+    .card-text{
+      color: white !important;
     }
   }
 }

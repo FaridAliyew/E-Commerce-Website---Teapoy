@@ -45,6 +45,7 @@ function SignIn({ setIsAuthenticated }) {
             localStorage.setItem('isAuthenticated', 'true');
             localStorage.setItem('username', user.username); 
             localStorage.setItem('email', user.email); 
+            localStorage.setItem('usernamee', user.username); 
             navigate('/');
         } else {
             alert('Invalid credentials');

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Container, Row, Col, Spinner, Form, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 import img from '../imgs/Rectangle_2.jpg';
 import '../style/shop.css';
 import axios from 'axios';
@@ -22,7 +22,7 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
     const [priceRange, setPriceRange] = useState([0, 300]);
     const [selectedBrand, setSelectedBrand] = useState('');
     const [sortOrder, setSortOrder] = useState('A-Z');
-    const [searchTerm, setSearchTerm] = useState(''); 
+    const [searchTerm, setSearchTerm] = useState('');
     const { isDarkMode } = useContext(ThemeContext);
 
 
@@ -53,7 +53,7 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
             const isInStock = filter.inStock && item.stock_status === 'in stock';
             const isOutOfStock = filter.outOfStock && item.stock_status === 'out of stock';
             const matchesSearch = item.name2.toLowerCase().startsWith(searchTerm.toLowerCase());
-    
+
             return (
                 withinPriceRange &&
                 (selectedBrand === '' || item.name1 === selectedBrand) &&
@@ -61,7 +61,7 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
                 matchesSearch
             );
         });
-    
+
         switch (sortOrder) {
             case 'A-Z':
                 filtered.sort((a, b) => a.name2.localeCompare(b.name2));
@@ -78,12 +78,12 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
             default:
                 break;
         }
-    
+
         setFilteredData(filtered);
     }, [data, filter, priceRange, selectedBrand, sortOrder, searchTerm]);
-    
+
     useEffect(() => {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }, [])
 
     if (loading) {
@@ -214,7 +214,7 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
                     </Col>
 
                     <Col lg={9} style={{ padding: '80px' }} className='shop-col-2 mt-5'>
-                        <div className="d-flex justify-content-between  align-items-center mb-4">
+                        <div className="d-flex justify-content-between  align-items-center flex-column flex-md-row mb-4">
                             <Form.Control
                                 type="text"
                                 placeholder={t('searchPlaceholder')}
@@ -226,10 +226,10 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
                             <Form.Select
                                 aria-label="Default select example"
                                 style={{ width: '150px', backgroundColor: '#101010' }}
-                                className='rounded-3 border-1 text-white drop-down'
+                                className='rounded-3 border-1 text-white drop-down mt-4 mt-md-0'
                                 onChange={handleSortChange}
                                 defaultValue="A-Z">
-                                 <option value="A-Z">{t('aToZ')}</option>
+                                <option value="A-Z">{t('aToZ')}</option>
                                 <option value="Z-A">{t('zToA')}</option>
                                 <option value="Price-Low-High">{t('priceLowToHigh')}</option>
                                 <option value="Price-High-Low">{t('priceHighToLow')}</option>
@@ -240,12 +240,16 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
                             {filteredData.map((item) => (
                                 <Col lg={4} md={6} sm={12} key={item.id} className='shop-col-3'>
                                     <div className="image-wrapper">
-                                        <Link to={`/product/${item.id}`}> 
+                                        <Link to={`/product/${item.id}`}>
                                             <img src={item.image_url} alt={item.title} className="slider-img img-fluid w-100 rounded-4" />
                                         </Link>
                                         <div className="img-icons">
-                                            <FaHeart className="icon" onClick={() => handleAddToWishlist(item)} />
-                                            <FaShoppingCart className="icon" onClick={() => handleAddToCart(item)} />
+                                            {item.stock_status === 'in stock' && (
+                                                <>
+                                                    <FaHeart className="icon" onClick={() => handleAddToWishlist(item)} />
+                                                    <FaShoppingCart className="icon" onClick={() => handleAddToCart(item)} />
+                                                </>
+                                            )}
                                         </div>
                                     </div>
                                     <div className="img-text mt-3 mb-5">

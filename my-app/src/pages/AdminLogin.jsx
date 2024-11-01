@@ -12,7 +12,7 @@ function AdminLogin() {
 
   useEffect(() => {
     const loggedInStatus = localStorage.getItem('isAdmin');
-    const username = localStorage.getItem('username');
+    const username = localStorage.getItem('usernamee');
     if (loggedInStatus === 'true') {
       setIsLoggedIn(true);
     }
@@ -43,47 +43,60 @@ function AdminLogin() {
     if (formData.username === 'admin' && formData.password === 'admin') {
       setErrorMessage('');
       setIsLoggedIn(true);
+      setAdmin(true);
       localStorage.setItem('isAdmin', 'true');
+      localStorage.setItem('usernamee', 'admin');
     } else {
       setErrorMessage('No such user exists.');
     }
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('isAdmin');
+    localStorage.removeItem('usernamee');
+    setIsLoggedIn(false);
+    setAdmin(false); // admin statusunu sıfırlayırıq
+  };
+
   return (
     <>
-      {admin ? <AdminPanel /> : (!isLoggedIn ? (
-        <div className={`${isDarkMode ? 'dark-mode' : 'light-mode'} d-flex justify-content-center align-items-center`} >
-          <Form onSubmit={handleSubmit} className="w-25 admin-login" style={{ margin: '130px 130px' }}>
-            <h3 className="text-center mb-3 text-white">{t('Admin_Login')}</h3>
-            <Form.Group controlId="formUsername" className="mb-3">
-              <Form.Control
-                type="text"
-                placeholder={t('USERNAME')}
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
-                required
-              />
-              {errorMessage && <div className="text-danger mt-2">{errorMessage}</div>}
-            </Form.Group>
+      {admin ? (
+        <AdminPanel onLogout={handleLogout} />
+      ) : (
+        !isLoggedIn ? (
+          <div className={`${isDarkMode ? 'dark-mode' : 'light-mode'} d-flex justify-content-center align-items-center`}>
+            <Form onSubmit={handleSubmit} className="w-25 admin-login" style={{ margin: '130px 130px' }}>
+              <h3 className="text-center mb-3 text-white">{t('Admin_Login')}</h3>
+              <Form.Group controlId="formUsername" className="mb-3">
+                <Form.Control
+                  type="text"
+                  placeholder={t('USERNAME')}
+                  name="username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  required
+                />
+                {errorMessage && <div className="text-danger mt-2">{errorMessage}</div>}
+              </Form.Group>
 
-            <Form.Group controlId="formPassword" className="mb-3">
-              <Form.Control
-                type="password"
-                placeholder={t('PASSWORD')}
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
+              <Form.Group controlId="formPassword" className="mb-3">
+                <Form.Control
+                  type="password"
+                  placeholder={t('PASSWORD')}
+                  name="password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
+              </Form.Group>
 
-            <Button variant="primary" type="submit" className="w-100">
-              {t('Login')}
-            </Button>
-          </Form>
-        </div>
-      ) : <AdminPanel setIsLoggedIn={setIsLoggedIn} />)}
+              <Button variant="primary" type="submit" className="w-100">
+                {t('Login')}
+              </Button>
+            </Form>
+          </div>
+        ) : <AdminPanel onLogout={handleLogout} />
+      )}
     </>
   );
 }

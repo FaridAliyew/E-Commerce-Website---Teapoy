@@ -57,7 +57,7 @@ function BLog() {
       </Container>
 
       <Container fluid className={`${isDarkMode ? 'dark-mode' : 'light-mode'} p-5 blog-container`}>
-        <Row>
+        <Row className='blog-row'>
           {isLoading ? (
             <Col className="text-center">
               <div className="spinner-container text-white">
