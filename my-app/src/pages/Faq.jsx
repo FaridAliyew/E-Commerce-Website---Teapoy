@@ -72,8 +72,8 @@ function Faq() {
                             <div>
                                 <div className='text-white ms-5 contact-us'>
                                     <h4>{t('contactUs')}</h4>
-                                    <p className='mt-4 text-white-50 fw-bold'>{t('contactAddress')}</p>
-                                    <p className='text-white-50 fw-bold'>{t('contactPhone')}</p>
+                                    <p className='mt-4 text-white-50'>{t('contactAddress')}</p>
+                                    <p className='text-white-50'>{t('contactPhone')}</p>
                                 </div>
                                 <img src={faq} width={600} className='img-fluid faq-furniture' alt="faq-furniture" />
                             </div>

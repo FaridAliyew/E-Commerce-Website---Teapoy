@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
 .moving-list-container {
     background-color: rgb(255, 132, 0);
     overflow: hidden;
@@ -35,7 +35,7 @@
 }
 
 .multicolumn-list {
-    font-family: "Gowun Batang", serif;
+    font-family: "Marcellus", serif;
 
     h6 {
         color: orange;

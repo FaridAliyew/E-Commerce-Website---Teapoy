@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
 .faq-container {
     p,
     h1,
     h6 {
         text-align: start !important;
-        font-family: "Gowun Batang", serif;
+        font-family: "Marcellus", serif;
     }
 
     h6 {
@@ -29,13 +29,13 @@
     background-color: #101010; 
     color: #f39c12; 
     width: 100%;
-    font-family: "Gowun Batang", serif;
+    font-family: "Marcellus", serif;
 }
 
 .accordion-body {
     background-color: #101010; 
     color: rgba(255, 255, 255, 0.8); 
-    font-family: "Gowun Batang", serif;
+    font-family: "Marcellus", serif;
 }
 
 .accordion-button {
@@ -45,7 +45,7 @@
     font-size: 1.40rem;
     width: 100%;
     margin-right: 12.3vw;
-    font-family: "Gowun Batang", serif;
+    font-family: "Marcellus", serif;
 }
 
 .accordion-button::after {
@@ -65,7 +65,7 @@
 }
 
 .contact-us{
-    font-family: "Gowun Batang", serif;
+    font-family: "Marcellus", serif;
     margin-top: 125px;
 }
 .faq-furniture{

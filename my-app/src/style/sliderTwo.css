@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
 .slider-two {
-    font-family: "Gowun Batang", serif;
+    font-family: "Marcellus", serif;
     margin-top: 130px;
 
     h6 {
@@ -19,7 +19,7 @@
 }
 
 .main-carusel {
-    font-family: "Gowun Batang", serif;
+    font-family: "Marcellus", serif;
     
     .carousel-content{
         margin-bottom: 100px;
@@ -32,7 +32,6 @@
 
     .carousel-content h5 {
         margin-top: 15px;
-        font-weight: bold;
     }
 
     .carousel-content img {

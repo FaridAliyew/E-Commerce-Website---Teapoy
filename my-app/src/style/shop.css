@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
 .shop-container{
+    font-family: "Marcellus", serif;
     h2{
         text-align: start;
     }

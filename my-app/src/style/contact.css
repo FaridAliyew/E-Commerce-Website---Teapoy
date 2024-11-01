@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&display=swap');
 .contact-container {
+    font-family: "Marcellus", serif;
     padding: 50px 0;
     color: white;
     background-color: #1c1c1c;

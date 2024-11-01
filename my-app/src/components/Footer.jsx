@@ -17,7 +17,7 @@ function Footer() {
     return (
         <Container fluid className='footer bg-black p-5 '>
             <Row className='footer-row d-flex justify-content-between'>
-                <Col sm={12} xl={2} className='text-sm-center text-xl-start ms-md-5'>
+                <Col sm={12} xl={2} className='text-sm-center text-xl-start ms-xl-5'>
                     <img src="https://wdt-teapoy.myshopify.com/cdn/shop/files/logo.svg?v=1719825267&width=160" width={150} alt="logo" className='mb-3' />
                     <p className='text-white text-sm-center text-xl-start'>{t('title2')}</p>
                     <div className='mt-4'>
