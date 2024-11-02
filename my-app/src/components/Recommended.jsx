@@ -7,7 +7,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import { useTranslation } from 'react-i18next';
 
-function Recommended({ quantity, cartItems, setCartItems, setCartCount, wishlistItems, setWishlistItems, setWishlistCount }) {
+function Recommended() {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
