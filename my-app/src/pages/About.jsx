@@ -11,17 +11,17 @@ import team1 from '../imgs/Team-1.jpg';
 import team2 from '../imgs/Team-2.jpg';
 import team3 from '../imgs/Team-3.jpg';
 import team4 from '../imgs/Team-4.jpg';
-import { useTranslation } from 'react-i18next'; 
+import { useTranslation } from 'react-i18next';
 import { ThemeContext } from '../context api/ThemeContext';
 import '../style/about.css'
 
 
 function About() {
-    const { t } = useTranslation(); 
+    const { t } = useTranslation();
     const { isDarkMode } = useContext(ThemeContext);
 
     useEffect(() => {
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }, [])
 
     return (
@@ -71,9 +71,9 @@ function About() {
                             <h4>Petro Ago</h4>
                             <p>{t('ceo')}</p>
                             <div className="social-icons">
-                                <a href="#"><FaXTwitter /></a>
-                                <a href="#"><FaFacebook /></a>
-                                <a href="#"><FaYoutube /></a>
+                                <a href="https://x.com/" target='_blank'><FaXTwitter /></a>
+                                <a href="https://www.facebook.com" target='_blank'><FaFacebook /></a>
+                                <a href="https://www.youtube.com/" target='_blank'><FaYoutube /></a>
                             </div>
                         </div>
                     </Col>
@@ -83,9 +83,9 @@ function About() {
                             <h4>Nyssa Carina</h4>
                             <p>{t('Designer')}</p>
                             <div className="social-icons">
-                                <a href="#"><FaXTwitter /></a>
-                                <a href="#"><FaFacebook /></a>
-                                <a href="#"><FaYoutube /></a>
+                                <a href="https://x.com/" target='_blank'><FaXTwitter /></a>
+                                <a href="https://www.facebook.com" target='_blank'><FaFacebook /></a>
+                                <a href="https://www.youtube.com/" target='_blank'><FaYoutube /></a>
                             </div>
                         </div>
                     </Col>
@@ -95,9 +95,9 @@ function About() {
                             <h4>Meshulam Rudi</h4>
                             <p>{t('Marketing')}</p>
                             <div className="social-icons">
-                                <a href="#"><FaXTwitter /></a>
-                                <a href="#"><FaFacebook /></a>
-                                <a href="#"><FaYoutube /></a>
+                                <a href="https://x.com/" target='_blank'><FaXTwitter /></a>
+                                <a href="https://www.facebook.com" target='_blank'><FaFacebook /></a>
+                                <a href="https://www.youtube.com/" target='_blank'><FaYoutube /></a>
                             </div>
                         </div>
                     </Col>
@@ -107,9 +107,9 @@ function About() {
                             <h4>Berach Ingram</h4>
                             <p>{t('Customer Support')}</p>
                             <div className="social-icons">
-                                <a href="#"><FaXTwitter /></a>
-                                <a href="#"><FaFacebook /></a>
-                                <a href="#"><FaYoutube /></a>
+                                <a href="https://x.com/" target='_blank'><FaXTwitter /></a>
+                                <a href="https://www.facebook.com" target='_blank'><FaFacebook /></a>
+                                <a href="https://www.youtube.com/" target='_blank'><FaYoutube /></a>
                             </div>
                         </div>
                     </Col>
