@@ -55,7 +55,7 @@ function AdminLogin() {
     localStorage.removeItem('isAdmin');
     localStorage.removeItem('usernamee');
     setIsLoggedIn(false);
-    setAdmin(false); // admin statusunu sıfırlayırıq
+    setAdmin(false); 
   };
 
   return (

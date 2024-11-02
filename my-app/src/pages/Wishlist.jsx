@@ -6,11 +6,13 @@ import { toast } from 'react-toastify';
 import img from '../imgs/Rectangle_2.jpg';
 import { useTranslation } from 'react-i18next';
 import { ThemeContext } from '../context api/ThemeContext';
+import { useNavigate } from 'react-router-dom';
 
 function Wishlist({ wishlistItems, setWishlistItems, setWishlistCount, cartItems, setCartItems, setCartCount }) {
-  const { t } = useTranslation(); 
+  const { t } = useTranslation();
   const [quantities, setQuantities] = useState({});
   const { isDarkMode } = useContext(ThemeContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedQuantities = localStorage.getItem('wishlistQuantities');
@@ -43,11 +45,11 @@ function Wishlist({ wishlistItems, setWishlistItems, setWishlistCount, cartItems
       setCartItems(cartItems.map(cartItem =>
         cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + (quantities[item.id]) } : cartItem
       ));
-      toast.success(t('productAlreadyInCart')); 
+      toast.success(t('productAlreadyInCart'));
     } else {
-      setCartItems([...cartItems, { ...item, quantity: quantities[item.id]}]);
-      setCartCount(prev => prev + (quantities[item.id])); 
-      toast.success(t('addToCartSuccess')); 
+      setCartItems([...cartItems, { ...item, quantity: quantities[item.id] }]);
+      setCartCount(prev => prev + (quantities[item.id]));
+      toast.success(t('addToCartSuccess'));
     }
   };
 
@@ -86,8 +88,11 @@ function Wishlist({ wishlistItems, setWishlistItems, setWishlistCount, cartItems
             ))}
           </Row>
         ) : (
-          <p className='text-center'>{t('emptyWishlist')}</p>
-        )}        
+          <>
+            <p className='text-center fs-3' style={{marginTop:'140px'}}>{t('emptyWishlist')}</p>
+            <button onClick={() => navigate("/shop")} style={{ padding: '10px', borderRadius: '30px', backgroundColor: 'rgb(255, 111, 0)', border: 'none', marginBottom: '140px',  }} className='text-white d-block ms-auto me-auto mt-4 '>{t('continueShopping')}</button>
+          </>
+        )}
       </Container>
     </div>
   );

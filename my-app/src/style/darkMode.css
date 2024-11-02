@@ -329,4 +329,10 @@
       color: white !important;
     }
   }
+
+  .comment{
+    .comment-text{
+      color: #111111 !important;
+    }
+  }
 }

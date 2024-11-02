@@ -215,5 +215,8 @@
   "emptyCart": "Səbətiniz boşdur",
   "totall": "Cəmi",
   "successMessage": "Ödənişiniz uğurla tamamlanmışdır.",
-  "recommendedProducts": "Tövsiyə Olunan Məhsullar"
+  "recommendedProducts": "Tövsiyə Olunan Məhsullar",
+  "dashboard":"Idarəetmə Paneli",
+  "new_blog":"Yeni Blog",
+  "logout":"Çıxış"
 }

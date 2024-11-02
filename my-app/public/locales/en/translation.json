@@ -215,5 +215,8 @@
   "emptyCart": "Your Cart is Empty",
   "totall": "Total",
   "successMessage": "Your payment has been successfully completed.",
-  "recommendedProducts": "Recommended Products"
+  "recommendedProducts": "Recommended Products",
+  "dashboard": "Dashboard",
+  "new_blog": "New Blog",
+  "logout": "Logout"
 }

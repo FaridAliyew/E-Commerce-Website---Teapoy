@@ -96,6 +96,13 @@ form .icons {
   filter: invert(1);
 }
 
+.modal-content{
+  input{
+    background-color: #111111 !important;
+    color: white !important;
+  }
+}
+
 .modal-header .btn-close:hover {
   filter: invert(0.5);
 }

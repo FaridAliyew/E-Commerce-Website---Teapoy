@@ -1,8 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Spinner } from 'react-bootstrap';
-import { FaHeart, FaShoppingCart } from 'react-icons/fa';
-import { toast } from 'react-toastify';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
@@ -41,32 +39,6 @@ function Recommended({ quantity, cartItems, setCartItems, setCartCount, wishlist
     useEffect(() => {
         window.scrollTo(0,0);
     }, [])
-
-    // const handleAddToCart = (item) => {
-    //     const existingItem = cartItems.find(cartItem => cartItem.id === item.id);
-    //     if (existingItem) {
-    //         setCartItems(cartItems.map(cartItem =>
-    //             cartItem.id === item.id ? { ...cartItem, quantity: cartItem.quantity + quantity } : cartItem
-    //         ));
-    //     } else {
-    //         setCartItems([...cartItems, { ...item, quantity }]);
-    //         setCartCount(prev => prev + 1);
-    //         toast.success('Successfully added to cart!'); 
-    //     }
-    // };
-
-    // const handleAddToWishlist = (item) => {
-    //     const existingItem = wishlistItems.find(wishlistItem => wishlistItem.id === item.id);
-    //     if (existingItem) {
-    //         setWishlistItems(wishlistItems.map(wishlistItem =>
-    //             wishlistItem.id === item.id ? { ...wishlistItem, quantity: wishlistItem.quantity + 1 } : wishlistItem
-    //         ));
-    //     } else {
-    //         setWishlistItems([...wishlistItems, { ...item, quantity: 1 }]);
-    //         setWishlistCount(prev => prev + 1);
-    //         toast.success('Successfully added to wishlist!');
-    //     }
-    // };
 
     if (loading) {
         return (

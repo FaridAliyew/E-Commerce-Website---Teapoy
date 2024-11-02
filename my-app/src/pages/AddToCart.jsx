@@ -48,7 +48,7 @@ function AddToCart({ cartItems, setCartItems, quantities, setCartCount, setQuant
     useEffect(() => {
         const storedFinalPrice = localStorage.getItem('finalPrice');
         if (storedFinalPrice) {
-            setFinalPrice(parseFloat(storedFinalPrice)); // Endirim qiymətini set edirik
+            setFinalPrice(parseFloat(storedFinalPrice)); 
         }
 
         const storedQuantities = localStorage.getItem('quantities');

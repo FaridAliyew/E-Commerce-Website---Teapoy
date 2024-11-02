@@ -4,8 +4,10 @@ import { Table, Container, Button, Modal, Form } from 'react-bootstrap';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import { ThemeContext } from '../context api/ThemeContext';
+import { useTranslation } from 'react-i18next';
 
 function AdminPanel({ onLogout }) {
+    const { t } = useTranslation();
     const { isDarkMode } = useContext(ThemeContext);
     const [blogs, setBlogs] = useState([]);
     const [show, setShow] = useState(false);
@@ -18,12 +20,6 @@ function AdminPanel({ onLogout }) {
         description: '',
         date: '',
     });
-
-    // const logOut = () => {
-    //     localStorage.removeItem('isAdmin');
-    //     localStorage.removeItem('usernamee');
-    //     setIsLoggedIn(false);
-    // }
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -122,13 +118,13 @@ function AdminPanel({ onLogout }) {
 
     return (
         <Container fluid className={`${isDarkMode ? 'dark-mode' : 'light-mode'} p-5`}>
-            <h1 className='text-white dashboard'>Dashboard</h1>
+            <h1 className='text-white dashboard'>{t('dashboard')}</h1>
             <Button variant="danger" className='mb-3' onClick={() => { setEditMode(false); handleShow(); }}>
-                New Blog
+                {t('new_blog')}
             </Button>
 
             <Button variant="secondary" className='mb-3 ms-2' onClick={onLogout}>
-                Log Out
+                {t('logout')}
             </Button>
 
             <Table striped bordered hover >

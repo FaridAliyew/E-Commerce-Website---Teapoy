@@ -215,5 +215,8 @@
   "emptyCart": "Ваша корзина пуста",
   "totall": "Итого",
   "successMessage": "Ваш платеж был успешно завершен.",
-  "recommendedProducts": "Рекомендуемые товары"
+  "recommendedProducts": "Рекомендуемые товары",
+  "dashboard": "Панель управления",
+  "new_blog": "Новый блог",
+  "logout": "Выйти"
 }
