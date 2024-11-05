@@ -40,7 +40,7 @@ function AdminLogin() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (formData.username === 'admin' && formData.password === 'admin') {
+    if (formData.username === 'Farid Aliyev' && formData.password === '05037590260515846406Bb') {
       setErrorMessage('');
       setIsLoggedIn(true);
       setAdmin(true);
