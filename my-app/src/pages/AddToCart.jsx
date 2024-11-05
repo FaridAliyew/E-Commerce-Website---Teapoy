@@ -103,7 +103,7 @@ function AddToCart({ cartItems, setCartItems, quantities, setCartCount, setQuant
                     <Col>
                         <div className='image-container'>
                             <img src={img} alt="" />
-                            <p className='image-text'>{t('title')}</p>
+                            <p className='fs-1 image-text'>{t('title')}</p>
                         </div>
                     </Col>
                 </Row>

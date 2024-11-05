@@ -31,7 +31,7 @@ function About() {
                     <Col>
                         <div className='image-container'>
                             <img src={img} alt="" />
-                            <p className='image-text'>{t('about')}</p>
+                            <p className='fs-1 image-text'>{t('about')}</p>
                         </div>
                     </Col>
                 </Row>

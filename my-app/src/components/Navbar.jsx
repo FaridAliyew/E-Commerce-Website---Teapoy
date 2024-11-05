@@ -14,7 +14,7 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
     const [credentials, setCredentials] = useState({ email: '', password: '' });
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
-    const [errors, setErrors] = useState({ email: '', password: '' }); 
+    const [errors, setErrors] = useState({ email: '', password: '' });
     const [loginError, setLoginError] = useState('')
     const location = useLocation();
     const navigate = useNavigate();
@@ -22,7 +22,7 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
     const handleSignInModalOpen = () => setShowSignInModal(true);
     const handleSignInModalClose = () => {
         setShowSignInModal(false);
-        setErrors({ email: '', password: '' }); 
+        setErrors({ email: '', password: '' });
         setLoginError('');
     };
 
@@ -35,6 +35,10 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
         setUsername('');
         setEmail('')
     };
+
+    useEffect(() => {
+        setMenuOpen(false);
+    }, [location]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -96,24 +100,24 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
 
         setErrors(newErrors);
 
-        if (!formIsValid) return; 
+        if (!formIsValid) return;
 
         const storedUserData = JSON.parse(localStorage.getItem('users'));
 
         const user = storedUserData && storedUserData.find(user => user.email === credentials.email && user.password === credentials.password);
 
         if (user) {
-        setIsAuthenticated(true);
-        localStorage.setItem('isAuthenticated', 'true');
-        localStorage.setItem('username', user.username); 
-        localStorage.setItem('usernamee', user.username); 
-        localStorage.setItem('email', user.email);
-        setUsername(user.username); 
-        setEmail(user.email);
-        handleSignInModalClose();
-    } else {
-        setLoginError('Invalid email or password'); 
-    }
+            setIsAuthenticated(true);
+            localStorage.setItem('isAuthenticated', 'true');
+            localStorage.setItem('username', user.username);
+            localStorage.setItem('usernamee', user.username);
+            localStorage.setItem('email', user.email);
+            setUsername(user.username);
+            setEmail(user.email);
+            handleSignInModalClose();
+        } else {
+            setLoginError('Invalid email or password');
+        }
     };
 
 
@@ -138,7 +142,7 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
                         onClick={() => setMenuOpen(!menuOpen)}
                     />
 
-                    <BootstrapNavbar.Collapse id="basic-navbar-nav">
+                    <BootstrapNavbar.Collapse in={menuOpen} id="basic-navbar-nav">
                         <Nav className="d-flex align-items-center justify-content-center">
                             <Nav.Link as={Link} to="/" className={`me-4 ${getActiveLinkClass('/')}`}>{t('HOME')}</Nav.Link>
                             <Nav.Link as={Link} to="/collection" className={`me-4 ${getActiveLinkClass('/collection')}`}>{t('COLLECTION')}</Nav.Link>
@@ -198,7 +202,7 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
                                 value={credentials.email}
                                 onChange={handleChange}
                             />
-                             {errors.email && <p className="text-danger text-start mt-2">{errors.email}</p>}
+                            {errors.email && <p className="text-danger text-start mt-2">{errors.email}</p>}
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -210,8 +214,8 @@ function Navbar({ cartCount, wishlistCount, isAuthenticated, setIsAuthenticated 
                                 value={credentials.password}
                                 onChange={handleChange}
                             />
-                             {errors.password && <p className="text-danger text-start mt-2">{errors.password}</p>}
-                             {loginError && <p className="text-danger text-center mt-3">{loginError}</p>}
+                            {errors.password && <p className="text-danger text-start mt-2">{errors.password}</p>}
+                            {loginError && <p className="text-danger text-center mt-3">{loginError}</p>}
                         </Form.Group>
 
                         <Button variant="primary" type="submit" className="w-50 d-block ms-auto me-auto mt-4" style={{ backgroundColor: '#eb8934', border: 'none' }}>

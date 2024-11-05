@@ -151,7 +151,7 @@ function Shop({ setCartCount, setWishlistCount, setCartItems, setWishlistItems, 
                     <Col>
                         <div className='image-container'>
                             <img src={img} alt="" />
-                            <p className='image-text'>{t('products')}</p>
+                            <p className='fs-1 image-text'>{t('products')}</p>
                         </div>
                     </Col>
                 </Row>

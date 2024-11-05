@@ -25,7 +25,7 @@ function Collections() {
                     <Col>
                         <div className='image-container'>
                             <img src={img} alt="" />
-                            <p className='image-text'>{t('ALL_COLLECTIONS')}</p>
+                            <p className='fs-1 image-text'>{t('ALL_COLLECTIONS')}</p>
                         </div>
                     </Col>
                 </Row>

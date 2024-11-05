@@ -21,7 +21,7 @@ function Faq() {
                     <Col>
                         <div className='image-container'>
                             <img src={img} alt="" />
-                            <p className='image-text'>{t('faqTitle')}</p>
+                            <p className='fs-1 image-text'>{t('faqTitle')}</p>
                         </div>
                     </Col>
                 </Row>

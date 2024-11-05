@@ -1,6 +1,7 @@
 .wishlist{
     .remove-button{
-        font-size: 19px !important;
+        font-size: 15px !important;
+        padding: 10px 15px  !important;
         background-color: rgb(255, 115, 0);
         border: none;
         border-radius: 20px;

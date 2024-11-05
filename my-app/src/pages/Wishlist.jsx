@@ -48,7 +48,7 @@ function Wishlist({ wishlistItems, setWishlistItems, setWishlistCount, cartItems
       toast.success(t('productAlreadyInCart'));
     } else {
       setCartItems([...cartItems, { ...item, quantity: quantities[item.id] }]);
-      setCartCount(prev => prev + (quantities[item.id]));
+      setCartCount(prev => prev + (quantities[item.id] || 1));
       toast.success(t('addToCartSuccess'));
     }
   };
@@ -60,7 +60,7 @@ function Wishlist({ wishlistItems, setWishlistItems, setWishlistCount, cartItems
           <Col>
             <div className='image-container'>
               <img src={img} alt="" />
-              <p className='image-text'>{t('wishlist')}</p>
+              <p className='fs-1 image-text'>{t('wishlist')}</p>
             </div>
           </Col>
         </Row>
@@ -89,8 +89,8 @@ function Wishlist({ wishlistItems, setWishlistItems, setWishlistCount, cartItems
           </Row>
         ) : (
           <>
-            <p className='text-center fs-3' style={{marginTop:'140px'}}>{t('emptyWishlist')}</p>
-            <button onClick={() => navigate("/shop")} style={{ padding: '10px', borderRadius: '30px', backgroundColor: 'rgb(255, 111, 0)', border: 'none', marginBottom: '140px',  }} className='text-white d-block ms-auto me-auto mt-4 '>{t('continueShopping')}</button>
+            <p className='text-center fs-3' style={{ marginTop: '140px' }}>{t('emptyWishlist')}</p>
+            <button onClick={() => navigate("/shop")} style={{ padding: '10px', borderRadius: '30px', backgroundColor: 'rgb(255, 111, 0)', border: 'none', marginBottom: '140px', }} className='text-white d-block ms-auto me-auto mt-4 '>{t('continueShopping')}</button>
           </>
         )}
       </Container>

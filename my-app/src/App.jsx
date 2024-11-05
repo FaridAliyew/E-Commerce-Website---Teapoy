@@ -42,6 +42,7 @@ function App() {
     const [cartItems, setCartItems] = useState([]);
     const [wishlistItems, setWishlistItems] = useState([]);
     const [quantities, setQuantities] = useState({});
+    // const [username, setUsername] = useState('');
 
 
     useEffect(() => {
@@ -94,10 +95,10 @@ function App() {
                             <SliderTwo />
                         </>
                     }>
-                        <Route path="/" element={<HomeDecoration setCartCount={setCartCount} setWishlistCount={setWishlistCount} setCartItems={setCartItems} setWishlistItems={setWishlistItems} cartItems={cartItems} wishlistItems={wishlistItems}/> } />
-                        <Route path="office-decoration" element={<OfficeDecoration setCartCount={setCartCount} setWishlistCount={setWishlistCount} setCartItems={setCartItems} setWishlistItems={setWishlistItems} cartItems={cartItems} wishlistItems={wishlistItems}/>} />
-                        <Route path="indoor-decoration" element={<IndoorDecoration setCartCount={setCartCount} setWishlistCount={setWishlistCount} setCartItems={setCartItems} setWishlistItems={setWishlistItems} cartItems={cartItems} wishlistItems={wishlistItems}/>} />
-                        <Route path="outdoor-decoration" element={<OutdoorDecoration setCartCount={setCartCount} setWishlistCount={setWishlistCount} setCartItems={setCartItems} setWishlistItems={setWishlistItems} cartItems={cartItems} wishlistItems={wishlistItems}/>} />
+                        <Route path="/" element={<HomeDecoration setCartCount={setCartCount} setWishlistCount={setWishlistCount} setCartItems={setCartItems} setWishlistItems={setWishlistItems} cartItems={cartItems} wishlistItems={wishlistItems} />} />
+                        <Route path="office-decoration" element={<OfficeDecoration setCartCount={setCartCount} setWishlistCount={setWishlistCount} setCartItems={setCartItems} setWishlistItems={setWishlistItems} cartItems={cartItems} wishlistItems={wishlistItems} />} />
+                        <Route path="indoor-decoration" element={<IndoorDecoration setCartCount={setCartCount} setWishlistCount={setWishlistCount} setCartItems={setCartItems} setWishlistItems={setWishlistItems} cartItems={cartItems} wishlistItems={wishlistItems} />} />
+                        <Route path="outdoor-decoration" element={<OutdoorDecoration setCartCount={setCartCount} setWishlistCount={setWishlistCount} setCartItems={setCartItems} setWishlistItems={setWishlistItems} cartItems={cartItems} wishlistItems={wishlistItems} />} />
                     </Route>
 
                     <Route path='/collection' element={<Collections />} />
@@ -127,9 +128,11 @@ function App() {
                         cartItems={cartItems}
                         setCartItems={setCartItems}
                         setCartCount={setCartCount}
+                        quantities={quantities}
+                        setQuantities={setQuantities}
                     />} />
 
-                    <Route path='/admin' element={<AdminLogin/>} />
+                    <Route path='/admin' element={<AdminLogin setIsAuthenticated={setIsAuthenticated} isAuthenticated={isAuthenticated} />} />
 
                     <Route path="/product/:id" element={
                         <ProductDetail setCartCount={setCartCount} setCartItems={setCartItems} setWishlistCount={setWishlistCount} setWishlistItems={setWishlistItems} cartItems={cartItems} wishlistItems={wishlistItems} quantities={quantities} setQuantities={setQuantities} isAuthenticated={isAuthenticated} />

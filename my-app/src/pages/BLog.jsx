@@ -50,7 +50,7 @@ function BLog() {
           <Col>
             <div className='image-container'>
               <img src={img} alt="" />
-              <p className='image-text'>Blog</p>
+              <p className='fs-1 image-text'>Blog</p>
             </div>
           </Col>
         </Row>
