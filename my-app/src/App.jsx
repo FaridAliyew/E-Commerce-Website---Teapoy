@@ -34,6 +34,7 @@ import { I18nextProvider } from 'react-i18next';
 import i18n from './i18/i18n';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import { ThemeProvider } from './context api/ThemeContext';
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 function App() {
     const [cartCount, setCartCount] = useState(0);
@@ -42,7 +43,6 @@ function App() {
     const [cartItems, setCartItems] = useState([]);
     const [wishlistItems, setWishlistItems] = useState([]);
     const [quantities, setQuantities] = useState({});
-    // const [username, setUsername] = useState('');
 
 
     useEffect(() => {
@@ -142,6 +142,7 @@ function App() {
                 </Routes>
                 <ScrollToTopButton />
                 <Footer />
+                <SpeedInsights />
             </ThemeProvider>
         </I18nextProvider>
     );
