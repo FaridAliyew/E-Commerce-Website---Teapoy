@@ -34,7 +34,7 @@ import { I18nextProvider } from 'react-i18next';
 import i18n from './i18/i18n';
 import ScrollToTopButton from './components/ScrollToTopButton';
 import { ThemeProvider } from './context api/ThemeContext';
-import { SpeedInsights } from "@vercel/speed-insights/react"
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 function App() {
     const [cartCount, setCartCount] = useState(0);
